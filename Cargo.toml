@@ -24,6 +24,8 @@ alvr_server_io = { path = "alvr/server_io" }
 alvr_session = { path = "alvr/session" }
 alvr_sockets = { path = "alvr/sockets" }
 alvr_system_info = { path = "alvr/system_info" }
+alvr_api_adapter = { path = "alvr/api_adapter" }
+urlencoding = "2"
 
 [profile.release]
 debug = "limited"

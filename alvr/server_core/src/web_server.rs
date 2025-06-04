@@ -7,7 +7,9 @@ use alvr_common::{
     error, info, log, ConnectionState,
 };
 use alvr_events::{ButtonEvent, EventType};
-use alvr_packets::{ButtonEntry, ClientListAction, ServerRequest};
+use alvr_packets::{
+    parse_path, ButtonEntry, ClientListAction, PathValuePair, ServerRequest,
+};
 use bytes::Buf;
 use futures::SinkExt;
 use headers::{
@@ -22,6 +24,7 @@ use hyper::{
 };
 use serde::de::DeserializeOwned;
 use serde_json as json;
+use urlencoding::decode;
 use std::{net::SocketAddr, sync::Arc};
 use tokio::sync::broadcast::{self, error::RecvError};
 use tokio_tungstenite::{tungstenite::protocol, WebSocketStream};
@@ -36,6 +39,20 @@ async fn from_request_body<T: DeserializeOwned>(request: Request<Body>) -> Resul
     Ok(json::from_reader(
         hyper::body::aggregate(request).await?.reader(),
     )?)
+}
+
+fn query_path(uri: &hyper::Uri) -> Option<String> {
+    uri.query().and_then(|q| {
+        for pair in q.split('&') {
+            let mut it = pair.splitn(2, '=');
+            if let (Some(key), Some(value)) = (it.next(), it.next()) {
+                if key == "path" {
+                    return decode(value).ok().map(|v| v.into_owned());
+                }
+            }
+        }
+        None
+    })
 }
 
 fn websocket<T: Clone + Send + 'static>(
@@ -346,6 +363,40 @@ async fn http_api(
                 .ok();
 
             reply(StatusCode::OK)?
+        }
+        "/api/settings" => {
+            if let Some(path_str) = query_path(request.uri()) {
+                let path = parse_path(&path_str);
+                if request.method() == Method::GET {
+                    let session_json =
+                        json::to_value(SESSION_MANAGER.read().session().clone()).unwrap();
+                    let mut value_ref = &session_json;
+                    for segment in &path {
+                        value_ref = match segment {
+                            alvr_packets::PathSegment::Name(name) => {
+                                value_ref.get(name).ok_or_else(|| anyhow::anyhow!("invalid path"))?
+                            }
+                            alvr_packets::PathSegment::Index(index) => {
+                                value_ref.get(*index).ok_or_else(|| anyhow::anyhow!("invalid path"))?
+                            }
+                        };
+                    }
+
+                    Response::builder()
+                        .header(header::CONTENT_TYPE, "application/json")
+                        .body(value_ref.to_string().into())?
+                } else {
+                    let value = from_request_body::<json::Value>(request).await?;
+                    SESSION_MANAGER
+                        .write()
+                        .set_values(vec![PathValuePair { path, value }])
+                        .ok();
+
+                    reply(StatusCode::OK)?
+                }
+            } else {
+                reply(StatusCode::BAD_REQUEST)?
+            }
         }
         "/api/average-video-latency-ms" => {
             let latency = if let Some(manager) = &*connection_context.statistics_manager.read() {

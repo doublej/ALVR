@@ -76,6 +76,38 @@ pub struct AdbEvent {
     pub download_progress: f32,
 }
 
+// Diagnostics system types
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, Eq)]
+pub enum DiagSource {
+    Streamer,
+    SteamVR,
+    Adb,
+    Client,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct DiagLogEntry {
+    pub source: DiagSource,
+    pub severity: LogSeverity,
+    pub content: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct AdbDeviceStatus {
+    pub serial: String,
+    pub state: String,
+    pub ports_forwarded: Vec<u16>,
+    pub client_package: Option<String>,
+    pub client_running: bool,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub enum AdbConnectionStatus {
+    NotInstalled,
+    NoDevices,
+    DeviceFound(AdbDeviceStatus),
+}
+
 #[derive(Serialize, Deserialize, Clone, Debug)]
 #[serde(tag = "id", content = "data")]
 pub enum EventType {
@@ -91,6 +123,10 @@ pub enum EventType {
     ServerRequestsSelfRestart,
     Adb(AdbEvent),
     NewVersionFound { version: String, message: String },
+    // Diagnostics events
+    DiagLog(DiagLogEntry),
+    DiagAdbStatus(AdbConnectionStatus),
+    DiagLogcatState { active: bool },
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
@@ -119,6 +155,9 @@ impl Event {
             EventType::ServerRequestsSelfRestart => "RESTART".to_string(),
             EventType::Adb(_) => "ADB".to_string(),
             EventType::NewVersionFound { .. } => "NEW VER".to_string(),
+            EventType::DiagLog(entry) => format!("DIAG:{:?}", entry.source),
+            EventType::DiagAdbStatus(_) => "DIAG:ADB".to_string(),
+            EventType::DiagLogcatState { .. } => "DIAG:LOGCAT".to_string(),
         }
     }
 
@@ -135,6 +174,15 @@ impl Event {
             EventType::ServerRequestsSelfRestart => "Request for server restart".into(),
             EventType::Adb(adb) => serde_json::to_string(adb).unwrap(),
             EventType::NewVersionFound { version, .. } => version.clone(),
+            EventType::DiagLog(entry) => entry.content.clone(),
+            EventType::DiagAdbStatus(status) => serde_json::to_string(status).unwrap(),
+            EventType::DiagLogcatState { active } => {
+                if *active {
+                    "Logcat streaming started".into()
+                } else {
+                    "Logcat streaming stopped".into()
+                }
+            }
         }
     }
 }

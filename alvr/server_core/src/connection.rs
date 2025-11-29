@@ -3,6 +3,7 @@ use crate::{
     bitrate::BitrateManager,
     hand_gestures::HandGestureManager,
     input_mapping::ButtonMappingManager,
+    reset_stream_state,
     sockets::WelcomeSocket,
     statistics::StatisticsManager,
     tracking::{self, TrackingManager},
@@ -42,10 +43,13 @@ use std::{
 
 const RETRY_CONNECT_MIN_INTERVAL: Duration = Duration::from_secs(1);
 const HANDSHAKE_ACTION_TIMEOUT: Duration = Duration::from_secs(2);
+// Increased from 5s to 10s to account for ADB port forwarding latency
+const WIRED_HANDSHAKE_ACTION_TIMEOUT: Duration = Duration::from_secs(10);
 pub const STREAMING_RECV_TIMEOUT: Duration = Duration::from_millis(500);
 const REAL_TIME_UPDATE_INTERVAL: Duration = Duration::from_secs(1);
 
 const MAX_UNREAD_PACKETS: usize = 10; // Applies per stream
+const MAX_USB_HANDSHAKE_RETRIES: usize = 5; // Max consecutive handshake failures before warning
 
 pub struct VideoPacket {
     pub header: VideoPacketHeader,
@@ -250,6 +254,7 @@ pub fn handshake_loop(ctx: Arc<ConnectionContext>, lifecycle_state: Arc<RwLock<L
     };
 
     let mut wired_connection = None;
+    let mut usb_handshake_failures = 0;
 
     while *lifecycle_state.read() != LifecycleState::ShuttingDown {
         dbg_connection!("handshake_loop: Try connect to wired device");
@@ -327,16 +332,30 @@ pub fn handshake_loop(ctx: Arc<ConnectionContext>, lifecycle_state: Arc<RwLock<L
             wired_client_ips.insert(client_ip, WIRED_CLIENT_HOSTNAME.to_owned());
         }
 
-        if !wired_client_ips.is_empty()
-            && try_connect(
+        if !wired_client_ips.is_empty() {
+            match try_connect(
                 Arc::clone(&ctx),
                 Arc::clone(&lifecycle_state),
                 wired_client_ips,
-            )
-            .is_ok()
-        {
-            thread::sleep(RETRY_CONNECT_MIN_INTERVAL);
-            continue;
+            ) {
+                Ok(()) => {
+                    usb_handshake_failures = 0; // Reset counter on success
+                    thread::sleep(RETRY_CONNECT_MIN_INTERVAL);
+                    continue;
+                }
+                Err(e) => {
+                    usb_handshake_failures += 1;
+                    if usb_handshake_failures >= MAX_USB_HANDSHAKE_RETRIES {
+                        warn!(
+                            "USB connection handshake failed {} times consecutively. \
+                            Check ADB port forwarding and client connection. Error: {e}",
+                            usb_handshake_failures
+                        );
+                        // Reset counter after warning to avoid spam
+                        usb_handshake_failures = 0;
+                    }
+                }
+            }
         }
 
         dbg_connection!("handshake_loop: Try connect to manual IPs");
@@ -461,8 +480,22 @@ fn try_connect(
 ) -> ConResult {
     dbg_connection!("try_connect: Finding client and creating control socket");
 
+    // Use longer timeout for wired/USB connections (loopback IPs)
+    let is_wired = client_ips.keys().any(|ip| ip.is_loopback());
+    let timeout = if is_wired {
+        WIRED_HANDSHAKE_ACTION_TIMEOUT
+    } else {
+        Duration::from_secs(1)
+    };
+
+    dbg_connection!(
+        "try_connect: Attempting connection ({}), timeout: {:?}",
+        if is_wired { "wired/USB" } else { "wireless" },
+        timeout
+    );
+
     let (proto_socket, client_ip) = ProtoControlSocket::connect_to(
-        Duration::from_secs(1),
+        timeout,
         PeerType::AnyClient(client_ips.keys().cloned().collect()),
     )?;
 
@@ -529,15 +562,35 @@ fn connection_pipeline(
 
     let disconnect_notif = Arc::new(Condvar::new());
 
-    dbg_connection!("connection_pipeline: Getting client status packet");
-    let connection_result = match proto_socket.recv(HANDSHAKE_ACTION_TIMEOUT) {
+    let wired = client_ip.is_loopback();
+    let handshake_timeout = if wired {
+        WIRED_HANDSHAKE_ACTION_TIMEOUT
+    } else {
+        HANDSHAKE_ACTION_TIMEOUT
+    };
+
+    dbg_connection!(
+        "connection_pipeline: Getting client status packet ({}, timeout: {:?})",
+        if wired { "wired/USB" } else { "wireless" },
+        handshake_timeout
+    );
+
+    let connection_result = match proto_socket.recv(handshake_timeout) {
         Ok(r) => r,
         Err(ConnectionError::TryAgain(e)) => {
-            debug!(
-                "Failed to recive client connection packet. This is normal for USB connection.\n{e}"
-            );
-
-            return Ok(());
+            if wired {
+                info!(
+                    "Failed to receive client connection packet from wired/USB connection. \
+                    This may indicate ADB port forwarding issues or the client is not ready.\n{e}"
+                );
+                // Return error so retry counter can track consecutive failures
+                return Err(ConnectionError::TryAgain(e));
+            } else {
+                debug!(
+                    "Failed to receive client connection packet from wireless connection.\n{e}"
+                );
+                return Ok(());
+            }
         }
         Err(e) => return Err(e),
     };
@@ -730,36 +783,44 @@ fn connection_pipeline(
     #[cfg(not(target_os = "windows"))]
     let game_audio_sample_rate = 44100;
 
+    // For wired/USB connections, use default sample rate to avoid blocking audio device
+    // queries during handshake. Audio threads will initialize with actual devices later.
     #[cfg(target_os = "windows")]
-    let game_audio_sample_rate =
-        if let Switch::Enabled(game_audio_config) = &initial_settings.audio.game_audio {
-            let game_audio_device =
-                alvr_audio::new_output(game_audio_config.device.as_ref()).to_con()?;
-
-            if let Switch::Enabled(microphone_config) = &initial_settings.audio.microphone
-                && matches!(
-                    microphone_config.devices,
-                    alvr_session::MicrophoneDevicesConfig::VAC
-                        | alvr_session::MicrophoneDevicesConfig::VBCable
-                )
-            {
-                let (sink, _) =
-                    alvr_audio::new_virtual_microphone_pair(microphone_config.devices.clone())
-                        .to_con()?;
-
-                // VoiceMeeter and Custom devices may have arbitrary internal routing.
-                // Therefore, we cannot detect the loopback issue without knowing the routing.
-                if alvr_audio::is_same_device(&game_audio_device, &sink) {
-                    con_bail!("Game audio and microphone cannot point to the same device!");
-                }
-            }
-
-            alvr_audio::input_sample_rate(&game_audio_device).to_con()?
+    let game_audio_sample_rate = if wired {
+        // Skip audio device initialization during handshake for faster USB connection.
+        // Use standard sample rate - audio threads will handle actual device setup.
+        if initial_settings.audio.game_audio.enabled() {
+            info!("Wired connection: deferring audio device initialization for faster handshake");
+            44100 // Standard sample rate, will be used by audio threads
         } else {
             0
-        };
+        }
+    } else if let Switch::Enabled(game_audio_config) = &initial_settings.audio.game_audio {
+        let game_audio_device =
+            alvr_audio::new_output(game_audio_config.device.as_ref()).to_con()?;
 
-    let wired = client_ip.is_loopback();
+        if let Switch::Enabled(microphone_config) = &initial_settings.audio.microphone
+            && matches!(
+                microphone_config.devices,
+                alvr_session::MicrophoneDevicesConfig::VAC
+                    | alvr_session::MicrophoneDevicesConfig::VBCable
+            )
+        {
+            let (sink, _) =
+                alvr_audio::new_virtual_microphone_pair(microphone_config.devices.clone())
+                    .to_con()?;
+
+            // VoiceMeeter and Custom devices may have arbitrary internal routing.
+            // Therefore, we cannot detect the loopback issue without knowing the routing.
+            if alvr_audio::is_same_device(&game_audio_device, &sink) {
+                con_bail!("Game audio and microphone cannot point to the same device!");
+            }
+        }
+
+        alvr_audio::input_sample_rate(&game_audio_device).to_con()?
+    } else {
+        0
+    };
 
     dbg_connection!("connection_pipeline: send streaming config");
     let stream_config_packet = StreamConfigPacket::new(
@@ -808,7 +869,7 @@ fn connection_pipeline(
         .send(&ServerControlPacket::StartStream)
         .to_con()?;
 
-    let signal = control_receiver.recv(HANDSHAKE_ACTION_TIMEOUT)?;
+    let signal = control_receiver.recv(handshake_timeout)?;
     if !matches!(signal, ClientControlPacket::StreamReady) {
         con_bail!("Got unexpected packet waiting for stream ack");
     }
@@ -835,7 +896,7 @@ fn connection_pipeline(
 
     dbg_connection!("connection_pipeline: StreamSocket connect_to_client");
     let mut stream_socket = StreamSocketBuilder::connect_to_client(
-        HANDSHAKE_ACTION_TIMEOUT,
+        handshake_timeout,
         client_ip,
         initial_settings.connection.stream_port,
         stream_protocol,
@@ -858,6 +919,11 @@ fn connection_pipeline(
         std::sync::mpsc::sync_channel(initial_settings.connection.max_queued_server_video_frames);
     *ctx.video_channel_sender.lock() = Some(video_channel_sender);
     *ctx.haptics_sender.lock() = Some(haptics_sender);
+
+    // Reset stream state and request IDR immediately so the client receives a keyframe
+    reset_stream_state();
+    info!("Requesting initial IDR frame for new connection");
+    ctx.events_sender.send(ServerCoreEvent::RequestIDR).ok();
 
     let video_send_thread = thread::spawn({
         let ctx = Arc::clone(&ctx);
@@ -1216,10 +1282,13 @@ fn connection_pipeline(
                     }
                     ClientControlPacket::RequestIdr => {
                         if let Some(config) = ctx.decoder_config.lock().clone() {
+                            debug!("Sending decoder config to client ({} bytes)", config.config_buffer.len());
                             control_sender
                                 .lock()
                                 .send(&ServerControlPacket::DecoderConfig(config))
                                 .ok();
+                        } else {
+                            warn!("Client requested IDR but decoder config not yet available");
                         }
                         ctx.events_sender.send(ServerCoreEvent::RequestIDR).ok();
                     }

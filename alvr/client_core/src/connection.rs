@@ -40,15 +40,19 @@ const INITIAL_MESSAGE: &str = concat!(
     "Open ALVR on your PC then click \"Trust\"\n",
     "next to the device entry",
 );
-const SUCCESS_CONNECT_MESSAGE: &str = "Successful connection!\nPlease wait...";
-const STREAM_STARTING_MESSAGE: &str = "The stream will begin soon\nPlease wait...";
 const SERVER_RESTART_MESSAGE: &str = "The streamer is restarting\nPlease wait...";
-const SERVER_DISCONNECTED_MESSAGE: &str = "The streamer has disconnected.";
-const CONNECTION_TIMEOUT_MESSAGE: &str = "Connection timeout.";
+
+// Connection phase descriptions for better diagnostics
+const PHASE_HANDSHAKE: &str = "Handshake";
+const PHASE_STREAM_CONFIG: &str = "Stream Config";
+const PHASE_STREAM_SETUP: &str = "Stream Setup";
+const PHASE_STREAMING: &str = "Streaming";
 
 const SOCKET_INIT_RETRY_INTERVAL: Duration = Duration::from_millis(500);
 const CONNECTION_RETRY_INTERVAL: Duration = Duration::from_secs(1);
 const HANDSHAKE_ACTION_TIMEOUT: Duration = Duration::from_secs(2);
+// Increased timeout for wired/USB connections via ADB port forwarding
+const WIRED_HANDSHAKE_ACTION_TIMEOUT: Duration = Duration::from_secs(10);
 const STREAMING_RECV_TIMEOUT: Duration = Duration::from_millis(500);
 
 const MAX_UNREAD_PACKETS: usize = 10; // Applies per stream
@@ -69,11 +73,27 @@ pub struct ConnectionContext {
 }
 
 fn set_hud_message(event_queue: &Mutex<VecDeque<ClientCoreEvent>>, message: &str) {
+    set_hud_message_with_context(event_queue, message, None, None);
+}
+
+fn set_hud_message_with_context(
+    event_queue: &Mutex<VecDeque<ClientCoreEvent>>,
+    message: &str,
+    phase: Option<&str>,
+    server_ip: Option<std::net::IpAddr>,
+) {
+    let config = Config::load();
+    let local_ip = alvr_system_info::local_ip();
+
+    let phase_str = phase.map(|p| format!("Phase: {p}\n")).unwrap_or_default();
+    let server_str = server_ip
+        .map(|ip| format!("Server: {ip}\n"))
+        .unwrap_or_default();
+
     let message = format!(
-        "ALVR v{}\nhostname: {}\nIP: {}\n\n{message}",
+        "ALVR v{}\nHostname: {}\nClient IP: {local_ip}\n{server_str}{phase_str}\n{message}",
         *ALVR_VERSION,
-        Config::load().hostname,
-        alvr_system_info::local_ip(),
+        config.hostname,
     );
 
     event_queue
@@ -97,13 +117,16 @@ pub fn connection_lifecycle_loop(
 
     while *lifecycle_state.read() != LifecycleState::ShuttingDown {
         if *lifecycle_state.read() == LifecycleState::Resumed {
+            // Show searching message on each connection attempt
+            set_hud_message(&event_queue, INITIAL_MESSAGE);
+
             if let Err(e) = connection_pipeline(
                 capabilities.clone(),
                 Arc::clone(&ctx),
                 Arc::clone(&lifecycle_state),
                 Arc::clone(&event_queue),
             ) {
-                let message = format!("Connection error:\n{e}\nCheck the PC for more details");
+                let message = format!("Connection error:\n{e}\nRetrying...");
                 set_hud_message(&event_queue, &message);
                 error!("Connection error: {e}");
             }
@@ -145,7 +168,17 @@ fn connection_pipeline(
                 SOCKET_INIT_RETRY_INTERVAL,
                 PeerType::Server(&listener_socket),
             ) {
-                set_hud_message(&event_queue, SUCCESS_CONNECT_MESSAGE);
+                let is_wired = pair.1.is_loopback();
+                let connection_type = if is_wired { "ADB/USB" } else { "WiFi" };
+                let msg = format!(
+                    "Connected to server ({connection_type})\nExchanging capabilities..."
+                );
+                set_hud_message_with_context(
+                    &event_queue,
+                    &msg,
+                    Some(PHASE_HANDSHAKE),
+                    Some(pair.1),
+                );
                 break pair;
             }
         }
@@ -156,11 +189,20 @@ fn connection_pipeline(
 
     *connection_state_lock = ConnectionState::Connecting;
 
-    // TODO: Don't fetch cpal sample rate, get directly from AAudio
-    let microphone_sample_rate =
-        alvr_audio::input_sample_rate(&alvr_audio::new_input(None).to_con()?).to_con()?;
+    // Use default sample rate for handshake to avoid blocking on audio init
+    // Audio subsystem initialization can take seconds on Android
+    // The actual sample rate will be used when audio streaming starts
+    let default_microphone_sample_rate = 48000;
 
-    dbg_connection!("connection_pipeline: Send stream capabilities");
+    // Use longer timeout for wired (USB/ADB) connections as they need more setup time
+    let is_wired_connection = server_ip.is_loopback();
+    let handshake_timeout = if is_wired_connection {
+        WIRED_HANDSHAKE_ACTION_TIMEOUT
+    } else {
+        HANDSHAKE_ACTION_TIMEOUT
+    };
+
+    dbg_connection!("connection_pipeline: Send stream capabilities (using default mic rate to avoid blocking)");
     proto_control_socket
         .send(&ClientConnectionResult::ConnectionAccepted(Box::new(
             ConnectionAcceptedInfo {
@@ -172,7 +214,7 @@ fn connection_pipeline(
                         default_view_resolution: capabilities.default_view_resolution,
                         max_view_resolution: capabilities.max_view_resolution,
                         refresh_rates: capabilities.refresh_rates,
-                        microphone_sample_rate,
+                        microphone_sample_rate: default_microphone_sample_rate,
                         foveated_encoding: capabilities.foveated_encoding,
                         encoder_high_profile: capabilities.encoder_high_profile,
                         encoder_10_bits: capabilities.encoder_10_bits,
@@ -188,7 +230,7 @@ fn connection_pipeline(
         )))
         .to_con()?;
     let config_packet =
-        proto_control_socket.recv::<StreamConfigPacket>(HANDSHAKE_ACTION_TIMEOUT)?;
+        proto_control_socket.recv::<StreamConfigPacket>(handshake_timeout)?;
     dbg_connection!("connection_pipeline: stream config received");
 
     let stream_config = config_packet.to_stream_config().to_con()?;
@@ -208,33 +250,63 @@ fn connection_pipeline(
         .split(STREAMING_RECV_TIMEOUT)
         .to_con()?;
 
-    match control_receiver.recv(HANDSHAKE_ACTION_TIMEOUT) {
-        Ok(ServerControlPacket::StartStream) => {
-            info!("Stream starting");
-            set_hud_message(&event_queue, STREAM_STARTING_MESSAGE);
-        }
-        Ok(ServerControlPacket::Restarting) => {
-            info!("Server restarting");
-            set_hud_message(&event_queue, SERVER_RESTART_MESSAGE);
-            return Ok(());
-        }
-        Err(e) => {
-            info!("Server disconnected. Cause: {e}");
-            set_hud_message(&event_queue, SERVER_DISCONNECTED_MESSAGE);
-            return Ok(());
-        }
-        _ => {
-            info!("Unexpected packet");
-            set_hud_message(&event_queue, "Unexpected packet");
-            return Ok(());
-        }
-    }
-
     let stream_protocol = if negotiated_config.wired {
         SocketProtocol::Tcp
     } else {
         settings.connection.stream_protocol
     };
+
+    let connection_type = if is_wired_connection { "ADB/USB" } else { "WiFi" };
+    let protocol_str = match stream_protocol {
+        SocketProtocol::Udp => "UDP",
+        SocketProtocol::Tcp => "TCP",
+    };
+
+    match control_receiver.recv(handshake_timeout) {
+        Ok(ServerControlPacket::StartStream) => {
+            info!("Stream starting");
+            let msg = format!(
+                "Stream starting ({connection_type}, {protocol_str})\nPlease wait..."
+            );
+            set_hud_message_with_context(
+                &event_queue,
+                &msg,
+                Some(PHASE_STREAM_SETUP),
+                Some(server_ip),
+            );
+        }
+        Ok(ServerControlPacket::Restarting) => {
+            info!("Server restarting");
+            set_hud_message_with_context(
+                &event_queue,
+                SERVER_RESTART_MESSAGE,
+                Some(PHASE_STREAM_CONFIG),
+                Some(server_ip),
+            );
+            return Ok(());
+        }
+        Err(e) => {
+            info!("Server disconnected. Cause: {e}");
+            let msg = format!("Server disconnected during config:\n{e}");
+            set_hud_message_with_context(
+                &event_queue,
+                &msg,
+                Some(PHASE_STREAM_CONFIG),
+                Some(server_ip),
+            );
+            return Ok(());
+        }
+        _ => {
+            info!("Unexpected packet");
+            set_hud_message_with_context(
+                &event_queue,
+                "Unexpected packet from server",
+                Some(PHASE_STREAM_CONFIG),
+                Some(server_ip),
+            );
+            return Ok(());
+        }
+    }
 
     dbg_connection!("connection_pipeline: create StreamSocket");
     let stream_socket_builder = StreamSocketBuilder::listen_for_server(
@@ -249,7 +321,13 @@ fn connection_pipeline(
     dbg_connection!("connection_pipeline: Send StreamReady");
     if let Err(e) = control_sender.send(&ClientControlPacket::StreamReady) {
         info!("Server disconnected. Cause: {e:?}");
-        set_hud_message(&event_queue, SERVER_DISCONNECTED_MESSAGE);
+        let msg = format!("Failed to send StreamReady:\n{e:?}");
+        set_hud_message_with_context(
+            &event_queue,
+            &msg,
+            Some(PHASE_STREAM_SETUP),
+            Some(server_ip),
+        );
         return Ok(());
     }
 
@@ -258,7 +336,7 @@ fn connection_pipeline(
         server_ip,
         settings.connection.stream_port,
         settings.connection.packet_size as _,
-        HANDSHAKE_ACTION_TIMEOUT,
+        handshake_timeout,
     )?;
 
     info!("Connected to server");
@@ -275,10 +353,23 @@ fn connection_pipeline(
         let ctx = Arc::clone(&ctx);
         move || {
             let mut stream_corrupted = true;
+            let mut last_idr_request = Instant::now();
+            const IDR_REQUEST_INTERVAL: Duration = Duration::from_millis(500);
+
             while is_streaming(&ctx) {
                 let data = match video_receiver.recv(STREAMING_RECV_TIMEOUT) {
                     Ok(data) => data,
-                    Err(ConnectionError::TryAgain(_)) => continue,
+                    Err(ConnectionError::TryAgain(_)) => {
+                        // Timeout: if stream is corrupted and we haven't requested IDR recently, request one
+                        if stream_corrupted && last_idr_request.elapsed() > IDR_REQUEST_INTERVAL {
+                            if let Some(sender) = &mut *ctx.control_sender.lock() {
+                                sender.send(&ClientControlPacket::RequestIdr).ok();
+                                last_idr_request = Instant::now();
+                            }
+                            debug!("Requesting IDR (timeout, no frames received)");
+                        }
+                        continue;
+                    }
                     Err(ConnectionError::Other(_)) => return,
                 };
                 let Ok((header, nal)) = data.get() else {
@@ -295,6 +386,7 @@ fn connection_pipeline(
                     stream_corrupted = true;
                     if let Some(sender) = &mut *ctx.control_sender.lock() {
                         sender.send(&ClientControlPacket::RequestIdr).ok();
+                        last_idr_request = Instant::now();
                     }
                     warn!("Network dropped video packet");
                 }
@@ -322,14 +414,20 @@ fn connection_pipeline(
 
                     if !submitted {
                         stream_corrupted = true;
-                        if let Some(sender) = &mut *ctx.control_sender.lock() {
-                            sender.send(&ClientControlPacket::RequestIdr).ok();
+                        if last_idr_request.elapsed() > IDR_REQUEST_INTERVAL {
+                            if let Some(sender) = &mut *ctx.control_sender.lock() {
+                                sender.send(&ClientControlPacket::RequestIdr).ok();
+                                last_idr_request = Instant::now();
+                            }
                         }
                         warn!("Dropped video packet. Reason: Decoder saturation")
                     }
                 } else {
-                    if let Some(sender) = &mut *ctx.control_sender.lock() {
-                        sender.send(&ClientControlPacket::RequestIdr).ok();
+                    if last_idr_request.elapsed() > IDR_REQUEST_INTERVAL {
+                        if let Some(sender) = &mut *ctx.control_sender.lock() {
+                            sender.send(&ClientControlPacket::RequestIdr).ok();
+                            last_idr_request = Instant::now();
+                        }
                     }
                     warn!("Dropped video packet. Reason: Waiting for IDR frame")
                 }
@@ -431,7 +529,13 @@ fn connection_pipeline(
                     && let Err(e) = sender.send(&packet)
                 {
                     info!("Server disconnected. Cause: {e:?}");
-                    set_hud_message(&event_queue, SERVER_DISCONNECTED_MESSAGE);
+                    let msg = format!("Lost connection to server:\n{e:?}");
+                    set_hud_message_with_context(
+                        &event_queue,
+                        &msg,
+                        Some(PHASE_STREAMING),
+                        None,
+                    );
 
                     break;
                 }
@@ -461,6 +565,14 @@ fn connection_pipeline(
                 }
             }
 
+            // Log why the control_send_thread exited to help diagnose disconnection issues
+            let streaming = is_streaming(&ctx);
+            let lifecycle = *lifecycle_state.read();
+            info!(
+                "Control send thread exiting: is_streaming={}, lifecycle_state={:?}",
+                streaming, lifecycle
+            );
+
             disconnect_notif.notify_one();
         }
     });
@@ -485,7 +597,12 @@ fn connection_pipeline(
                     }
                     Ok(ServerControlPacket::Restarting) => {
                         info!("{SERVER_RESTART_MESSAGE}");
-                        set_hud_message(&event_queue, SERVER_RESTART_MESSAGE);
+                        set_hud_message_with_context(
+                            &event_queue,
+                            SERVER_RESTART_MESSAGE,
+                            Some(PHASE_STREAMING),
+                            None,
+                        );
                         disconnect_notif.notify_one();
                     }
                     Ok(ServerControlPacket::RealTimeConfig(config)) => {
@@ -502,17 +619,30 @@ fn connection_pipeline(
                     ) => {}
                     Err(ConnectionError::TryAgain(_)) => {
                         if Instant::now() > disconnection_deadline {
-                            info!("{CONNECTION_TIMEOUT_MESSAGE}");
-                            set_hud_message(&event_queue, CONNECTION_TIMEOUT_MESSAGE);
+                            info!("Connection timeout");
+                            set_hud_message_with_context(
+                                &event_queue,
+                                "Connection timeout.\nNo keepalive from server.\nReconnecting...",
+                                Some(PHASE_STREAMING),
+                                None,
+                            );
                             disconnect_notif.notify_one();
+                            break;
                         } else {
                             continue;
                         }
                     }
                     Err(e) => {
-                        info!("{SERVER_DISCONNECTED_MESSAGE} Cause: {e}");
-                        set_hud_message(&event_queue, SERVER_DISCONNECTED_MESSAGE);
+                        info!("Server disconnected. Cause: {e}");
+                        let msg = format!("Server disconnected:\n{e}\nReconnecting...");
+                        set_hud_message_with_context(
+                            &event_queue,
+                            &msg,
+                            Some(PHASE_STREAMING),
+                            None,
+                        );
                         disconnect_notif.notify_one();
+                        break;
                     }
                 }
 
@@ -531,9 +661,16 @@ fn connection_pipeline(
                     Ok(()) => (),
                     Err(ConnectionError::TryAgain(_)) => continue,
                     Err(e) => {
-                        info!("Client disconnected. Cause: {e}");
-                        set_hud_message(&event_queue, SERVER_DISCONNECTED_MESSAGE);
+                        info!("Stream socket error. Cause: {e}");
+                        let msg = format!("Stream socket error:\n{e}\nReconnecting...");
+                        set_hud_message_with_context(
+                            &event_queue,
+                            &msg,
+                            Some(PHASE_STREAMING),
+                            None,
+                        );
                         disconnect_notif.notify_one();
+                        break;
                     }
                 }
             }

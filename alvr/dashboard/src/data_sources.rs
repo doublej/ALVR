@@ -313,6 +313,9 @@ impl DataSources {
                                 ServerRequest::RestartSteamvr | ServerRequest::ShutdownSteamvr => {
                                     warn!("Streamer not launched, can't signal SteamVR shutdown")
                                 }
+                                ServerRequest::StartLogcat | ServerRequest::StopLogcat => {
+                                    warn!("Streamer not connected, can't control logcat")
+                                }
                             }
                         } else {
                             let get = |path: &str| {
@@ -369,6 +372,8 @@ impl DataSources {
                                 ServerRequest::StopRecording => post("recording/stop"),
                                 ServerRequest::RestartSteamvr => post("restart-steamvr"),
                                 ServerRequest::ShutdownSteamvr => post("shutdown-steamvr"),
+                                ServerRequest::StartLogcat => post("diagnostics/logcat/start"),
+                                ServerRequest::StopLogcat => post("diagnostics/logcat/stop"),
                             }
                         }
                     }

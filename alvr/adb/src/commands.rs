@@ -304,22 +304,48 @@ pub fn get_uptime(adb_path: &str, device_serial: &str) -> Result<Duration> {
 // Port forwarding
 
 pub fn list_forwarded_ports(adb_path: &str, device_serial: &str) -> Result<Vec<ForwardedPorts>> {
-    let output = get_command(adb_path, &["-s", device_serial, "forward", "--list"])
+    // Note: `adb forward --list` returns ALL forwards, not just for the -s device
+    // So we filter the results by serial afterwards
+    let output = get_command(adb_path, &["forward", "--list"])
         .output()
-        .context(format!(
-            "Failed to list forwarded ports of device {device_serial:?}"
-        ))?;
-    let text = String::from_utf8_lossy(&output.stdout);
-    let forwarded_ports = text
+        .context("Failed to list forwarded ports")?;
+
+    let stdout_text = String::from_utf8_lossy(&output.stdout);
+    let stderr_text = String::from_utf8_lossy(&output.stderr);
+
+    alvr_common::dbg_connection!(
+        "adb forward --list raw output: stdout={:?}, stderr={:?}, status={:?}",
+        stdout_text.trim(),
+        stderr_text.trim(),
+        output.status.code()
+    );
+
+    let forwarded_ports: Vec<ForwardedPorts> = stdout_text
         .lines()
         .filter_map(parse::parse_forwarded_ports)
+        .filter(|fp| fp.serial == device_serial)
         .collect();
+
+    alvr_common::dbg_connection!(
+        "Parsed {} forwarded ports for device {} (filtered by serial)",
+        forwarded_ports.len(),
+        device_serial
+    );
+
+    for fp in &forwarded_ports {
+        alvr_common::dbg_connection!(
+            "  Forward: {} -> local:{} remote:{}",
+            fp.serial,
+            fp.local,
+            fp.remote
+        );
+    }
 
     Ok(forwarded_ports)
 }
 
 pub fn forward_port(adb_path: &str, device_serial: &str, port: u16) -> Result<()> {
-    get_command(
+    let output = get_command(
         adb_path,
         &[
             "-s",
@@ -331,8 +357,49 @@ pub fn forward_port(adb_path: &str, device_serial: &str, port: u16) -> Result<()
     )
     .output()
     .context(format!(
-        "Failed to forward port {port:?} of device {device_serial:?}"
+        "Failed to execute forward command for port {port:?} of device {device_serial:?}"
     ))?;
+
+    if !output.status.success() {
+        let stderr = String::from_utf8_lossy(&output.stderr);
+        let stdout = String::from_utf8_lossy(&output.stdout);
+        anyhow::bail!(
+            "ADB forward failed for port {port} on device {device_serial}: \
+            exit code {:?}, stderr: {}, stdout: {}",
+            output.status.code(),
+            stderr.trim(),
+            stdout.trim()
+        );
+    }
+
+    Ok(())
+}
+
+pub fn remove_forward(adb_path: &str, device_serial: &str, port: u16) -> Result<()> {
+    get_command(
+        adb_path,
+        &[
+            "-s",
+            device_serial,
+            "forward",
+            "--remove",
+            &format!("tcp:{port}"),
+        ],
+    )
+    .output()
+    .context(format!(
+        "Failed to remove forward for port {port:?} of device {device_serial:?}"
+    ))?;
+
+    Ok(())
+}
+
+pub fn remove_all_forwards(adb_path: &str, device_serial: &str) -> Result<()> {
+    get_command(adb_path, &["-s", device_serial, "forward", "--remove-all"])
+        .output()
+        .context(format!(
+            "Failed to remove all forwards for device {device_serial:?}"
+        ))?;
 
     Ok(())
 }

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALVR Diagnostics</title>
+    <style>
+        :root {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --bg-tertiary: #0f3460;
+            --text-primary: #eee;
+            --text-secondary: #aaa;
+            --accent: #e94560;
+            --success: #4ade80;
+            --warning: #fbbf24;
+            --error: #ef4444;
+            --info: #60a5fa;
+            --debug: #9ca3af;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: var(--bg-secondary);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        header a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        header a:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        #status-bar {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--text-secondary);
+        }
+
+        .status-dot.connected { background: var(--success); }
+        .status-dot.disconnected { background: var(--error); }
+        .status-dot.warning { background: var(--warning); }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        aside {
+            width: 300px;
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-right: 1px solid var(--bg-tertiary);
+            overflow-y: auto;
+        }
+
+        aside h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .info-card {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h4 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card .value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .info-card .value.success { color: var(--success); }
+        .info-card .value.error { color: var(--error); }
+        .info-card .value.warning { color: var(--warning); }
+
+        .port-list {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .port-badge {
+            background: var(--bg-primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-family: monospace;
+        }
+
+        button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        button.secondary {
+            background: var(--bg-tertiary);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        nav {
+            display: flex;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        nav button {
+            background: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            border-radius: 0;
+            width: auto;
+            margin: 0;
+        }
+
+        nav button:hover {
+            color: var(--text-primary);
+            background: var(--bg-tertiary);
+        }
+
+        nav button.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .toolbar {
+            display: flex;
+            padding: 0.75rem 1rem;
+            gap: 1rem;
+            background: var(--bg-secondary);
+            align-items: center;
+        }
+
+        .toolbar input {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--bg-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .toolbar input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .toolbar button {
+            width: auto;
+            padding: 0.5rem 1rem;
+            margin: 0;
+        }
+
+        #log-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 0.5rem;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .log-entry {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 2px;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .log-entry:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .log-entry .timestamp {
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            width: 90px;
+        }
+
+        .log-entry .source {
+            flex-shrink: 0;
+            width: 80px;
+            font-weight: 600;
+        }
+
+        .log-entry .message {
+            flex: 1;
+            word-break: break-word;
+        }
+
+        .log-entry.error { color: var(--error); }
+        .log-entry.warning { color: var(--warning); }
+        .log-entry.info { color: var(--info); }
+        .log-entry.debug { color: var(--debug); }
+
+        .log-entry .source.streamer { color: #a78bfa; }
+        .log-entry .source.steamvr { color: #34d399; }
+        .log-entry .source.adb { color: #fbbf24; }
+        .log-entry .source.client { color: #f472b6; }
+
+        footer {
+            background: var(--bg-secondary);
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--bg-tertiary);
+        }
+
+        .no-logs {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .pulsing {
+            animation: pulse 1s infinite;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <h1>ALVR Diagnostics</h1>
+            <a href="/">← Dashboard</a>
+        </div>
+        <div id="status-bar">
+            <div class="status-indicator">
+                <span class="status-dot" id="ws-status"></span>
+                <span id="ws-status-text">Connecting...</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside>
+            <h3>ADB Status</h3>
+            <div class="info-card">
+                <h4>Connection</h4>
+                <div class="value" id="adb-connection">Checking...</div>
+            </div>
+            <div class="info-card" id="device-info" style="display: none;">
+                <h4>Device</h4>
+                <div class="value" id="device-serial">-</div>
+                <div style="margin-top: 0.5rem;">
+                    <span style="color: var(--text-secondary);">State:</span>
+                    <span id="device-state">-</span>
+                </div>
+            </div>
+            <div class="info-card" id="ports-info" style="display: none;">
+                <h4>Port Forwards</h4>
+                <div class="port-list" id="port-list">None</div>
+            </div>
+            <div class="info-card" id="client-info" style="display: none;">
+                <h4>ALVR Client</h4>
+                <div id="client-package">-</div>
+                <div style="margin-top: 0.5rem;">
+                    <span style="color: var(--text-secondary);">Running:</span>
+                    <span id="client-running">-</span>
+                </div>
+            </div>
+            <div class="info-card" id="logcat-status">
+                <h4>Client Logcat</h4>
+                <div class="value" id="logcat-state">Waiting for device...</div>
+            </div>
+
+            <h3 style="margin-top: 1.5rem;">SteamVR</h3>
+            <div class="info-card">
+                <h4>Log File</h4>
+                <div class="value" id="steamvr-log" style="font-size: 0.8rem; word-break: break-all;">Checking...</div>
+            </div>
+        </aside>
+
+        <main>
+            <nav>
+                <button class="active" data-source="all">All</button>
+                <button data-source="Streamer">Streamer</button>
+                <button data-source="SteamVR">SteamVR</button>
+                <button data-source="Adb">ADB</button>
+                <button data-source="Client">Client</button>
+            </nav>
+            <div class="toolbar">
+                <input type="text" id="filter" placeholder="Filter logs...">
+                <button class="secondary" id="copy-btn">Copy All</button>
+                <button class="secondary" id="clear-btn">Clear</button>
+                <label style="display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary);">
+                    <input type="checkbox" id="auto-scroll" checked>
+                    Auto-scroll
+                </label>
+            </div>
+            <div id="log-container">
+                <div class="no-logs">Waiting for logs...</div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <span id="log-count">0 logs</span>
+        <span>ALVR Diagnostics v1.0</span>
+    </footer>
+
+    <script>
+        // State
+        let logs = [];
+        let activeSource = 'all';
+        let filterText = '';
+        let autoScroll = true;
+        let ws = null;
+        let logcatActive = false;
+
+        // DOM elements
+        const logContainer = document.getElementById('log-container');
+        const filterInput = document.getElementById('filter');
+        const logCountEl = document.getElementById('log-count');
+        const wsStatus = document.getElementById('ws-status');
+        const wsStatusText = document.getElementById('ws-status-text');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            connectWebSocket();
+            // Note: fetchStoredLogs() is called when websocket connects
+
+            // Tab switching
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeSource = btn.dataset.source;
+                    renderLogs();
+                });
+            });
+
+            // Filter
+            filterInput.addEventListener('input', (e) => {
+                filterText = e.target.value.toLowerCase();
+                renderLogs();
+            });
+
+            // Auto-scroll toggle
+            document.getElementById('auto-scroll').addEventListener('change', (e) => {
+                autoScroll = e.target.checked;
+            });
+
+            // Copy button
+            document.getElementById('copy-btn').addEventListener('click', () => {
+                const text = getFilteredLogs().map(l =>
+                    `${l.timestamp} [${l.source}] ${l.message}`
+                ).join('\n');
+                navigator.clipboard.writeText(text);
+            });
+
+            // Clear button
+            document.getElementById('clear-btn').addEventListener('click', () => {
+                logs = [];
+                renderLogs();
+            });
+
+        });
+
+        let reconnectAttempts = 0;
+        let reconnectTimer = null;
+
+        function connectWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}/diagnostics/ws`;
+
+            wsStatus.className = 'status-dot warning';
+            wsStatusText.textContent = reconnectAttempts > 0 ? `Reconnecting (${reconnectAttempts})...` : 'Connecting...';
+
+            try {
+                ws = new WebSocket(wsUrl);
+            } catch (e) {
+                scheduleReconnect();
+                return;
+            }
+
+            ws.onopen = () => {
+                wsStatus.className = 'status-dot connected';
+                wsStatusText.textContent = 'Connected';
+                reconnectAttempts = 0;
+                // Fetch stored logs and status on connect/reconnect
+                fetchStoredLogs();
+            };
+
+            ws.onclose = () => {
+                scheduleReconnect();
+            };
+
+            ws.onerror = () => {
+                // onclose will be called after onerror
+            };
+
+            ws.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    handleEvent(data);
+                } catch (e) {
+                    console.error('Failed to parse message:', e);
+                }
+            };
+        }
+
+        function scheduleReconnect() {
+            if (reconnectTimer) return;
+
+            reconnectAttempts++;
+            wsStatus.className = 'status-dot disconnected';
+            wsStatusText.textContent = `Disconnected - retry in 2s (#${reconnectAttempts})`;
+
+            reconnectTimer = setTimeout(() => {
+                reconnectTimer = null;
+                connectWebSocket();
+            }, 2000);
+        }
+
+        function handleEvent(event) {
+            // Debug: log all received events
+            console.log('[Diag WS] Received:', event.id, event.data);
+
+            if (event.id === 'DiagLog') {
+                const entry = event.data;
+                const now = new Date();
+                const timestamp = now.toTimeString().substring(0, 8) + '.' +
+                    now.getMilliseconds().toString().padStart(3, '0');
+
+                logs.push({
+                    timestamp,
+                    source: entry.source,
+                    severity: entry.severity,
+                    message: entry.content
+                });
+
+                // Limit logs to 5000 entries
+                if (logs.length > 5000) {
+                    logs = logs.slice(-4000);
+                }
+
+                renderLogs();
+            } else if (event.id === 'DiagAdbStatus') {
+                updateAdbStatus(event.data);
+            } else if (event.id === 'DiagLogcatState') {
+                logcatActive = event.data.active;
+                updateLogcatStatus();
+            }
+        }
+
+        function updateAdbStatus(status) {
+            console.log('[Diag] updateAdbStatus called with:', status);
+
+            const connEl = document.getElementById('adb-connection');
+            const deviceInfo = document.getElementById('device-info');
+            const portsInfo = document.getElementById('ports-info');
+            const clientInfo = document.getElementById('client-info');
+            const logcatState = document.getElementById('logcat-state');
+
+            if (!connEl) {
+                console.error('[Diag] DOM element adb-connection not found!');
+                return;
+            }
+
+            if (status === 'NotInstalled') {
+                connEl.textContent = 'ADB Not Installed';
+                connEl.className = 'value error';
+                deviceInfo.style.display = 'none';
+                portsInfo.style.display = 'none';
+                clientInfo.style.display = 'none';
+                logcatState.textContent = 'ADB not available';
+                logcatState.className = 'value';
+            } else if (status === 'NoDevices') {
+                connEl.textContent = 'No Devices';
+                connEl.className = 'value warning';
+                deviceInfo.style.display = 'none';
+                portsInfo.style.display = 'none';
+                clientInfo.style.display = 'none';
+                logcatState.textContent = 'Waiting for device...';
+                logcatState.className = 'value';
+            } else if (status.DeviceFound) {
+                const dev = status.DeviceFound;
+                connEl.textContent = 'Connected';
+                connEl.className = 'value success';
+
+                deviceInfo.style.display = 'block';
+                document.getElementById('device-serial').textContent = dev.serial;
+                document.getElementById('device-state').textContent = dev.state;
+
+                portsInfo.style.display = 'block';
+                const portList = document.getElementById('port-list');
+                if (dev.ports_forwarded.length > 0) {
+                    portList.innerHTML = dev.ports_forwarded.map(p =>
+                        `<span class="port-badge">${p}</span>`
+                    ).join('');
+                } else {
+                    portList.innerHTML = '<span style="color: var(--text-secondary);">None</span>';
+                }
+
+                clientInfo.style.display = 'block';
+                document.getElementById('client-package').textContent =
+                    dev.client_package || 'Not installed';
+                document.getElementById('client-running').textContent =
+                    dev.client_running ? 'Yes' : 'No';
+                document.getElementById('client-running').style.color =
+                    dev.client_running ? 'var(--success)' : 'var(--text-secondary)';
+
+                // Logcat status is updated by DiagLogcatState event
+            }
+        }
+
+        function updateLogcatStatus() {
+            const stateEl = document.getElementById('logcat-state');
+            if (logcatActive) {
+                stateEl.textContent = 'Streaming...';
+                stateEl.className = 'value success';
+            } else {
+                stateEl.textContent = 'Inactive';
+                stateEl.className = 'value';
+            }
+        }
+
+        async function fetchStatus() {
+            try {
+                const response = await fetch('/diagnostics/status');
+                const data = await response.json();
+
+                // Update SteamVR log path
+                const steamvrEl = document.getElementById('steamvr-log');
+                if (data.steamvr_log_path) {
+                    steamvrEl.textContent = data.steamvr_log_path;
+                    steamvrEl.className = 'value';
+                } else {
+                    steamvrEl.textContent = 'Not found';
+                    steamvrEl.className = 'value warning';
+                }
+
+                // Update ADB status
+                updateAdbStatus(data.adb_status);
+
+                // Update logcat state
+                logcatActive = data.logcat_active;
+                updateLogcatStatus();
+            } catch (e) {
+                console.error('Failed to fetch status:', e);
+            }
+        }
+
+        async function fetchStoredLogs() {
+            try {
+                const response = await fetch('/diagnostics/full');
+                const data = await response.json();
+
+                // Update status fields
+                const steamvrEl = document.getElementById('steamvr-log');
+                if (data.steamvr_log_path) {
+                    steamvrEl.textContent = data.steamvr_log_path;
+                    steamvrEl.className = 'value';
+                } else {
+                    steamvrEl.textContent = 'Not found';
+                    steamvrEl.className = 'value warning';
+                }
+
+                updateAdbStatus(data.adb_status);
+                logcatActive = data.logcat_active;
+                updateLogcatStatus();
+
+                // Load stored logs
+                if (data.logs && data.logs.length > 0) {
+                    console.log(`[Diag] Loading ${data.logs.length} stored logs`);
+
+                    // Convert stored logs to our format
+                    const storedLogs = data.logs.map(log => ({
+                        timestamp: log.timestamp,
+                        source: log.source,
+                        severity: log.severity,
+                        message: log.content
+                    }));
+
+                    // Merge with existing logs (stored logs first, then any new real-time ones)
+                    // Avoid duplicates by checking timestamps
+                    const existingTimestamps = new Set(logs.map(l => l.timestamp + l.message));
+                    const newLogs = storedLogs.filter(l => !existingTimestamps.has(l.timestamp + l.message));
+
+                    // Prepend historical logs
+                    logs = [...newLogs, ...logs];
+
+                    // Limit total
+                    if (logs.length > 5000) {
+                        logs = logs.slice(-5000);
+                    }
+
+                    renderLogs();
+                }
+            } catch (e) {
+                console.error('Failed to fetch stored logs:', e);
+                // Fall back to just status
+                fetchStatus();
+            }
+        }
+
+        function getFilteredLogs() {
+            return logs.filter(log => {
+                // Source filter
+                if (activeSource !== 'all' && log.source !== activeSource) {
+                    return false;
+                }
+                // Text filter
+                if (filterText && !log.message.toLowerCase().includes(filterText)) {
+                    return false;
+                }
+                return true;
+            });
+        }
+
+        function renderLogs() {
+            const filtered = getFilteredLogs();
+            logCountEl.textContent = `${filtered.length} / ${logs.length} logs`;
+
+            if (filtered.length === 0) {
+                logContainer.innerHTML = '<div class="no-logs">No logs to display</div>';
+                return;
+            }
+
+            // Only render last 1000 for performance
+            const toRender = filtered.slice(-1000);
+
+            logContainer.innerHTML = toRender.map(log => {
+                const severityClass = log.severity.toLowerCase();
+                const sourceClass = log.source.toLowerCase();
+                return `
+                    <div class="log-entry ${severityClass}">
+                        <span class="timestamp">${log.timestamp}</span>
+                        <span class="source ${sourceClass}">${log.source}</span>
+                        <span class="message">${escapeHtml(log.message)}</span>
+                    </div>
+                `;
+            }).join('');
+
+            if (autoScroll) {
+                logContainer.scrollTop = logContainer.scrollHeight;
+            }
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Poll status every 5 seconds
+        setInterval(fetchStatus, 5000);
+    </script>
+</body>
+</html>

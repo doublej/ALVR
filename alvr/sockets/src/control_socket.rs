@@ -1,5 +1,5 @@
 use crate::{CONTROL_PORT, LOCAL_IP};
-use alvr_common::{ConResult, HandleTryAgain, ToCon, anyhow::Result, con_bail};
+use alvr_common::{ConResult, HandleTryAgain, ToCon, anyhow::Result, con_bail, dbg_sockets};
 use alvr_session::{DscpTos, SocketBufferConfig};
 use bincode::config;
 use serde::{Serialize, de::DeserializeOwned};
@@ -20,7 +20,15 @@ pub fn bind(
     dscp: Option<DscpTos>,
     buffer_config: SocketBufferConfig,
 ) -> Result<TcpListener> {
-    let socket = TcpListener::bind((LOCAL_IP, port))?.into();
+    // Use socket2 to set SO_REUSEADDR before binding for faster reconnection
+    let socket = socket2::Socket::new(
+        socket2::Domain::IPV4,
+        socket2::Type::STREAM,
+        Some(socket2::Protocol::TCP),
+    )?;
+    socket.set_reuse_address(true)?;
+    socket.bind(&std::net::SocketAddr::new(LOCAL_IP, port).into())?;
+    socket.listen(1)?;
 
     crate::set_socket_buffers(&socket, buffer_config).ok();
 
@@ -60,15 +68,40 @@ pub fn connect_to_client(
     port: u16,
     buffer_config: SocketBufferConfig,
 ) -> ConResult<(TcpStream, TcpStream)> {
-    let split_timeout = timeout / client_ips.len() as u32;
+    // For USB/wired connections (loopback IPs), use full timeout instead of split timeout
+    // USB connections via ADB port forwarding need more time to establish
+    let has_loopback = client_ips.iter().any(|ip| ip.is_loopback());
+    let split_timeout = if has_loopback {
+        timeout
+    } else {
+        timeout / client_ips.len() as u32
+    };
+
+    dbg_sockets!(
+        "Attempting to connect to {} IP(s), loopback: {}, timeout per attempt: {:?}",
+        client_ips.len(),
+        has_loopback,
+        split_timeout
+    );
 
     let mut res = alvr_common::try_again();
     for ip in client_ips {
+        let is_wired = ip.is_loopback();
+        dbg_sockets!(
+            "Trying to connect to {} ({}), timeout: {:?}",
+            ip,
+            if is_wired { "wired/USB" } else { "wireless" },
+            split_timeout
+        );
+
         res = TcpStream::connect_timeout(&SocketAddr::new(*ip, port), split_timeout)
             .handle_try_again();
 
         if res.is_ok() {
+            dbg_sockets!("Successfully connected to {} ({})", ip, if is_wired { "wired/USB" } else { "wireless" });
             break;
+        } else {
+            dbg_sockets!("Failed to connect to {} ({})", ip, if is_wired { "wired/USB" } else { "wireless" });
         }
     }
     let socket = res?.into();
@@ -117,6 +150,7 @@ fn framed_recv<R: DeserializeOwned>(
             if count == FRAMED_PREFIX_LENGTH {
                 break;
             } else if Instant::now() > deadline {
+                dbg_sockets!("Timeout waiting for frame header after {:?}", timeout);
                 return alvr_common::try_again();
             }
         }
@@ -135,6 +169,12 @@ fn framed_recv<R: DeserializeOwned>(
         if *recv_cursor_ref == buffer.len() {
             break;
         } else if Instant::now() > deadline {
+            dbg_sockets!(
+                "Timeout reading frame body after {:?} (read {}/{} bytes)",
+                timeout,
+                *recv_cursor_ref,
+                buffer.len()
+            );
             return alvr_common::try_again();
         }
     }

@@ -10,3 +10,6 @@ alvr/server_openvr/cpp/shared/** linguist-vendored
 alvr/vulkan_layer/layer/** linguist-vendored
 alvr/vulkan_layer/util/** linguist-vendored
 alvr/vulkan_layer/wsi/** linguist-vendored
+
+# Use bd merge for beads JSONL files
+.beads/issues.jsonl merge=beads

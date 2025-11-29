@@ -3,7 +3,7 @@
 const SERIAL_NUMBER_COLUMN_LENGTH: usize = 22;
 
 // https://cs.android.com/android/platform/superproject/main/+/7dbe542b9a93fb3cee6c528e16e2d02a26da7cc0:packages/modules/adb/adb.h;l=104-122
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum ConnectionState {
     Authorizing,
     Bootloader,

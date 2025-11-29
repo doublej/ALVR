@@ -1,7 +1,8 @@
 mod components;
 
 use self::components::{
-    DevicesTab, LogsTab, NotificationBar, SettingsTab, SetupWizard, SetupWizardRequest,
+    DevicesTab, DiagnosticsTab, LogsTab, NotificationBar, SettingsTab, SetupWizard,
+    SetupWizardRequest,
 };
 use crate::{
     DataSources,
@@ -42,6 +43,9 @@ pub enum ServerRequest {
     UnregisterDriver(PathBuf),
     RestartSteamvr,
     ShutdownSteamvr,
+    // Diagnostics
+    StartLogcat,
+    StopLogcat,
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Debug)]
@@ -52,6 +56,7 @@ enum Tab {
     #[cfg(not(target_arch = "wasm32"))]
     Installation,
     Logs,
+    Diagnostics,
     Debug,
     About,
 }
@@ -69,6 +74,7 @@ pub struct Dashboard {
     #[cfg(not(target_arch = "wasm32"))]
     installation_tab: components::InstallationTab,
     logs_tab: LogsTab,
+    diagnostics_tab: DiagnosticsTab,
     notification_bar: NotificationBar,
     setup_wizard: SetupWizard,
     new_version_popup: Option<components::NewVersionPopup>,
@@ -95,6 +101,7 @@ impl Dashboard {
                 #[cfg(not(target_arch = "wasm32"))]
                 (Tab::Installation, "💾  Installation"),
                 (Tab::Logs, "📝  Logs"),
+                (Tab::Diagnostics, "🔍  Diagnostics"),
                 (Tab::Debug, "🐞  Debug"),
                 (Tab::About, "ℹ  About"),
             ]
@@ -106,6 +113,7 @@ impl Dashboard {
             #[cfg(not(target_arch = "wasm32"))]
             installation_tab: components::InstallationTab::new(),
             logs_tab: LogsTab::new(),
+            diagnostics_tab: DiagnosticsTab::new(),
             notification_bar: NotificationBar::new(),
             setup_wizard: SetupWizard::new(),
             setup_wizard_open: false,
@@ -186,6 +194,16 @@ impl eframe::App for Dashboard {
                     .update_adb_download_progress(adb_event.download_progress),
                 EventType::NewVersionFound { version, message } => {
                     self.new_version_popup = Some(NewVersionPopup::new(version, message));
+                }
+                EventType::DiagLog(entry) => {
+                    self.diagnostics_tab
+                        .push_diag_log(event.inner.timestamp.clone(), entry);
+                }
+                EventType::DiagAdbStatus(status) => {
+                    self.diagnostics_tab.update_adb_status(status);
+                }
+                EventType::DiagLogcatState { active } => {
+                    self.diagnostics_tab.update_logcat_state(active);
                 }
                 EventType::DebugGroup { .. }
                 | EventType::Tracking(_)
@@ -323,6 +341,13 @@ impl eframe::App for Dashboard {
                                 }
                             }
                             Tab::Logs => self.logs_tab.ui(ui),
+                            Tab::Diagnostics => {
+                                if let Some(request) =
+                                    self.diagnostics_tab.ui(ui, connected_to_server)
+                                {
+                                    requests.push(request);
+                                }
+                            }
                             Tab::Debug => {
                                 if let Some(request) = components::debug_tab_ui(ui) {
                                     requests.push(request);

@@ -1,6 +1,7 @@
 mod about;
 mod debug;
 mod devices;
+mod diagnostics;
 mod logs;
 mod new_version_popup;
 mod notifications;
@@ -15,6 +16,7 @@ mod installation;
 pub use about::*;
 pub use debug::*;
 pub use devices::*;
+pub use diagnostics::*;
 pub use logs::*;
 pub use new_version_popup::*;
 pub use notifications::*;

@@ -1,8 +1,9 @@
 use crate::{
     ConnectionContext, FILESYSTEM_LAYOUT, SESSION_MANAGER, ServerCoreEvent,
+    diagnostics::{self, DiagnosticsState},
     logging_backend::EVENTS_SENDER,
 };
-use alvr_common::{ConnectionState, LogEntry, anyhow::Result, error, info, log};
+use alvr_common::{ConnectionState, LogEntry, anyhow::Result, error, info, log, parking_lot::Mutex};
 use alvr_events::{ButtonEvent, EventType};
 use alvr_packets::{ButtonEntry, ClientConnectionsAction, FirewallRulesAction, PathValuePair};
 use alvr_session::SessionConfig;
@@ -14,7 +15,7 @@ use axum::{
         header::{CACHE_CONTROL, CONTENT_TYPE},
     },
     middleware,
-    response::Response,
+    response::{Html, Response},
     routing,
 };
 use serde_json as json;
@@ -24,6 +25,28 @@ use tower_http::{
     cors::{self, CorsLayer},
     set_header::SetResponseHeaderLayer,
 };
+
+// Diagnostics state - lazily initialized
+static DIAGNOSTICS_STATE: std::sync::OnceLock<Arc<Mutex<DiagnosticsState>>> = std::sync::OnceLock::new();
+
+fn get_diagnostics_state() -> Arc<Mutex<DiagnosticsState>> {
+    DIAGNOSTICS_STATE.get_or_init(|| {
+        let (state, _receiver) = DiagnosticsState::new();
+
+        // Start background services
+        let state_clone = Arc::clone(&state);
+        tokio::spawn(async move {
+            diagnostics::start_adb_status_polling(state_clone).await;
+        });
+
+        let state_clone = Arc::clone(&state);
+        tokio::spawn(async move {
+            diagnostics::start_steamvr_log_tail(state_clone).await;
+        });
+
+        state
+    }).clone()
+}
 
 const X_ALVR: &str = "X-ALVR";
 
@@ -61,62 +84,89 @@ pub async fn web_server(connection_context: Arc<ConnectionContext>) -> Result<()
         cors = cors.allow_origin(cors::Any);
     }
 
-    let router = Router::new()
+    // API routes (require X-ALVR header)
+    let api_router = Router::new()
+        .route("/events", routing::get(events_websocket))
+        .route("/log", routing::post(set_log))
         .nest(
-            "/api",
+            "/session",
             Router::new()
-                .route("/events", routing::get(events_websocket))
-                .route("/log", routing::post(set_log))
-                .nest(
-                    "/session",
-                    Router::new()
-                        .route("/", routing::get(get_session).post(update_session))
-                        .route("/values", routing::post(set_session_values))
-                        .route(
-                            "/client-connections",
-                            routing::post(update_client_connections),
-                        ),
-                )
-                .route("/buttons", routing::post(set_buttons))
-                .route("/insert-idr", routing::post(insert_idr))
-                .route("/capture-frame", routing::post(capture_frame))
-                .nest(
-                    "/recording",
-                    Router::new()
-                        .route("/start", routing::post(start_recording))
-                        .route("/stop", routing::post(stop_recording)),
-                )
-                .nest(
-                    "/firewall-rules",
-                    Router::new()
-                        .route("/add", routing::post(add_firewall_rules))
-                        .route("/remove", routing::post(remove_firewall_rules)),
-                )
-                .nest(
-                    "/drivers",
-                    Router::new()
-                        .route("/", routing::get(get_driver_list))
-                        .route("/register-alvr", routing::post(register_alvr_driver))
-                        .route("/unregister", routing::post(unregister_driver)),
-                )
-                .nest(
-                    "/steamvr",
-                    Router::new()
-                        .route("/restart", routing::post(restart_steamvr))
-                        .route("/shutdown", routing::post(shutdown_steamvr)),
-                )
+                .route("/", routing::get(get_session).post(update_session))
+                .route("/values", routing::post(set_session_values))
                 .route(
-                    "/version",
-                    routing::get(async || alvr_common::ALVR_VERSION.to_string()),
-                )
-                .route("/ping", routing::get(async || ())),
+                    "/client-connections",
+                    routing::post(update_client_connections),
+                ),
         )
-        .layer(cors)
+        .route("/buttons", routing::post(set_buttons))
+        .route("/insert-idr", routing::post(insert_idr))
+        .route("/capture-frame", routing::post(capture_frame))
+        .nest(
+            "/recording",
+            Router::new()
+                .route("/start", routing::post(start_recording))
+                .route("/stop", routing::post(stop_recording)),
+        )
+        .nest(
+            "/firewall-rules",
+            Router::new()
+                .route("/add", routing::post(add_firewall_rules))
+                .route("/remove", routing::post(remove_firewall_rules)),
+        )
+        .nest(
+            "/drivers",
+            Router::new()
+                .route("/", routing::get(get_driver_list))
+                .route("/register-alvr", routing::post(register_alvr_driver))
+                .route("/unregister", routing::post(unregister_driver)),
+        )
+        .nest(
+            "/steamvr",
+            Router::new()
+                .route("/restart", routing::post(restart_steamvr))
+                .route("/shutdown", routing::post(shutdown_steamvr)),
+        )
+        .route(
+            "/version",
+            routing::get(async || alvr_common::ALVR_VERSION.to_string()),
+        )
+        .route("/ping", routing::get(async || ()))
+        // API diagnostics endpoints (for dashboard with X-ALVR header)
+        .nest(
+            "/diagnostics",
+            Router::new()
+                .route("/", routing::get(serve_diagnostics_ui))
+                .route("/events", routing::get(diagnostics_websocket))
+                .route("/status", routing::get(get_diagnostics_status))
+                .route("/logcat/start", routing::post(start_logcat))
+                .route("/logcat/stop", routing::post(stop_logcat)),
+        )
+        .layer(middleware::from_fn(ensure_preflight));
+
+    // Diagnostics routes (no X-ALVR header required, for browser access)
+    // Use permissive CORS to allow access from any host (e.g., fractal.local)
+    let diagnostics_cors = CorsLayer::new()
+        .allow_methods([Method::GET, Method::POST])
+        .allow_headers([CONTENT_TYPE])
+        .allow_origin(cors::Any);
+
+    let diagnostics_router = Router::new()
+        .route("/", routing::get(serve_diagnostics_ui))
+        .route("/ws", routing::get(diagnostics_websocket))
+        .route("/status", routing::get(get_diagnostics_status))
+        .route("/full", routing::get(get_diagnostics_full))
+        .route("/logs", routing::get(get_diagnostics_logs))
+        .route("/logcat/start", routing::post(start_logcat))
+        .route("/logcat/stop", routing::post(stop_logcat))
+        .layer(diagnostics_cors);
+
+    let router = Router::new()
+        .nest("/diagnostics", diagnostics_router)
+        .nest("/api", api_router.layer(cors))
         .layer(SetResponseHeaderLayer::overriding(
             CACHE_CONTROL,
             HeaderValue::from_static("no-cache, no-store, must-revalidate"),
         ))
-        .layer(middleware::from_fn(ensure_preflight))
         .with_state(connection_context);
 
     axum::serve(
@@ -280,4 +330,138 @@ async fn set_buttons(
     ctx.events_sender
         .send(ServerCoreEvent::Buttons(button_entries))
         .ok();
+}
+
+// ==================== Diagnostics Handlers ====================
+
+/// Serve the diagnostics Web UI
+async fn serve_diagnostics_ui() -> Html<&'static str> {
+    Html(include_str!("diagnostics_ui.html"))
+}
+
+/// WebSocket endpoint for diagnostics events
+async fn diagnostics_websocket(ws: WebSocketUpgrade) -> Response {
+    ws.on_upgrade(async |mut ws| {
+        let state = get_diagnostics_state();
+        let mut receiver = state.lock().subscribe();
+
+        // Also subscribe to regular events (for streamer logs)
+        let mut events_receiver = EVENTS_SENDER.subscribe();
+
+        // Send initial status immediately so client has current state
+        {
+            let snapshot = diagnostics::get_diagnostics_snapshot(&state);
+            // Send ADB status
+            let adb_event = EventType::DiagAdbStatus(snapshot.adb_status);
+            let _ = ws
+                .send(Message::Text(json::to_string(&adb_event).unwrap().into()))
+                .await;
+            // Send logcat state
+            let logcat_event = EventType::DiagLogcatState {
+                active: snapshot.logcat_active,
+            };
+            let _ = ws
+                .send(Message::Text(json::to_string(&logcat_event).unwrap().into()))
+                .await;
+        }
+
+        loop {
+            tokio::select! {
+                // Handle diagnostics-specific events
+                result = receiver.recv() => {
+                    match result {
+                        Ok(event) => {
+                            let event_type: EventType = event.into();
+                            if ws
+                                .send(Message::Text(json::to_string(&event_type).unwrap().into()))
+                                .await
+                                .is_err()
+                            {
+                                break; // Client disconnected
+                            }
+                        }
+                        Err(tokio::sync::broadcast::error::RecvError::Lagged(_)) => (),
+                        Err(tokio::sync::broadcast::error::RecvError::Closed) => break,
+                    }
+                }
+                // Forward events from main channel
+                result = events_receiver.recv() => {
+                    match result {
+                        Ok(event) => {
+                            // Convert/forward events to diagnostics websocket
+                            let diag_event = match &event.event_type {
+                                EventType::Log(entry) => {
+                                    Some(EventType::DiagLog(alvr_events::DiagLogEntry {
+                                        source: alvr_events::DiagSource::Streamer,
+                                        severity: entry.severity,
+                                        content: entry.content.clone(),
+                                    }))
+                                }
+                                EventType::DebugGroup { group, message } => {
+                                    Some(EventType::DiagLog(alvr_events::DiagLogEntry {
+                                        source: alvr_events::DiagSource::Streamer,
+                                        severity: alvr_common::LogSeverity::Debug,
+                                        content: format!("[{}] {}", group, message),
+                                    }))
+                                }
+                                // Forward diagnostic events directly
+                                EventType::DiagLog(_)
+                                | EventType::DiagAdbStatus(_)
+                                | EventType::DiagLogcatState { .. } => {
+                                    Some(event.event_type.clone())
+                                }
+                                _ => None,
+                            };
+
+                            if let Some(evt) = diag_event {
+                                if ws
+                                    .send(Message::Text(json::to_string(&evt).unwrap().into()))
+                                    .await
+                                    .is_err()
+                                {
+                                    break; // Client disconnected
+                                }
+                            }
+                        }
+                        Err(RecvError::Lagged(_)) => (),
+                        Err(RecvError::Closed) => break,
+                    }
+                }
+            }
+        }
+    })
+}
+
+/// Get current diagnostics status snapshot
+async fn get_diagnostics_status() -> Json<diagnostics::DiagnosticsSnapshot> {
+    let state = get_diagnostics_state();
+    Json(diagnostics::get_diagnostics_snapshot(&state))
+}
+
+/// Get full diagnostics data including stored logs
+async fn get_diagnostics_full() -> Json<diagnostics::DiagnosticsFull> {
+    let state = get_diagnostics_state();
+    Json(diagnostics::get_diagnostics_full(&state))
+}
+
+/// Get stored diagnostic logs
+async fn get_diagnostics_logs() -> Json<Vec<diagnostics::StoredLogEntry>> {
+    let state = get_diagnostics_state();
+    Json(state.lock().get_stored_logs())
+}
+
+/// Start logcat streaming
+async fn start_logcat() -> (StatusCode, String) {
+    let state = get_diagnostics_state();
+    match diagnostics::start_logcat(&state) {
+        Ok(()) => (StatusCode::OK, "Logcat started".to_string()),
+        Err(e) => (StatusCode::BAD_REQUEST, e),
+    }
+}
+
+/// Stop logcat streaming
+async fn stop_logcat() -> &'static str {
+    let state = get_diagnostics_state();
+    diagnostics::stop_logcat(&state);
+    "Logcat stopped"
 }

@@ -22,6 +22,7 @@ alvr_packets.workspace = true
 alvr_server_io.workspace = true
 alvr_session.workspace = true
 alvr_sockets.workspace = true
+alvr_system_info.workspace = true
 
 ash = "0.38"
 axum = { version = "0.8", features = ["ws"] }
@@ -39,8 +40,13 @@ tokio = { version = "1", features = [
     "io-util",
     "net",
     "fs",
+    "sync",
+    "time",
 ] }
 tower-http = { version = "0.6", features = ["cors", "set-header"] }
 serde = "1"
 serde_json = "1"
 sysinfo = "0.37"
+notify = "7"
+include_dir = "0.7"
+dirs = "6"

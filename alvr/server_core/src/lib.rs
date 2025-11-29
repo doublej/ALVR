@@ -1,6 +1,7 @@
 mod bitrate;
 mod c_api;
 mod connection;
+pub mod diagnostics;
 mod hand_gestures;
 mod haptics;
 mod input_mapping;
@@ -62,6 +63,14 @@ static SESSION_MANAGER: LazyLock<RwLock<ServerSessionManager>> = LazyLock::new(|
         FILESYSTEM_LAYOUT.get().map(|l| l.session()),
     ))
 });
+
+// Stream state: starts corrupted until an IDR frame is sent
+static STREAM_CORRUPTED: AtomicBool = AtomicBool::new(true);
+
+/// Reset stream state for a new connection. Must be called before streaming starts.
+pub fn reset_stream_state() {
+    STREAM_CORRUPTED.store(true, Ordering::SeqCst);
+}
 
 pub fn initialize_environment(layout: afs::Layout) {
     FILESYSTEM_LAYOUT.set(layout).unwrap();
@@ -373,8 +382,6 @@ impl ServerCoreContext {
     ) {
         dbg_server_core!("send_video_nal");
 
-        // start in the corrupts state, the client didn't receive the initial IDR yet.
-        static STREAM_CORRUPTED: AtomicBool = AtomicBool::new(true);
         static LAST_IDR_INSTANT: LazyLock<Mutex<Instant>> =
             LazyLock::new(|| Mutex::new(Instant::now()));
 

@@ -1,0 +1,2 @@
+08:19:28.738 [ERROR] Handshake error for client.wired: Try again
+08:19:35.392 [ERROR] Handshake error for client.wired: Try again

@@ -1,0 +1,2 @@
+12:24:20.805 [ERROR] Handshake error for client.wired: Try again
+12:24:32.464 [ERROR] Handshake error for client.wired: Try again

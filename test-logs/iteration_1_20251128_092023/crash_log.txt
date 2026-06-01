@@ -1,0 +1,7 @@
+09:19:30.550 [ERROR] Handshake error for client.wired: Try again
+09:19:33.794 [ERROR] Failed to find resumed state line
+09:19:47.065 [ERROR] Handshake error for client.wired: Try again
+09:20:10.376 [ERROR] Handshake error for client.wired: Try again
+09:20:11.970 [ERROR] Handshake error for client.wired: No microphones found
+09:20:23.489 [ERROR] Handshake error for client.wired: Try again
+09:20:25.117 [ERROR] Handshake error for client.wired: No microphones found

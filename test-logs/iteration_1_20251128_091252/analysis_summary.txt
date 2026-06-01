@@ -1,0 +1,115 @@
+ALVR USB WIRED CONNECTION TEST - ITERATION 1 (2025-11-28 09:12)
+Analysis Summary
+================================================================
+
+TEST RESULT: FAILED - Connection Handshake Timeout
+
+USB/WIRED CONNECTION STATUS:
+  - Did NOT succeed
+  - Connection established but handshake incomplete
+  - 2 documented "Handshake error: Try again" messages logged
+
+HANDSHAKE ERRORS:
+  [CRITICAL] 09:12:39.023 - SERVER: Handshake error for client.wired: Try again
+  [CRITICAL] 09:12:50.731 - SERVER: Handshake error for client.wired: Try again (2nd attempt)
+
+CLIENT CONNECTION ERRORS:
+  [ERROR] 09:12:30.045 - CLIENT: Connection error: Try again (1st attempt)
+  [ERROR] 09:13:05.031 - CLIENT: Connection error: Try again (2nd attempt)
+
+CONNECTION TIMELINE:
+  09:11:24 - Client app launches, initializes OpenXR
+  09:11:25 - Socket buffers initialized (1st socket attempt)
+  09:11:56 - Server sends "restarting" message during handshake
+  09:11:57 - Client retries socket connection
+  09:12:27 - App manually restarted by test framework
+  09:12:30 - Client hits handshake timeout (2 second deadline exceeded)
+  09:12:39 - Server logs handshake error (9 seconds after client error)
+  09:12:50 - Server logs 2nd handshake error (11.7 seconds after 1st)
+  09:13:05 - Client attempts again, hits same timeout
+
+ROOT CAUSE ANALYSIS:
+
+  Problem: Handshake protocol not completing within 2-second timeout
+
+  Evidence:
+  1. TCP connection succeeds (socket initialized)
+  2. Handshake initiates (server sees "client.wired" connection)
+  3. Protocol exchange times out - client side fails first at 2s mark
+  4. Server processes late (8-9 seconds delay), confirming async/timing issue
+  5. No audio-related errors (audio fix appears to have helped)
+
+  Likely Causes:
+  a) ADB/USB forwarding latency exceeds 2-second handshake timeout
+     - USB connections have inherent latency vs WiFi
+     - Current timeout (2s) may be too aggressive for USB/ADB
+     - Protocol messages taking longer to traverse USB bridge
+
+  b) Packet loss or connection instability over ADB forwarding
+     - ADB socket doesn't guarantee low latency
+     - May require retransmission or buffering
+     - Contributes to missed handshake deadline
+
+  c) Server-side latency in handshake processing
+     - 9-second delay between client error and server error
+     - Suggests server handshake routine is slow/blocked
+     - Possible lock contention or background task interference
+
+  d) Wired connection not properly optimized
+     - May use same timeout/retry logic as WiFi
+     - Different socket settings might be needed for USB/ADB
+
+ERROR PATTERN:
+  - Interval between client errors: ~35 seconds
+  - Interval between server errors: ~11.7 seconds
+  - Consistent "Try again" error (EAGAIN/EWOULDBLOCK condition)
+  - No successful progression past handshake phase
+
+COMPARISON TO PREVIOUS FIXES:
+  - Audio initialization fix removed blocking audio calls during handshake
+  - This test shows different error (generic "Try again" vs audio timeout)
+  - Suggests audio was the blocker, but reveals underlying network issue
+
+CRITICAL FINDINGS:
+  1. USB/wired connection CAN establish TCP socket
+  2. Server DOES receive connection attempt ("client.wired")
+  3. Protocol handshake CANNOT complete in allocated time
+  4. Current 2-second timeout is insufficient for USB/ADB path
+  5. Timing asymmetry suggests server-side processing delay
+
+RECOMMENDATIONS FOR NEXT ITERATION:
+  1. INCREASE handshake timeout for wired connections
+     - Current: 2 seconds (HANDSHAKE_ACTION_TIMEOUT)
+     - Suggested: 5-10 seconds for USB/ADB paths
+     - Check: alvr/server_core/src/connection.rs:53
+     - Check: alvr/client_core/src/connection.rs:53
+
+  2. Implement per-connection-type timeout configuration
+     - Detect wired vs wireless connection type
+     - Apply different timeout values
+     - Log which timeout was applied
+
+  3. Enable detailed handshake logging
+     - Log each handshake message sent/received
+     - Timestamp each protocol step
+     - Identify where the 2-second window is exceeded
+
+  4. Verify ADB connection stability
+     - Check: adb shell getprop ro.net.change
+     - Monitor ADB daemon: adb logcat -s adb
+     - Measure actual message latency over ADB forwarding
+
+  5. Check for server-side bottlenecks
+     - Review handshake routine for blocking operations
+     - Check for lock contention during handshake
+     - Profile server response time to first handshake message
+
+NEXT DEBUG STEPS:
+  1. Set HANDSHAKE_ACTION_TIMEOUT to 10 seconds
+  2. Rebuild and test again
+  3. Enable debug logging for connection phase
+  4. Record exact handshake message sequence
+  5. Measure message latency from client to server
+
+Test Status: READY FOR RETRY with increased timeout
+================================================================

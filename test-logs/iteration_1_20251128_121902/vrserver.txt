@@ -1,0 +1,723 @@
+Fri Nov 28 2025 12:11:53.249 [Info] - //==============================================================================================
+Fri Nov 28 2025 12:11:53.249 [Info] - ================================================================================================
+Fri Nov 28 2025 12:11:53.249 [Info] - ================================================================================================
+Fri Nov 28 2025 12:11:53.249 [Info] - vrserver 2.14.3 startup with PID=11236, config=C:\Program Files (x86)\Steam\config, runtime=c:\program files (x86)\steam\steamapps\common\SteamVR, arch=win64
+Fri Nov 28 2025 12:11:53.249 [Info] - [vrserver] watchdogs enabled
+Fri Nov 28 2025 12:11:53.250 [Info] - CSharedResourceNamespaceServer starting up
+Fri Nov 28 2025 12:11:53.251 [Info] - Set thread FFFFFFFFFFFFFFFE priority to: 1
+Fri Nov 28 2025 12:11:53.251 [Info] - WaitNamedPipe SteamVR_Namespace failed because no one is listening at that name.
+Fri Nov 28 2025 12:11:53.251 [Error] - CSharedResourceNamespaceClient::Init(): failed connect
+Fri Nov 28 2025 12:11:53.251 [Warning] - CSharedResourceNamespaceClient::Init(): still waiting for vrserver to reply with namespace data
+Fri Nov 28 2025 12:11:53.251 [Info] - Set thread FFFFFFFFFFFFFFFE priority to: -15
+Fri Nov 28 2025 12:11:53.325 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:53.325 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:53.352 [Info] - Client (SteamVR_Namespace) app container state: 1
+Fri Nov 28 2025 12:11:53.356 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:53.356 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:53.356 [Info] - Closing pipe SteamVR_Namespace because it was broken from the other end
+Fri Nov 28 2025 12:11:53.356 [Info] - CSharedResourceNamespaceClient::Init(): received namespace data 11236
+Fri Nov 28 2025 12:11:53.356 [Info] - Self queried namespace: 11236
+Fri Nov 28 2025 12:11:53.357 [Info] - [Init] VR server 2.14.3 (v1763764086) starting up with config=C:\Program Files (x86)\Steam\config
+Fri Nov 28 2025 12:11:53.357 [Info] - [Init] VRServer will wait for VRMonitor before exiting
+Fri Nov 28 2025 12:11:53.361 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\htc\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.362 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\lighthouse\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.362 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\null\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.362 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.362 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.363 [Info] - [Settings] Load Default Json Settings from C:\Program Files\Virtual Desktop Streamer\OpenVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.363 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.365 [Info] - [Settings] Load Json Settings from C:\Program Files (x86)\Steam\config\steamvr.vrsettings
+Fri Nov 28 2025 12:11:53.371 [Info] - [Settings] Load Default Json Settings from C:\Program Files\Virtual Desktop Streamer\OpenVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.371 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.372 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.372 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\htc\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.372 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\lighthouse\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.372 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\null\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.372 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:11:53.373 [Info] - [Settings] Load Json Settings from C:\Program Files (x86)\Steam\config\steamvr.vrsettings
+Fri Nov 28 2025 12:11:53.386 [Info] - [Display] Enabling direct mode for NVIDIA [Vid=0xD94D Pid=0xC207]...
+Fri Nov 28 2025 12:11:53.387 [Info] - [Display] Successfully set display visibility.
+Fri Nov 28 2025 12:11:53.391 [Info] - C:\Program Files (x86)\Steam\config\steamapps.vrmanifest - App steam.app.667970 was already described in manifest C:\Program Files (x86)\Steam\config\steamapps.vrmanifest. Skipping
+Fri Nov 28 2025 12:11:53.392 [Info] - C:\Program Files (x86)\Steam\steamapps\common\DesktopPlus\manifest.vrmanifest - App steam.overlay.1494460 was already described in manifest C:\Program Files (x86)\Steam\config\steamapps.vrmanifest. Skipping
+Fri Nov 28 2025 12:11:53.396 [Info] - [Remapping] Loading automap templates.
+Fri Nov 28 2025 12:11:53.397 [Info] - [Remapping] Loaded 2 global remappings.
+Fri Nov 28 2025 12:11:53.397 [Info] - [Controller Setup] Adding controller type vive
+Fri Nov 28 2025 12:11:53.397 [Info] - [Controller Setup] Adding controller type rift
+Fri Nov 28 2025 12:11:53.397 [Info] - [Controller Setup] Adding controller type indexhmd
+Fri Nov 28 2025 12:11:53.398 [Info] - [Controller Setup] Adding controller type holographic_hmd
+Fri Nov 28 2025 12:11:53.398 [Info] - [Remapping] Setting up device remapping for controller type: vive_controller.
+Fri Nov 28 2025 12:11:53.398 [Info] - [Controller Setup] Adding controller type vive_controller
+Fri Nov 28 2025 12:11:53.399 [Info] - [Remapping] Setting up device remapping for controller type: oculus_touch.
+Fri Nov 28 2025 12:11:53.399 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: pico_controller to controller: oculus_touch.
+Fri Nov 28 2025 12:11:53.399 [Info] - [Controller Setup] Adding controller type oculus_touch
+Fri Nov 28 2025 12:11:53.400 [Info] - [Remapping] Setting up device remapping for controller type: knuckles.
+Fri Nov 28 2025 12:11:53.400 [Info] - [Controller Setup] Adding controller type knuckles
+Fri Nov 28 2025 12:11:53.401 [Info] - [Controller Setup] Adding controller type vive_tracker_camera
+Fri Nov 28 2025 12:11:53.401 [Info] - [Controller Setup] Adding controller type vive_tracker_chest
+Fri Nov 28 2025 12:11:53.402 [Info] - [Controller Setup] Adding controller type vive_tracker_handed
+Fri Nov 28 2025 12:11:53.402 [Info] - [Controller Setup] Adding controller type vive_tracker_keyboard
+Fri Nov 28 2025 12:11:53.402 [Info] - [Controller Setup] Adding controller type vive_tracker_left_ankle
+Fri Nov 28 2025 12:11:53.402 [Info] - [Controller Setup] Adding controller type vive_tracker_left_elbow
+Fri Nov 28 2025 12:11:53.403 [Info] - [Controller Setup] Adding controller type vive_tracker_left_foot
+Fri Nov 28 2025 12:11:53.403 [Info] - [Controller Setup] Adding controller type vive_tracker_left_knee
+Fri Nov 28 2025 12:11:53.403 [Info] - [Controller Setup] Adding controller type vive_tracker_left_shoulder
+Fri Nov 28 2025 12:11:53.404 [Info] - [Controller Setup] Adding controller type vive_tracker_left_wrist
+Fri Nov 28 2025 12:11:53.404 [Info] - [Controller Setup] Adding controller type vive_tracker_right_ankle
+Fri Nov 28 2025 12:11:53.404 [Info] - [Controller Setup] Adding controller type vive_tracker_right_elbow
+Fri Nov 28 2025 12:11:53.405 [Info] - [Controller Setup] Adding controller type vive_tracker_right_foot
+Fri Nov 28 2025 12:11:53.405 [Info] - [Controller Setup] Adding controller type vive_tracker_right_knee
+Fri Nov 28 2025 12:11:53.405 [Info] - [Controller Setup] Adding controller type vive_tracker_right_shoulder
+Fri Nov 28 2025 12:11:53.406 [Info] - [Controller Setup] Adding controller type vive_tracker_right_wrist
+Fri Nov 28 2025 12:11:53.406 [Info] - [Controller Setup] Adding controller type vive_tracker_waist
+Fri Nov 28 2025 12:11:53.406 [Info] - [Controller Setup] Adding controller type vive_tracker
+Fri Nov 28 2025 12:11:53.406 [Warning] - [Controller Setup] Warning: Cannot use 'compatibility_mode_controller_type' and 'remapping' in the same input profile. 'compatibility_mode_controller_type' will be ignored.
+Fri Nov 28 2025 12:11:53.407 [Info] - [Remapping] Setting up device remapping for controller type: pico_controller.
+Fri Nov 28 2025 12:11:53.407 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: oculus_touch to controller: pico_controller.
+Fri Nov 28 2025 12:11:53.407 [Info] - [Controller Setup] Adding controller type pico_controller
+Fri Nov 28 2025 12:11:53.408 [Info] - [Remapping] Setting up device remapping for controller type: holographic_controller.
+Fri Nov 28 2025 12:11:53.409 [Info] - [Controller Setup] Adding controller type holographic_controller
+Fri Nov 28 2025 12:11:53.410 [Warning] - [Controller Setup] Warning: Cannot use 'fallback_controller_type' and 'remapping' in the same input profile. 'fallback_controller_type' will be ignored.
+Fri Nov 28 2025 12:11:53.410 [Info] - [Remapping] Setting up device remapping for controller type: hpmotioncontroller.
+Fri Nov 28 2025 12:11:53.411 [Info] - [Controller Setup] Adding controller type hpmotioncontroller
+Fri Nov 28 2025 12:11:53.411 [Info] - [Controller Setup] Adding controller type khr_simple_controller
+Fri Nov 28 2025 12:11:53.412 [Info] - [Controller Setup] Adding controller type khr_generic_controller
+Fri Nov 28 2025 12:11:53.412 [Info] - [Controller Setup] Adding controller type hand_interaction_ext
+Fri Nov 28 2025 12:11:53.412 [Info] - [Controller Setup] Adding controller type gamepad
+Fri Nov 28 2025 12:11:53.414 [Info] - Add Json firmware manifest from {htc}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.414 [Info] - Add Json firmware manifest from {indexcontroller}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.414 [Info] - Add Json firmware manifest from {indexhmd}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.414 [Info] - Add Json firmware manifest from {lighthouse}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.414 [Info] - Add Json firmware manifest from {tundra_labs}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.415 [Info] - Web language is english
+Fri Nov 28 2025 12:11:53.415 [Info] - [Web] Starting web server on port 27062
+Fri Nov 28 2025 12:11:53.418 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black-italic.ttf.
+Fri Nov 28 2025 12:11:53.420 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black-italic.ttf.
+Fri Nov 28 2025 12:11:53.423 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black.ttf.
+Fri Nov 28 2025 12:11:53.425 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-bold-italic.ttf.
+Fri Nov 28 2025 12:11:53.427 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-bold.ttf.
+Fri Nov 28 2025 12:11:53.429 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-extrabold-italic.ttf.
+Fri Nov 28 2025 12:11:53.432 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-extrabold.ttf.
+Fri Nov 28 2025 12:11:53.434 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-light-italic.ttf.
+Fri Nov 28 2025 12:11:53.436 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-light.ttf.
+Fri Nov 28 2025 12:11:53.438 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-medium-italic.ttf.
+Fri Nov 28 2025 12:11:53.440 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-medium.ttf.
+Fri Nov 28 2025 12:11:53.442 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-regular-italic.ttf.
+Fri Nov 28 2025 12:11:53.444 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-regular.ttf.
+Fri Nov 28 2025 12:11:53.446 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-thin-italic.ttf.
+Fri Nov 28 2025 12:11:53.448 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-thin.ttf.
+Fri Nov 28 2025 12:11:53.450 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans.ttf.
+Fri Nov 28 2025 12:11:53.452 [Info] - Connecting client (VR_ServerPipe_11236) app container status: 1
+Fri Nov 28 2025 12:11:53.453 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrstartup.exe (VRApplication_Bootstrapper) (Args: ) 119612 
+Fri Nov 28 2025 12:11:53.465 [Info] - System audio devices:
+Fri Nov 28 2025 12:11:53.465 [Info] - AUDIO: Refreshing audio devices
+Fri Nov 28 2025 12:11:53.467 [Info] - AppInfoManager.ProcessConnected BEGIN 119612 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrstartup.exe 7 openvr.component.vrstartup
+Fri Nov 28 2025 12:11:53.478 [Info] - SetApplicationPid appkey=openvr.component.vrstartup pid=119612, external transition
+Fri Nov 28 2025 12:11:53.478 [Info] - SetApplicationPid: Setting app openvr.component.vrstartup PID to 119612
+Fri Nov 28 2025 12:11:53.478 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:11:53.478 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:11:53.478 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:11:53.478 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '119612: vrstartup' with key 'openvr.component.vrstartup'
+Fri Nov 28 2025 12:11:53.479 [Info] - Succesfully turned IGNORE_TIMER_RESOLUTION throttling off.
+Fri Nov 28 2025 12:11:53.480 [Info] - [Steam] Steam INIT.
+Fri Nov 28 2025 12:11:53.482 [Info] - [Steam] Steam API available
+Fri Nov 28 2025 12:11:53.482 [Info] - [Steam] Steam user logged in
+Fri Nov 28 2025 12:11:53.485 [Info] - error VRInitError_Init_HmdNotFound when initing driver VirtualDesktop from C:\Program Files\Virtual Desktop Streamer\OpenVRDriver\bin\win64\driver_VirtualDesktop.dll.
+Fri Nov 28 2025 12:11:53.485 [Error] - Unable to load driver VirtualDesktop because of error VRInitError_Init_HmdNotFound(108). Skipping.
+Fri Nov 28 2025 12:11:53.495 [Info] - AUDIO: Detected 39 playback and 25 record devices
+Fri Nov 28 2025 12:11:53.495 [Info] - Playback devices:
+Fri Nov 28 2025 12:11:53.495 [Info] - 	-->Headphones (3- Arctis Nova 7X),0,Headphones,3- Arctis Nova 7X,VID_1038/PID_2206,USB\VID_1038&PID_2206&MI_00\8&288e2fb5&0&0000,{0.0.0.00000000}.{0062c08d-e60a-421e-9a23-af0df017d7ce}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B4,,{0.0.0.00000000}.{085fea1b-310c-4661-8ada-83d8ddeff79b}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,,{0.0.0.00000000}.{19096754-03e8-4034-979e-8e1e1267c9d9}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Speakers (3- Sonic Studio Virtual Mixer),2,Speakers,3- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{19bfb587-d404-423d-90ff-ee57df9c1a97}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{30cd0a54-1278-4572-8637-87d58cd24510}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{330da8b1-aa5b-4ea8-9061-9a6a6dd0d5fb}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	DELL U2723QE (NVIDIA High Definition Audio),2,DELL U2723QE,NVIDIA High Definition Audio,VID_AC10/PID_4278,,{0.0.0.00000000}.{41ec0f23-65b2-486d-955b-13230a98ba66}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Speakers (Bigscreen Audio Stream 1.2),0,Speakers,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,ROOT\MEDIA\0003,{0.0.0.00000000}.{452f9877-8801-400c-bb45-464ecdd87591}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{5ed6038a-19c5-4027-8397-6dbdde069cf0}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{610272d4-9090-474b-9d30-d8a5e06d510d}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{62fe9613-8ab7-42e0-ade7-2727087c95a3}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Speakers (2- Sonic Studio Virtual Mixer),2,Speakers,2- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{63846255-088c-410d-889d-dc8ff1fd69f6}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{73214ac9-d847-4454-950d-4e2922f83764}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Headset (AIAIAI TMA-2 (H10) Hands-Free),2,Headset,AIAIAI TMA-2 (H10) Hands-Free,VID_0000/PID_0000,,{0.0.0.00000000}.{73f54c94-1d31-4532-9847-39027ecb34ec}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Headphones (Arctis Nova 7X),2,Headphones,Arctis Nova 7X,VID_0000/PID_0000,,{0.0.0.00000000}.{748f3505-ea94-4280-847b-263f2f624521}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Speakers (Steam Streaming Speakers),1,Speakers,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.0.00000000}.{751ec123-9e1c-4179-b9b4-02e288bf59c6}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{8576cb88-7269-46d9-8965-56dbfe4f932a}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{8a529a78-6ab2-4042-b797-578fb1e7e961}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Speakers (Sonic Studio Virtual Mixer),2,Speakers,Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{9dab54e6-4daf-474a-ab2c-b687d7ec38df}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{9ee04fe5-02ec-4733-bda7-ba182d1741fd}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{a44abc4c-e894-4692-87f6-afd243c2a563}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	DELL U2720Q (High Definition Audio Device),2,DELL U2720Q,High Definition Audio Device,VID_AC10/PID_41B3,,{0.0.0.00000000}.{a667e232-0a6d-4953-9873-9add4a278e1a}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Headphones (Realtek USB Audio),2,Headphones,Realtek USB Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{a7bee347-214f-440d-9751-380f115ff684}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{b66aa8ba-e43b-44b5-8018-65033619b27e}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Speakers (2- SoundLink Max JJ),2,Speakers,2- SoundLink Max JJ,VID_0000/PID_0000,,{0.0.0.00000000}.{bc358896-7a96-4b68-b367-751bc734f622}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Headphones (Oculus Virtual Audio Device),0,Headphones,Oculus Virtual Audio Device,VID_0000/PID_0000,ROOT\MEDIA\0001,{0.0.0.00000000}.{c1b8cf0f-a851-4a27-a67b-908e5e13cfb4}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Headphones (2- AIAIAI TMA-2 (H10)),2,Headphones,2- AIAIAI TMA-2 (H10),VID_0000/PID_0000,,{0.0.0.00000000}.{c7bd1a25-b1f4-49a4-be3e-0cce420392b8}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{ca5f7a25-b52e-406e-a1b6-3a3fd1da558f}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{d1b20ed5-5f0f-41a0-aea2-9c8cff9cf982}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	SPDIF Interface (Realtek USB Audio),2,SPDIF Interface,Realtek USB Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{d320700d-371c-486c-99bf-c34a2209a196}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{d88ac54f-156e-4042-869b-354e713e2dd5}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{dc5da2cf-2b89-4757-9c7e-a6e376d7f839}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,,{0.0.0.00000000}.{e1ae2635-3fac-4fe3-b1d9-90f15c3e7f4c}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{e1c3a2bb-f5ac-4a59-bbc0-df0b0c56c80a}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Speakers (Virtual Desktop Audio),1,Speakers,Virtual Desktop Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{e91c2632-f4e9-42dd-98ae-d8dbf295ce2d}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),0,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,HDAUDIO\FUNC_01&VEN_10DE&DEV_00A4&SUBSYS_14625117&REV_1001\5&1f0f386b&0&0001,{0.0.0.00000000}.{ef5a64ff-8062-4622-945b-6b84ac7d48bf}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{f3d6f98c-4bfd-42f8-86c7-edf4ef7cd7a3}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Speakers (Steam Streaming Microphone),1,Speakers,Steam Streaming Microphone,VID_0000/PID_0000,,{0.0.0.00000000}.{f521bc51-0ba5-4083-a711-df179b9e2a4d}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Internal AUX Jack (Steam Streaming Speakers),2,Internal AUX Jack,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.0.00000000}.{fb0791cd-8a4c-4137-8ecb-28be1dd4d054}
+Fri Nov 28 2025 12:11:53.495 [Info] - Recording devices:
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{06bfccd9-0d38-4303-ae6a-545552f7bde2}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	-->Microphone (3- Arctis Nova 7X),0,Microphone,3- Arctis Nova 7X,VID_1038/PID_2206,USB\VID_1038&PID_2206&MI_00\8&288e2fb5&0&0000,{0.0.1.00000000}.{0ddc17b6-7baf-4a52-9288-49ad8c610986}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Headset (AIAIAI TMA-2 (H10) Hands-Free),2,Headset,AIAIAI TMA-2 (H10) Hands-Free,VID_0000/PID_0000,,{0.0.1.00000000}.{1050a653-3c8d-487d-b75d-9c6624a903c8}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (Steam Streaming Speakers),2,Microphone,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.1.00000000}.{157724f9-7495-4816-abc7-0162b48211d8}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	MIDI (Bigscreen Audio Stream 1.2),2,MIDI,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,,{0.0.1.00000000}.{1b2f197e-9621-4767-8942-1ffcb2b22475}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Headset (Realtek USB Audio),2,Headset,Realtek USB Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{3084d4ef-ec9f-46df-ae0f-be784dd7bf43}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (Steam Streaming Microphone),1,Microphone,Steam Streaming Microphone,VID_0000/PID_0000,,{0.0.1.00000000}.{32249551-be20-4847-8c7a-2b26076e20ea}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (Arctis Nova 7X),2,Microphone,Arctis Nova 7X,VID_0000/PID_0000,,{0.0.1.00000000}.{34866de3-f3b3-4084-adbe-67d32b9968cd}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (Virtual Desktop Audio),1,Microphone,Virtual Desktop Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{3fdd3e85-618e-47cc-8130-433d941e0e6e}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	MIDI (Bigscreen Audio Stream 1.2),1,MIDI,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,,{0.0.1.00000000}.{431b7c53-ab53-4698-9c25-3ff311b4bbdb}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Microphone,,VID_0000/PID_0000,,{0.0.1.00000000}.{47ed6b68-78fc-4cdd-ade7-90e7b4498a4f}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (Sonic Studio Virtual Mixer),2,Microphone,Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{5a56a1ef-5e47-4539-82b3-d80204c96edf}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{84b8a144-52af-4d38-900e-f83b78af9ef1}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Internal AUX Jack (Steam Streaming Speakers),1,Internal AUX Jack,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.1.00000000}.{8969ca11-9e24-4811-8ff7-b3a4f945b935}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (2- Sonic Studio Virtual Mixer),2,Microphone,2- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{901a9289-10ab-470a-b7d2-06c65384ca9c}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	,2,Microphone,,VID_0000/PID_0000,,{0.0.1.00000000}.{a4ca1ea0-0fb5-488d-bc3f-14b3babb3847}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{a6f7a7c8-5569-4a21-829e-76cffd110ab5}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Headset Microphone (Oculus Virtual Audio Device),0,Headset Microphone,Oculus Virtual Audio Device,VID_0000/PID_0000,ROOT\MEDIA\0001,{0.0.1.00000000}.{abd70fda-3266-4f89-9a81-d7430e77aef0}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{ac5d1bdb-5dd0-4948-ae5d-b4af11a21616}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{adaf84d5-522d-4a58-99b8-5db998d5d0ca}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (3- Sonic Studio Virtual Mixer),2,Microphone,3- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{b2e06191-f9ad-4756-a9cf-4a3df1333d22}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (Realtek USB Audio),2,Microphone,Realtek USB Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{b48c9934-e9d4-493d-ae5f-5bb00d5aafbe}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Microphone (Bigscreen Audio Stream 1.2),0,Microphone,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,ROOT\MEDIA\0003,{0.0.1.00000000}.{b5151663-e579-4c11-8f77-5f687d82a29a}
+Fri Nov 28 2025 12:11:53.495 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{bc59fa5c-4104-4974-af68-6c538afb7f93}
+Fri Nov 28 2025 12:11:53.496 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{d31de4da-d6f0-4878-b9fb-6f6ba655ab06}
+Fri Nov 28 2025 12:11:53.716 [Info] - Unable to load driver alvr_server from C:\Users\jurre\PycharmProjects\ALVR\build\alvr_streamer_windows\bin\win64\driver_alvr_server.dll (126)
+Fri Nov 28 2025 12:11:53.716 [Error] - ASSERT: "DriverManager alvr_server load error 126u" at c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\drivermanager.cpp:443.
+Fri Nov 28 2025 12:11:53.938 [Error] - Unable to load driver alvr_server because of error VRInitError_Init_FileNotFound(103). Skipping.
+Fri Nov 28 2025 12:11:53.949 [Info] - vrlink: SVLDriver::Init()
+Fri Nov 28 2025 12:11:53.950 [Info] -   driver vrlink implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:11:53.950 [Info] - Loaded server driver vrlink (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\bin\win64\driver_vrlink.dll
+Fri Nov 28 2025 12:11:53.950 [Warning] - Driver vrlink has no suitable devices.
+Fri Nov 28 2025 12:11:53.957 [Info] - vrlink: SVLRoot::SVLRoot() Parsing Data
+Fri Nov 28 2025 12:11:53.957 [Info] - vrlink: SVLRoot::SVLRoot() sReqEncMode = mid
+Fri Nov 28 2025 12:11:53.957 [Info] - vrlink: SVLRoot::SVLRoot() Parsing Arg (0)
+Fri Nov 28 2025 12:11:53.957 [Info] - vrlink: SVLRoot::SVLRoot() Arg Parsed
+Fri Nov 28 2025 12:11:53.957 [Info] - vrlink: No links? Server-as-client Mode?
+Fri Nov 28 2025 12:11:53.961 [Info] - Blocking driver holographic attempt to set setting steamvr/maxRecommendedResolution
+Fri Nov 28 2025 12:11:53.963 [Info] - error VRInitError_Init_HmdNotFound when initing driver holographic from c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\bin\win64\driver_holographic.dll.
+Fri Nov 28 2025 12:11:53.963 [Error] - Unable to load driver holographic because of error VRInitError_Init_HmdNotFound(108). Skipping.
+Fri Nov 28 2025 12:11:53.963 [Info] - vrlink: Soft AES PERF: 18.345257 MByte/s
+Fri Nov 28 2025 12:11:53.964 [Info] - vrlink: Intel IPSEC AES PERF: 719.424438 MByte/s
+Fri Nov 28 2025 12:11:53.964 [Info] - vrlink: OpenSSL AES PERF: 134.228195 MByte/s
+Fri Nov 28 2025 12:11:53.970 [Info] - vrlink: Soft AES PERF: 18.835939 MByte/s
+Fri Nov 28 2025 12:11:53.970 [Info] - vrlink: Intel IPSEC AES PERF: 1010.101013 MByte/s
+Fri Nov 28 2025 12:11:53.970 [Info] - vrlink: OpenSSL AES PERF: 181.159424 MByte/s
+Fri Nov 28 2025 12:11:53.972 [Info] - vrlink: UDP Driver
+Fri Nov 28 2025 12:11:53.972 [Info] - vrlink: Active Data Links: m_pLink:0000000004A430B0 pTcpLink:0000000000000000 pUdpLink:0000000004A430B0 p8814Link:0000000000000000
+Fri Nov 28 2025 12:11:53.972 [Info] - vrlink: SVLDataLink::HandleFECChange( 32 )
+Fri Nov 28 2025 12:11:53.972 [Info] - vrlink: SVLServer::SVLServer(...)
+Fri Nov 28 2025 12:11:53.972 [Info] - vrlink: SVLAudioWSAPI::SVLAudioWSAPI(...)
+Fri Nov 28 2025 12:11:53.972 [Info] - vrlink: SVLHMDDriverD3D11::SVLHMDDriverD3D11() c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\
+Fri Nov 28 2025 12:11:53.975 [Info] - lighthouse: version 2.14.3
+Fri Nov 28 2025 12:11:53.975 [Info] - lighthouse: [DepthAugmentedPassthrough] supported on this system: 1
+Fri Nov 28 2025 12:11:53.975 [Info] - lighthouse: [DepthAugmentedPassthrough] : Object is created 
+Fri Nov 28 2025 12:11:53.975 [Info] - vrlink: SVLCryptWindows CryptAcquireContext succeeded for generation.
+Fri Nov 28 2025 12:11:53.975 [Info] - vrlink: SVLDataLink::InitCrypt(...,55,1)
+Fri Nov 28 2025 12:11:53.975 [Info] - vrlink: SVLDataLink::InitCrypt() m_TransportMode = 1 // 1017
+Fri Nov 28 2025 12:11:53.975 [Info] - vrlink: Starting session with ID: 0158c6ae
+Fri Nov 28 2025 12:11:53.975 [Info] - vrlink: SVLDataLinkUDP::Disconnect()
+Fri Nov 28 2025 12:11:53.975 [Info] - vrlink: SVLDataLinkUDP: QoS is disabled
+Fri Nov 28 2025 12:11:53.976 [Info] - lighthouse: Add Json firmware manifest from {htc}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.976 [Info] - vrlink: Socket bound to port 10400
+Fri Nov 28 2025 12:11:53.976 [Info] - vrlink: QoS is Disabled.  Not setting SIO_SET_QOS
+Fri Nov 28 2025 12:11:53.976 [Info] - vrlink: SVLDataLinkUDP::Reconnect() Joining Thread 0000000000000000
+Fri Nov 28 2025 12:11:53.976 [Info] - lighthouse: Add Json firmware manifest from {indexcontroller}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.976 [Info] - vrlink: Set thread FFFFFFFFFFFFFFFE priority to: 15
+Fri Nov 28 2025 12:11:53.976 [Info] - vrlink: SVLDataLinkUDP::Reconnect() Thread Create Complete
+Fri Nov 28 2025 12:11:53.976 [Info] - vrlink: Data Link Startup with Options: nTimedRetryOption = 1, nQoSOption = 0
+Fri Nov 28 2025 12:11:53.976 [Info] - lighthouse: Add Json firmware manifest from {indexhmd}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.976 [Info] - vrlink: Listening for incoming control connections on 10440 via socket 2584
+Fri Nov 28 2025 12:11:53.976 [Info] - lighthouse: Add Json firmware manifest from {lighthouse}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.976 [Info] - lighthouse: Add Json firmware manifest from {tundra_labs}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:11:53.977 [Info] - vrlink: SVLDriver::Init() Complete
+Fri Nov 28 2025 12:11:53.980 [Info] - lighthouse: Attached HID Devices:
+Fri Nov 28 2025 12:11:53.980 [Info] - lighthouse:     No devices
+Fri Nov 28 2025 12:11:53.980 [Info] -   driver lighthouse implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:11:53.980 [Info] - Loaded server driver lighthouse (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\lighthouse\bin\win64\driver_lighthouse.dll
+Fri Nov 28 2025 12:11:53.980 [Warning] - Driver lighthouse has no suitable devices.
+Fri Nov 28 2025 12:11:53.981 [Info] - oculus: version 2.14.3
+Fri Nov 28 2025 12:11:53.982 [Info] -   driver oculus implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:11:53.982 [Info] - Loaded server driver oculus (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\bin\win64\driver_oculus.dll
+Fri Nov 28 2025 12:11:53.982 [Warning] - Driver oculus has no suitable devices.
+Fri Nov 28 2025 12:11:53.986 [Info] -   driver oculus_legacy implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:11:53.986 [Info] - Loaded server driver oculus_legacy (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus_legacy\bin\win64\driver_oculus_legacy.dll
+Fri Nov 28 2025 12:11:53.986 [Warning] - Driver oculus_legacy has no suitable devices.
+Fri Nov 28 2025 12:11:53.987 [Info] -   driver gamepad implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:11:53.987 [Info] - Loaded server driver gamepad (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\gamepad\bin\win64\driver_gamepad.dll
+Fri Nov 28 2025 12:11:53.987 [Warning] - Driver gamepad has no suitable devices.
+Fri Nov 28 2025 12:11:53.987 [Warning] - Not loading driver null because it is disabled in settings
+Fri Nov 28 2025 12:11:53.991 [Info] - error VRInitError_Init_HmdNotFound when initing driver VirtualDesktop from C:\Program Files\Virtual Desktop Streamer\OpenVRDriver\bin\win64\driver_VirtualDesktop.dll.
+Fri Nov 28 2025 12:11:53.991 [Error] - Unable to load driver VirtualDesktop because of error VRInitError_Init_HmdNotFound(108). Skipping.
+Fri Nov 28 2025 12:11:53.993 [Info] - Unable to load driver alvr_server from C:\Users\jurre\PycharmProjects\ALVR\build\alvr_streamer_windows\bin\win64\driver_alvr_server.dll (126)
+Fri Nov 28 2025 12:11:53.993 [Error] - ASSERT: "DriverManager alvr_server load error 126u" at c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\drivermanager.cpp:443.
+Fri Nov 28 2025 12:11:53.993 [Error] - Unable to load driver alvr_server because of error VRInitError_Init_FileNotFound(103). Skipping.
+Fri Nov 28 2025 12:11:53.994 [Info] - No connected devices found. Returning best error VRInitError_Init_HmdNotFound
+Fri Nov 28 2025 12:11:53.994 [Info] - [Remapping] Setting up device remapping for controller type: holographic_controller.
+Fri Nov 28 2025 12:11:53.995 [Info] - [Remapping] Parsing remapping data succeeded for controller type: holographic_controller.
+Fri Nov 28 2025 12:11:53.995 [Info] - [Remapping] Setting up device remapping for controller type: hpmotioncontroller.
+Fri Nov 28 2025 12:11:53.996 [Info] - [Remapping] Parsing remapping data succeeded for controller type: hpmotioncontroller.
+Fri Nov 28 2025 12:11:53.996 [Info] - [Remapping] Setting up device remapping for controller type: knuckles.
+Fri Nov 28 2025 12:11:53.997 [Info] - [Remapping] Parsing remapping data succeeded for controller type: knuckles.
+Fri Nov 28 2025 12:11:53.997 [Info] - [Remapping] Setting up device remapping for controller type: oculus_touch.
+Fri Nov 28 2025 12:11:53.997 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: pico_controller to controller: oculus_touch.
+Fri Nov 28 2025 12:11:53.997 [Info] - [Remapping] Parsing remapping data succeeded for controller type: oculus_touch.
+Fri Nov 28 2025 12:11:53.997 [Info] - [Remapping] Setting up device remapping for controller type: pico_controller.
+Fri Nov 28 2025 12:11:53.997 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: oculus_touch to controller: pico_controller.
+Fri Nov 28 2025 12:11:53.998 [Info] - [Remapping] Parsing remapping data succeeded for controller type: pico_controller.
+Fri Nov 28 2025 12:11:53.998 [Info] - [Remapping] Setting up device remapping for controller type: vive_controller.
+Fri Nov 28 2025 12:11:53.998 [Info] - [Remapping] Parsing remapping data succeeded for controller type: vive_controller.
+Fri Nov 28 2025 12:11:53.998 [Info] - Refusing connect from 119612: vrstartup because VRInitError_Init_HmdNotFound
+Fri Nov 28 2025 12:11:53.998 [Info] - Processing message VRMsg_Connect from 119612: vrstartup took 0.546 seconds
+Fri Nov 28 2025 12:11:53.998 [Info] - Closing pipe 119612: vrstartup because it was broken from the other end
+Fri Nov 28 2025 12:11:53.998 [Info] - Process 119612: vrstartup disconnected (Thread(0x0000000004903A70/0x000)
+Fri Nov 28 2025 12:11:53.998 [Info] - AppInfoManager.ProcessDisconnected processid=119612 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 12:11:53.998 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrstartup PID was 119612
+Fri Nov 28 2025 12:11:53.998 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrstartup PID because 119612 has exited
+Fri Nov 28 2025 12:11:54.096 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.096 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.106 [Info] - Connecting client (VR_ServerPipe_11236) app container status: 1
+Fri Nov 28 2025 12:11:54.106 [Info] - New Connect message from C:\WINDOWS\SysWOW64\rundll32.exe (VRApplication_Utility) (Args: c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\bin\win32\driver_holographic.dll,_ProcessFileChangeNotification@16) 112808 
+Fri Nov 28 2025 12:11:54.117 [Info] - Creating Builtin AppInfo for C:\WINDOWS\SysWOW64\rundll32.exe (VRApplication_Utility). , , 112808
+Fri Nov 28 2025 12:11:54.117 [Info] - AppInfoManager.ProcessConnected BEGIN 112808 C:\WINDOWS\SysWOW64\rundll32.exe 4 system.generated.rundll32.exe
+Fri Nov 28 2025 12:11:54.126 [Info] - SetApplicationPid appkey=system.generated.rundll32.exe pid=112808, external transition
+Fri Nov 28 2025 12:11:54.126 [Info] - SetApplicationPid: Setting app system.generated.rundll32.exe PID to 112808
+Fri Nov 28 2025 12:11:54.126 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:11:54.126 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:11:54.126 [Info] - [Input] Enabling legacy input for system.generated.rundll32.exe
+Fri Nov 28 2025 12:11:54.127 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 112808: rundll32 because it is VRApplication_Utility
+Fri Nov 28 2025 12:11:54.127 [Info] - Processing message VRMsg_Connect from 112808: rundll32 took 0.0206 seconds
+Fri Nov 28 2025 12:11:54.133 [Info] - Closing pipe 112808: rundll32 because it was broken from the other end
+Fri Nov 28 2025 12:11:54.133 [Info] - Process 112808: rundll32 disconnected (Thread(0x000000000422E0F0/0x000)
+Fri Nov 28 2025 12:11:54.133 [Info] - AppInfoManager.ProcessDisconnected processid=112808 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 12:11:54.133 [Info] - AppInfoManager.ProcessDisconnected: Clearing application system.generated.rundll32.exe PID was 112808
+Fri Nov 28 2025 12:11:54.133 [Info] - AppInfoManager.ProcessDisconnected: Clearing application system.generated.rundll32.exe PID because 112808 has exited
+Fri Nov 28 2025 12:11:54.169 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.169 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.179 [Info] - Connecting client (VR_ServerPipe_11236) app container status: 1
+Fri Nov 28 2025 12:11:54.179 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrmonitor.exe (VRApplication_VRMonitor) (Args: -nokillprocess -startupappid 250820 -startupreason steamvr_vrstartup -startupapptype 7) 84696 
+Fri Nov 28 2025 12:11:54.193 [Info] - AppInfoManager.ProcessConnected BEGIN 84696 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrmonitor.exe 5 openvr.component.vrmonitor
+Fri Nov 28 2025 12:11:54.201 [Info] - SetApplicationPid appkey=openvr.component.vrmonitor pid=84696, external transition
+Fri Nov 28 2025 12:11:54.201 [Info] - SetApplicationPid: Setting app openvr.component.vrmonitor PID to 84696
+Fri Nov 28 2025 12:11:54.201 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:11:54.201 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:11:54.201 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:11:54.201 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '84696: vrmonitor' with key 'openvr.component.vrmonitor'
+Fri Nov 28 2025 12:11:54.201 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 84696: vrmonitor because it is VRApplication_VRMonitor
+Fri Nov 28 2025 12:11:54.201 [Info] - Processing message VRMsg_Connect from 84696: vrmonitor took 0.0211 seconds
+Fri Nov 28 2025 12:11:54.222 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.222 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.285 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.285 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.296 [Info] - Connecting client (VR_ServerPipe_11236) app container status: 1
+Fri Nov 28 2025 12:11:54.296 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: -lang=en_us) 15612 
+Fri Nov 28 2025 12:11:54.306 [Info] - AppInfoManager.ProcessConnected BEGIN 15612 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 12:11:54.313 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=15612, external transition
+Fri Nov 28 2025 12:11:54.313 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 15612
+Fri Nov 28 2025 12:11:54.313 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:11:54.313 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:11:54.313 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:11:54.313 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '15612: vrwebhelper_main' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 12:11:54.313 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 15612: vrwebhelper_main because it is VRApplication_WebHelper
+Fri Nov 28 2025 12:11:54.313 [Info] - Processing message VRMsg_Connect from 15612: vrwebhelper_main took 0.0173 seconds
+Fri Nov 28 2025 12:11:54.568 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.568 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.872 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.872 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.872 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.872 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.915 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.915 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.915 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:11:54.915 [Info] - CSharedResourceNamespaceServer sent namespace data: 11236
+Fri Nov 28 2025 12:11:54.925 [Info] - Connecting client (VR_ServerPipe_11236) app container status: 1
+Fri Nov 28 2025 12:11:54.925 [Info] - Connecting client (VR_ServerPipe_11236) app container status: 1
+Fri Nov 28 2025 12:11:54.925 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: --type=renderer --log-severity=disable --user-agent-product=SteamVR HTML --disable-spell-checking --user-data-dir=C:\Users\jurre\AppData\Local\SteamVR\htmlcache --no-sandbox --autoplay-policy=no-user-gesture-required --enable-experimental-web-platform-features --enable-blink-features=ResizeObserver --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1762928948730173 --launch-time-ticks=1399366054994 --field-trial-handle=3740,i,6577319027253923869,3732429642158221408,262144 --enable-features=BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsFromPrivate,BlockInsecurePrivateNetworkRequestsFromUnknown,CSSDisplayModePictureInPicture,ClientHintsFormFactors,CookieSameSiteConsidersRedirectChain,CreateImageBitmapOrientationNone,CriticalClientHint,DocumentPolicyIncludeJSCallStacksInCrashReports,DocumentPolicyNegotiation,DocumentReporting,EnableCanvas2DLayers,ExperimentalContentSecurityPolicyFeatures,OriginIsolationHeader,PrivateNetworkAccessRespectPreflightResults,SchemefulSameSite,ThirdPartyStoragePartitioning --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version --mojo-platform-channel-handle=3736 /prefetch:1) 118376 
+Fri Nov 28 2025 12:11:54.936 [Info] - AppInfoManager.ProcessConnected BEGIN 118376 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 12:11:54.945 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=118376, external transition
+Fri Nov 28 2025 12:11:54.945 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 118376
+Fri Nov 28 2025 12:11:54.945 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:11:54.945 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:11:54.945 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:11:54.945 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '118376: vrwebhelper_pairing' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 12:11:54.945 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 118376: vrwebhelper_pairing because it is VRApplication_WebHelper
+Fri Nov 28 2025 12:11:54.945 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: --type=renderer --log-severity=disable --user-agent-product=SteamVR HTML --disable-spell-checking --user-data-dir=C:\Users\jurre\AppData\Local\SteamVR\htmlcache --no-sandbox --autoplay-policy=no-user-gesture-required --enable-experimental-web-platform-features --enable-blink-features=ResizeObserver --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1762928948730173 --launch-time-ticks=1399366062968 --field-trial-handle=3840,i,6577319027253923869,3732429642158221408,262144 --enable-features=BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsFromPrivate,BlockInsecurePrivateNetworkRequestsFromUnknown,CSSDisplayModePictureInPicture,ClientHintsFormFactors,CookieSameSiteConsidersRedirectChain,CreateImageBitmapOrientationNone,CriticalClientHint,DocumentPolicyIncludeJSCallStacksInCrashReports,DocumentPolicyNegotiation,DocumentReporting,EnableCanvas2DLayers,ExperimentalContentSecurityPolicyFeatures,OriginIsolationHeader,PrivateNetworkAccessRespectPreflightResults,SchemefulSameSite,ThirdPartyStoragePartitioning --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version --mojo-platform-channel-handle=3708 /prefetch:1) 115640 
+Fri Nov 28 2025 12:11:54.945 [Info] - Processing message VRMsg_Connect from 118376: vrwebhelper_pairing took 0.021 seconds
+Fri Nov 28 2025 12:11:54.955 [Info] - AppInfoManager.ProcessConnected BEGIN 115640 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 12:11:54.964 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=115640, external transition
+Fri Nov 28 2025 12:11:54.964 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 115640
+Fri Nov 28 2025 12:11:54.964 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:11:54.964 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:11:54.964 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:11:54.964 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '115640: vrwebhelper_settings_desktop' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 12:11:54.964 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 115640: vrwebhelper_settings_desktop because it is VRApplication_WebHelper
+Fri Nov 28 2025 12:11:54.964 [Info] - Processing message VRMsg_Connect from 115640: vrwebhelper_settings_desktop took 0.0387 seconds
+Fri Nov 28 2025 12:17:15.077 [Info] - //==============================================================================================
+Fri Nov 28 2025 12:17:15.077 [Info] - ================================================================================================
+Fri Nov 28 2025 12:17:15.077 [Info] - ================================================================================================
+Fri Nov 28 2025 12:17:15.077 [Info] - vrserver 2.14.3 startup with PID=89760, config=C:\Program Files (x86)\Steam\config, runtime=c:\program files (x86)\steam\steamapps\common\SteamVR, arch=win64
+Fri Nov 28 2025 12:17:15.077 [Info] - [vrserver] watchdogs enabled
+Fri Nov 28 2025 12:17:15.078 [Info] - CSharedResourceNamespaceServer starting up
+Fri Nov 28 2025 12:17:15.078 [Info] - Set thread FFFFFFFFFFFFFFFE priority to: 1
+Fri Nov 28 2025 12:17:15.078 [Info] - WaitNamedPipe SteamVR_Namespace failed because no one is listening at that name.
+Fri Nov 28 2025 12:17:15.078 [Error] - CSharedResourceNamespaceClient::Init(): failed connect
+Fri Nov 28 2025 12:17:15.078 [Warning] - CSharedResourceNamespaceClient::Init(): still waiting for vrserver to reply with namespace data
+Fri Nov 28 2025 12:17:15.078 [Info] - Set thread FFFFFFFFFFFFFFFE priority to: -15
+Fri Nov 28 2025 12:17:15.152 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:15.152 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:15.178 [Info] - Client (SteamVR_Namespace) app container state: 1
+Fri Nov 28 2025 12:17:15.184 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:15.184 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:15.184 [Info] - CSharedResourceNamespaceClient::Init(): received namespace data 89760
+Fri Nov 28 2025 12:17:15.184 [Info] - Self queried namespace: 89760
+Fri Nov 28 2025 12:17:15.184 [Info] - [Init] VR server 2.14.3 (v1763764086) starting up with config=C:\Program Files (x86)\Steam\config
+Fri Nov 28 2025 12:17:15.184 [Info] - [Init] VRServer will wait for VRMonitor before exiting
+Fri Nov 28 2025 12:17:15.187 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\htc\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.188 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\lighthouse\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.188 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\null\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.188 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.188 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.188 [Info] - [Settings] Load Default Json Settings from C:\Program Files\Virtual Desktop Streamer\OpenVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.189 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.189 [Info] - [Settings] Load Json Settings from C:\Program Files (x86)\Steam\config\steamvr.vrsettings
+Fri Nov 28 2025 12:17:15.194 [Info] - [Settings] Load Default Json Settings from C:\Program Files\Virtual Desktop Streamer\OpenVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.194 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.194 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.195 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\htc\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.195 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\lighthouse\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.195 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\null\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.195 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\resources\settings\default.vrsettings
+Fri Nov 28 2025 12:17:15.196 [Info] - [Settings] Load Json Settings from C:\Program Files (x86)\Steam\config\steamvr.vrsettings
+Fri Nov 28 2025 12:17:15.205 [Info] - [Display] Enabling direct mode for NVIDIA [Vid=0xD94D Pid=0xC207]...
+Fri Nov 28 2025 12:17:15.205 [Info] - [Display] Successfully set display visibility.
+Fri Nov 28 2025 12:17:15.207 [Info] - C:\Program Files (x86)\Steam\config\steamapps.vrmanifest - App steam.app.667970 was already described in manifest C:\Program Files (x86)\Steam\config\steamapps.vrmanifest. Skipping
+Fri Nov 28 2025 12:17:15.207 [Info] - C:\Program Files (x86)\Steam\steamapps\common\DesktopPlus\manifest.vrmanifest - App steam.overlay.1494460 was already described in manifest C:\Program Files (x86)\Steam\config\steamapps.vrmanifest. Skipping
+Fri Nov 28 2025 12:17:15.210 [Info] - [Remapping] Loading automap templates.
+Fri Nov 28 2025 12:17:15.210 [Info] - [Remapping] Loaded 2 global remappings.
+Fri Nov 28 2025 12:17:15.211 [Info] - [Controller Setup] Adding controller type vive
+Fri Nov 28 2025 12:17:15.211 [Info] - [Controller Setup] Adding controller type rift
+Fri Nov 28 2025 12:17:15.211 [Info] - [Controller Setup] Adding controller type indexhmd
+Fri Nov 28 2025 12:17:15.211 [Info] - [Controller Setup] Adding controller type holographic_hmd
+Fri Nov 28 2025 12:17:15.212 [Info] - [Remapping] Setting up device remapping for controller type: vive_controller.
+Fri Nov 28 2025 12:17:15.212 [Info] - [Controller Setup] Adding controller type vive_controller
+Fri Nov 28 2025 12:17:15.212 [Info] - [Remapping] Setting up device remapping for controller type: oculus_touch.
+Fri Nov 28 2025 12:17:15.213 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: pico_controller to controller: oculus_touch.
+Fri Nov 28 2025 12:17:15.213 [Info] - [Controller Setup] Adding controller type oculus_touch
+Fri Nov 28 2025 12:17:15.213 [Info] - [Remapping] Setting up device remapping for controller type: knuckles.
+Fri Nov 28 2025 12:17:15.214 [Info] - [Controller Setup] Adding controller type knuckles
+Fri Nov 28 2025 12:17:15.214 [Info] - [Controller Setup] Adding controller type vive_tracker_camera
+Fri Nov 28 2025 12:17:15.214 [Info] - [Controller Setup] Adding controller type vive_tracker_chest
+Fri Nov 28 2025 12:17:15.215 [Info] - [Controller Setup] Adding controller type vive_tracker_handed
+Fri Nov 28 2025 12:17:15.215 [Info] - [Controller Setup] Adding controller type vive_tracker_keyboard
+Fri Nov 28 2025 12:17:15.215 [Info] - [Controller Setup] Adding controller type vive_tracker_left_ankle
+Fri Nov 28 2025 12:17:15.215 [Info] - [Controller Setup] Adding controller type vive_tracker_left_elbow
+Fri Nov 28 2025 12:17:15.215 [Info] - [Controller Setup] Adding controller type vive_tracker_left_foot
+Fri Nov 28 2025 12:17:15.216 [Info] - [Controller Setup] Adding controller type vive_tracker_left_knee
+Fri Nov 28 2025 12:17:15.216 [Info] - [Controller Setup] Adding controller type vive_tracker_left_shoulder
+Fri Nov 28 2025 12:17:15.216 [Info] - [Controller Setup] Adding controller type vive_tracker_left_wrist
+Fri Nov 28 2025 12:17:15.216 [Info] - [Controller Setup] Adding controller type vive_tracker_right_ankle
+Fri Nov 28 2025 12:17:15.217 [Info] - [Controller Setup] Adding controller type vive_tracker_right_elbow
+Fri Nov 28 2025 12:17:15.217 [Info] - [Controller Setup] Adding controller type vive_tracker_right_foot
+Fri Nov 28 2025 12:17:15.217 [Info] - [Controller Setup] Adding controller type vive_tracker_right_knee
+Fri Nov 28 2025 12:17:15.217 [Info] - [Controller Setup] Adding controller type vive_tracker_right_shoulder
+Fri Nov 28 2025 12:17:15.218 [Info] - [Controller Setup] Adding controller type vive_tracker_right_wrist
+Fri Nov 28 2025 12:17:15.218 [Info] - [Controller Setup] Adding controller type vive_tracker_waist
+Fri Nov 28 2025 12:17:15.218 [Info] - [Controller Setup] Adding controller type vive_tracker
+Fri Nov 28 2025 12:17:15.218 [Warning] - [Controller Setup] Warning: Cannot use 'compatibility_mode_controller_type' and 'remapping' in the same input profile. 'compatibility_mode_controller_type' will be ignored.
+Fri Nov 28 2025 12:17:15.219 [Info] - [Remapping] Setting up device remapping for controller type: pico_controller.
+Fri Nov 28 2025 12:17:15.219 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: oculus_touch to controller: pico_controller.
+Fri Nov 28 2025 12:17:15.219 [Info] - [Controller Setup] Adding controller type pico_controller
+Fri Nov 28 2025 12:17:15.220 [Info] - [Remapping] Setting up device remapping for controller type: holographic_controller.
+Fri Nov 28 2025 12:17:15.220 [Info] - [Controller Setup] Adding controller type holographic_controller
+Fri Nov 28 2025 12:17:15.221 [Warning] - [Controller Setup] Warning: Cannot use 'fallback_controller_type' and 'remapping' in the same input profile. 'fallback_controller_type' will be ignored.
+Fri Nov 28 2025 12:17:15.221 [Info] - [Remapping] Setting up device remapping for controller type: hpmotioncontroller.
+Fri Nov 28 2025 12:17:15.222 [Info] - [Controller Setup] Adding controller type hpmotioncontroller
+Fri Nov 28 2025 12:17:15.222 [Info] - [Controller Setup] Adding controller type khr_simple_controller
+Fri Nov 28 2025 12:17:15.222 [Info] - [Controller Setup] Adding controller type khr_generic_controller
+Fri Nov 28 2025 12:17:15.222 [Info] - [Controller Setup] Adding controller type hand_interaction_ext
+Fri Nov 28 2025 12:17:15.223 [Info] - [Controller Setup] Adding controller type gamepad
+Fri Nov 28 2025 12:17:15.224 [Info] - Add Json firmware manifest from {htc}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.224 [Info] - Add Json firmware manifest from {indexcontroller}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.224 [Info] - Add Json firmware manifest from {indexhmd}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.224 [Info] - Add Json firmware manifest from {lighthouse}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.225 [Info] - Add Json firmware manifest from {tundra_labs}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.225 [Info] - Web language is english
+Fri Nov 28 2025 12:17:15.225 [Info] - [Web] Starting web server on port 27062
+Fri Nov 28 2025 12:17:15.227 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black-italic.ttf.
+Fri Nov 28 2025 12:17:15.230 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black-italic.ttf.
+Fri Nov 28 2025 12:17:15.232 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black.ttf.
+Fri Nov 28 2025 12:17:15.234 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-bold-italic.ttf.
+Fri Nov 28 2025 12:17:15.237 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-bold.ttf.
+Fri Nov 28 2025 12:17:15.239 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-extrabold-italic.ttf.
+Fri Nov 28 2025 12:17:15.241 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-extrabold.ttf.
+Fri Nov 28 2025 12:17:15.243 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-light-italic.ttf.
+Fri Nov 28 2025 12:17:15.245 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-light.ttf.
+Fri Nov 28 2025 12:17:15.247 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-medium-italic.ttf.
+Fri Nov 28 2025 12:17:15.249 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-medium.ttf.
+Fri Nov 28 2025 12:17:15.251 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-regular-italic.ttf.
+Fri Nov 28 2025 12:17:15.253 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-regular.ttf.
+Fri Nov 28 2025 12:17:15.255 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-thin-italic.ttf.
+Fri Nov 28 2025 12:17:15.257 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-thin.ttf.
+Fri Nov 28 2025 12:17:15.259 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans.ttf.
+Fri Nov 28 2025 12:17:15.261 [Info] - Connecting client (VR_ServerPipe_89760) app container status: 1
+Fri Nov 28 2025 12:17:15.261 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrstartup.exe (VRApplication_Bootstrapper) (Args: ) 123888 
+Fri Nov 28 2025 12:17:15.270 [Info] - System audio devices:
+Fri Nov 28 2025 12:17:15.270 [Info] - AUDIO: Refreshing audio devices
+Fri Nov 28 2025 12:17:15.272 [Info] - AppInfoManager.ProcessConnected BEGIN 123888 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrstartup.exe 7 openvr.component.vrstartup
+Fri Nov 28 2025 12:17:15.282 [Info] - SetApplicationPid appkey=openvr.component.vrstartup pid=123888, external transition
+Fri Nov 28 2025 12:17:15.282 [Info] - SetApplicationPid: Setting app openvr.component.vrstartup PID to 123888
+Fri Nov 28 2025 12:17:15.282 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:17:15.282 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:17:15.282 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:17:15.282 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '123888: vrstartup' with key 'openvr.component.vrstartup'
+Fri Nov 28 2025 12:17:15.283 [Info] - Succesfully turned IGNORE_TIMER_RESOLUTION throttling off.
+Fri Nov 28 2025 12:17:15.284 [Info] - [Steam] Steam INIT.
+Fri Nov 28 2025 12:17:15.285 [Info] - [Steam] Steam API available
+Fri Nov 28 2025 12:17:15.285 [Info] - [Steam] Steam user logged in
+Fri Nov 28 2025 12:17:15.286 [Info] - error VRInitError_Init_HmdNotFound when initing driver VirtualDesktop from C:\Program Files\Virtual Desktop Streamer\OpenVRDriver\bin\win64\driver_VirtualDesktop.dll.
+Fri Nov 28 2025 12:17:15.286 [Error] - Unable to load driver VirtualDesktop because of error VRInitError_Init_HmdNotFound(108). Skipping.
+Fri Nov 28 2025 12:17:15.297 [Info] - AUDIO: Detected 39 playback and 25 record devices
+Fri Nov 28 2025 12:17:15.297 [Info] - Playback devices:
+Fri Nov 28 2025 12:17:15.297 [Info] - 	-->Headphones (3- Arctis Nova 7X),0,Headphones,3- Arctis Nova 7X,VID_1038/PID_2206,USB\VID_1038&PID_2206&MI_00\8&288e2fb5&0&0000,{0.0.0.00000000}.{0062c08d-e60a-421e-9a23-af0df017d7ce}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B4,,{0.0.0.00000000}.{085fea1b-310c-4661-8ada-83d8ddeff79b}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,,{0.0.0.00000000}.{19096754-03e8-4034-979e-8e1e1267c9d9}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Speakers (3- Sonic Studio Virtual Mixer),2,Speakers,3- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{19bfb587-d404-423d-90ff-ee57df9c1a97}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{30cd0a54-1278-4572-8637-87d58cd24510}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{330da8b1-aa5b-4ea8-9061-9a6a6dd0d5fb}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	DELL U2723QE (NVIDIA High Definition Audio),2,DELL U2723QE,NVIDIA High Definition Audio,VID_AC10/PID_4278,,{0.0.0.00000000}.{41ec0f23-65b2-486d-955b-13230a98ba66}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Speakers (Bigscreen Audio Stream 1.2),0,Speakers,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,ROOT\MEDIA\0003,{0.0.0.00000000}.{452f9877-8801-400c-bb45-464ecdd87591}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{5ed6038a-19c5-4027-8397-6dbdde069cf0}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{610272d4-9090-474b-9d30-d8a5e06d510d}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{62fe9613-8ab7-42e0-ade7-2727087c95a3}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Speakers (2- Sonic Studio Virtual Mixer),2,Speakers,2- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{63846255-088c-410d-889d-dc8ff1fd69f6}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{73214ac9-d847-4454-950d-4e2922f83764}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Headset (AIAIAI TMA-2 (H10) Hands-Free),2,Headset,AIAIAI TMA-2 (H10) Hands-Free,VID_0000/PID_0000,,{0.0.0.00000000}.{73f54c94-1d31-4532-9847-39027ecb34ec}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Headphones (Arctis Nova 7X),2,Headphones,Arctis Nova 7X,VID_0000/PID_0000,,{0.0.0.00000000}.{748f3505-ea94-4280-847b-263f2f624521}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Speakers (Steam Streaming Speakers),1,Speakers,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.0.00000000}.{751ec123-9e1c-4179-b9b4-02e288bf59c6}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{8576cb88-7269-46d9-8965-56dbfe4f932a}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{8a529a78-6ab2-4042-b797-578fb1e7e961}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Speakers (Sonic Studio Virtual Mixer),2,Speakers,Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{9dab54e6-4daf-474a-ab2c-b687d7ec38df}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{9ee04fe5-02ec-4733-bda7-ba182d1741fd}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{a44abc4c-e894-4692-87f6-afd243c2a563}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	DELL U2720Q (High Definition Audio Device),2,DELL U2720Q,High Definition Audio Device,VID_AC10/PID_41B3,,{0.0.0.00000000}.{a667e232-0a6d-4953-9873-9add4a278e1a}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Headphones (Realtek USB Audio),2,Headphones,Realtek USB Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{a7bee347-214f-440d-9751-380f115ff684}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{b66aa8ba-e43b-44b5-8018-65033619b27e}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Speakers (2- SoundLink Max JJ),2,Speakers,2- SoundLink Max JJ,VID_0000/PID_0000,,{0.0.0.00000000}.{bc358896-7a96-4b68-b367-751bc734f622}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Headphones (Oculus Virtual Audio Device),0,Headphones,Oculus Virtual Audio Device,VID_0000/PID_0000,ROOT\MEDIA\0001,{0.0.0.00000000}.{c1b8cf0f-a851-4a27-a67b-908e5e13cfb4}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Headphones (2- AIAIAI TMA-2 (H10)),2,Headphones,2- AIAIAI TMA-2 (H10),VID_0000/PID_0000,,{0.0.0.00000000}.{c7bd1a25-b1f4-49a4-be3e-0cce420392b8}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{ca5f7a25-b52e-406e-a1b6-3a3fd1da558f}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{d1b20ed5-5f0f-41a0-aea2-9c8cff9cf982}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	SPDIF Interface (Realtek USB Audio),2,SPDIF Interface,Realtek USB Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{d320700d-371c-486c-99bf-c34a2209a196}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{d88ac54f-156e-4042-869b-354e713e2dd5}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{dc5da2cf-2b89-4757-9c7e-a6e376d7f839}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,,{0.0.0.00000000}.{e1ae2635-3fac-4fe3-b1d9-90f15c3e7f4c}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{e1c3a2bb-f5ac-4a59-bbc0-df0b0c56c80a}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Speakers (Virtual Desktop Audio),1,Speakers,Virtual Desktop Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{e91c2632-f4e9-42dd-98ae-d8dbf295ce2d}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),0,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,HDAUDIO\FUNC_01&VEN_10DE&DEV_00A4&SUBSYS_14625117&REV_1001\5&1f0f386b&0&0001,{0.0.0.00000000}.{ef5a64ff-8062-4622-945b-6b84ac7d48bf}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{f3d6f98c-4bfd-42f8-86c7-edf4ef7cd7a3}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Speakers (Steam Streaming Microphone),1,Speakers,Steam Streaming Microphone,VID_0000/PID_0000,,{0.0.0.00000000}.{f521bc51-0ba5-4083-a711-df179b9e2a4d}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Internal AUX Jack (Steam Streaming Speakers),2,Internal AUX Jack,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.0.00000000}.{fb0791cd-8a4c-4137-8ecb-28be1dd4d054}
+Fri Nov 28 2025 12:17:15.297 [Info] - Recording devices:
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{06bfccd9-0d38-4303-ae6a-545552f7bde2}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	-->Microphone (3- Arctis Nova 7X),0,Microphone,3- Arctis Nova 7X,VID_1038/PID_2206,USB\VID_1038&PID_2206&MI_00\8&288e2fb5&0&0000,{0.0.1.00000000}.{0ddc17b6-7baf-4a52-9288-49ad8c610986}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Headset (AIAIAI TMA-2 (H10) Hands-Free),2,Headset,AIAIAI TMA-2 (H10) Hands-Free,VID_0000/PID_0000,,{0.0.1.00000000}.{1050a653-3c8d-487d-b75d-9c6624a903c8}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Microphone (Steam Streaming Speakers),2,Microphone,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.1.00000000}.{157724f9-7495-4816-abc7-0162b48211d8}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	MIDI (Bigscreen Audio Stream 1.2),2,MIDI,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,,{0.0.1.00000000}.{1b2f197e-9621-4767-8942-1ffcb2b22475}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Headset (Realtek USB Audio),2,Headset,Realtek USB Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{3084d4ef-ec9f-46df-ae0f-be784dd7bf43}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Microphone (Steam Streaming Microphone),1,Microphone,Steam Streaming Microphone,VID_0000/PID_0000,,{0.0.1.00000000}.{32249551-be20-4847-8c7a-2b26076e20ea}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Microphone (Arctis Nova 7X),2,Microphone,Arctis Nova 7X,VID_0000/PID_0000,,{0.0.1.00000000}.{34866de3-f3b3-4084-adbe-67d32b9968cd}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Microphone (Virtual Desktop Audio),1,Microphone,Virtual Desktop Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{3fdd3e85-618e-47cc-8130-433d941e0e6e}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	MIDI (Bigscreen Audio Stream 1.2),1,MIDI,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,,{0.0.1.00000000}.{431b7c53-ab53-4698-9c25-3ff311b4bbdb}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Microphone,,VID_0000/PID_0000,,{0.0.1.00000000}.{47ed6b68-78fc-4cdd-ade7-90e7b4498a4f}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Microphone (Sonic Studio Virtual Mixer),2,Microphone,Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{5a56a1ef-5e47-4539-82b3-d80204c96edf}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{84b8a144-52af-4d38-900e-f83b78af9ef1}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Internal AUX Jack (Steam Streaming Speakers),1,Internal AUX Jack,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.1.00000000}.{8969ca11-9e24-4811-8ff7-b3a4f945b935}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Microphone (2- Sonic Studio Virtual Mixer),2,Microphone,2- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{901a9289-10ab-470a-b7d2-06c65384ca9c}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	,2,Microphone,,VID_0000/PID_0000,,{0.0.1.00000000}.{a4ca1ea0-0fb5-488d-bc3f-14b3babb3847}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{a6f7a7c8-5569-4a21-829e-76cffd110ab5}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Headset Microphone (Oculus Virtual Audio Device),0,Headset Microphone,Oculus Virtual Audio Device,VID_0000/PID_0000,ROOT\MEDIA\0001,{0.0.1.00000000}.{abd70fda-3266-4f89-9a81-d7430e77aef0}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{ac5d1bdb-5dd0-4948-ae5d-b4af11a21616}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{adaf84d5-522d-4a58-99b8-5db998d5d0ca}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Microphone (3- Sonic Studio Virtual Mixer),2,Microphone,3- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{b2e06191-f9ad-4756-a9cf-4a3df1333d22}
+Fri Nov 28 2025 12:17:15.297 [Info] - 	Microphone (Realtek USB Audio),2,Microphone,Realtek USB Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{b48c9934-e9d4-493d-ae5f-5bb00d5aafbe}
+Fri Nov 28 2025 12:17:15.298 [Info] - 	Microphone (Bigscreen Audio Stream 1.2),0,Microphone,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,ROOT\MEDIA\0003,{0.0.1.00000000}.{b5151663-e579-4c11-8f77-5f687d82a29a}
+Fri Nov 28 2025 12:17:15.298 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{bc59fa5c-4104-4974-af68-6c538afb7f93}
+Fri Nov 28 2025 12:17:15.298 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{d31de4da-d6f0-4878-b9fb-6f6ba655ab06}
+Fri Nov 28 2025 12:17:15.481 [Info] - Unable to load driver alvr_server from C:\Users\jurre\PycharmProjects\ALVR\build\alvr_streamer_windows\bin\win64\driver_alvr_server.dll (126)
+Fri Nov 28 2025 12:17:15.481 [Error] - ASSERT: "DriverManager alvr_server load error 126u" at c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\drivermanager.cpp:443.
+Fri Nov 28 2025 12:17:15.704 [Error] - Unable to load driver alvr_server because of error VRInitError_Init_FileNotFound(103). Skipping.
+Fri Nov 28 2025 12:17:15.716 [Info] - vrlink: SVLDriver::Init()
+Fri Nov 28 2025 12:17:15.716 [Info] -   driver vrlink implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:17:15.716 [Info] - Loaded server driver vrlink (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\bin\win64\driver_vrlink.dll
+Fri Nov 28 2025 12:17:15.716 [Warning] - Driver vrlink has no suitable devices.
+Fri Nov 28 2025 12:17:15.724 [Info] - vrlink: SVLRoot::SVLRoot() Parsing Data
+Fri Nov 28 2025 12:17:15.724 [Info] - vrlink: SVLRoot::SVLRoot() sReqEncMode = mid
+Fri Nov 28 2025 12:17:15.724 [Info] - vrlink: SVLRoot::SVLRoot() Parsing Arg (0)
+Fri Nov 28 2025 12:17:15.724 [Info] - vrlink: SVLRoot::SVLRoot() Arg Parsed
+Fri Nov 28 2025 12:17:15.724 [Info] - vrlink: No links? Server-as-client Mode?
+Fri Nov 28 2025 12:17:15.726 [Info] - Blocking driver holographic attempt to set setting steamvr/maxRecommendedResolution
+Fri Nov 28 2025 12:17:15.728 [Info] - error VRInitError_Init_HmdNotFound when initing driver holographic from c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\bin\win64\driver_holographic.dll.
+Fri Nov 28 2025 12:17:15.728 [Error] - Unable to load driver holographic because of error VRInitError_Init_HmdNotFound(108). Skipping.
+Fri Nov 28 2025 12:17:15.729 [Info] - vrlink: Soft AES PERF: 19.080328 MByte/s
+Fri Nov 28 2025 12:17:15.730 [Info] - vrlink: Intel IPSEC AES PERF: 793.650818 MByte/s
+Fri Nov 28 2025 12:17:15.731 [Info] - vrlink: OpenSSL AES PERF: 146.842880 MByte/s
+Fri Nov 28 2025 12:17:15.736 [Info] - vrlink: Soft AES PERF: 18.950161 MByte/s
+Fri Nov 28 2025 12:17:15.736 [Info] - vrlink: Intel IPSEC AES PERF: 1020.408142 MByte/s
+Fri Nov 28 2025 12:17:15.737 [Info] - vrlink: OpenSSL AES PERF: 157.728714 MByte/s
+Fri Nov 28 2025 12:17:15.738 [Info] - vrlink: UDP Driver
+Fri Nov 28 2025 12:17:15.738 [Info] - vrlink: Active Data Links: m_pLink:0000000004AB4D00 pTcpLink:0000000000000000 pUdpLink:0000000004AB4D00 p8814Link:0000000000000000
+Fri Nov 28 2025 12:17:15.738 [Info] - vrlink: SVLDataLink::HandleFECChange( 32 )
+Fri Nov 28 2025 12:17:15.738 [Info] - vrlink: SVLServer::SVLServer(...)
+Fri Nov 28 2025 12:17:15.738 [Info] - vrlink: SVLAudioWSAPI::SVLAudioWSAPI(...)
+Fri Nov 28 2025 12:17:15.738 [Info] - vrlink: SVLHMDDriverD3D11::SVLHMDDriverD3D11() c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\
+Fri Nov 28 2025 12:17:15.742 [Info] - lighthouse: version 2.14.3
+Fri Nov 28 2025 12:17:15.742 [Info] - lighthouse: [DepthAugmentedPassthrough] supported on this system: 1
+Fri Nov 28 2025 12:17:15.742 [Info] - lighthouse: [DepthAugmentedPassthrough] : Object is created 
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: SVLCryptWindows CryptAcquireContext succeeded for generation.
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: SVLDataLink::InitCrypt(...,55,1)
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: SVLDataLink::InitCrypt() m_TransportMode = 1 // 1017
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: Starting session with ID: 0180e386
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: SVLDataLinkUDP::Disconnect()
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: SVLDataLinkUDP: QoS is disabled
+Fri Nov 28 2025 12:17:15.742 [Info] - lighthouse: Add Json firmware manifest from {htc}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: Socket bound to port 10400
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: QoS is Disabled.  Not setting SIO_SET_QOS
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: SVLDataLinkUDP::Reconnect() Joining Thread 0000000000000000
+Fri Nov 28 2025 12:17:15.742 [Info] - lighthouse: Add Json firmware manifest from {indexcontroller}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: Set thread FFFFFFFFFFFFFFFE priority to: 15
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: SVLDataLinkUDP::Reconnect() Thread Create Complete
+Fri Nov 28 2025 12:17:15.742 [Info] - vrlink: Data Link Startup with Options: nTimedRetryOption = 1, nQoSOption = 0
+Fri Nov 28 2025 12:17:15.743 [Info] - lighthouse: Add Json firmware manifest from {indexhmd}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.743 [Info] - vrlink: Listening for incoming control connections on 10440 via socket 2564
+Fri Nov 28 2025 12:17:15.743 [Info] - lighthouse: Add Json firmware manifest from {lighthouse}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.743 [Info] - lighthouse: Add Json firmware manifest from {tundra_labs}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 12:17:15.744 [Info] - vrlink: SVLDriver::Init() Complete
+Fri Nov 28 2025 12:17:15.747 [Info] - lighthouse: Attached HID Devices:
+Fri Nov 28 2025 12:17:15.747 [Info] - lighthouse:     No devices
+Fri Nov 28 2025 12:17:15.747 [Info] -   driver lighthouse implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:17:15.747 [Info] - Loaded server driver lighthouse (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\lighthouse\bin\win64\driver_lighthouse.dll
+Fri Nov 28 2025 12:17:15.747 [Warning] - Driver lighthouse has no suitable devices.
+Fri Nov 28 2025 12:17:15.748 [Info] - oculus: version 2.14.3
+Fri Nov 28 2025 12:17:15.749 [Info] -   driver oculus implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:17:15.749 [Info] - Loaded server driver oculus (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\bin\win64\driver_oculus.dll
+Fri Nov 28 2025 12:17:15.749 [Warning] - Driver oculus has no suitable devices.
+Fri Nov 28 2025 12:17:15.753 [Info] -   driver oculus_legacy implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:17:15.753 [Info] - Loaded server driver oculus_legacy (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus_legacy\bin\win64\driver_oculus_legacy.dll
+Fri Nov 28 2025 12:17:15.753 [Warning] - Driver oculus_legacy has no suitable devices.
+Fri Nov 28 2025 12:17:15.754 [Info] -   driver gamepad implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 12:17:15.754 [Info] - Loaded server driver gamepad (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\gamepad\bin\win64\driver_gamepad.dll
+Fri Nov 28 2025 12:17:15.754 [Warning] - Driver gamepad has no suitable devices.
+Fri Nov 28 2025 12:17:15.754 [Warning] - Not loading driver null because it is disabled in settings
+Fri Nov 28 2025 12:17:15.757 [Info] - error VRInitError_Init_HmdNotFound when initing driver VirtualDesktop from C:\Program Files\Virtual Desktop Streamer\OpenVRDriver\bin\win64\driver_VirtualDesktop.dll.
+Fri Nov 28 2025 12:17:15.757 [Error] - Unable to load driver VirtualDesktop because of error VRInitError_Init_HmdNotFound(108). Skipping.
+Fri Nov 28 2025 12:17:15.760 [Info] - Unable to load driver alvr_server from C:\Users\jurre\PycharmProjects\ALVR\build\alvr_streamer_windows\bin\win64\driver_alvr_server.dll (126)
+Fri Nov 28 2025 12:17:15.760 [Error] - ASSERT: "DriverManager alvr_server load error 126u" at c:\buildslave\steamvr_rel_win64\build\src\common\vrcommon\drivermanager.cpp:443.
+Fri Nov 28 2025 12:17:15.760 [Error] - Unable to load driver alvr_server because of error VRInitError_Init_FileNotFound(103). Skipping.
+Fri Nov 28 2025 12:17:15.760 [Info] - No connected devices found. Returning best error VRInitError_Init_HmdNotFound
+Fri Nov 28 2025 12:17:15.760 [Info] - [Remapping] Setting up device remapping for controller type: holographic_controller.
+Fri Nov 28 2025 12:17:15.761 [Info] - [Remapping] Parsing remapping data succeeded for controller type: holographic_controller.
+Fri Nov 28 2025 12:17:15.761 [Info] - [Remapping] Setting up device remapping for controller type: hpmotioncontroller.
+Fri Nov 28 2025 12:17:15.762 [Info] - [Remapping] Parsing remapping data succeeded for controller type: hpmotioncontroller.
+Fri Nov 28 2025 12:17:15.762 [Info] - [Remapping] Setting up device remapping for controller type: knuckles.
+Fri Nov 28 2025 12:17:15.763 [Info] - [Remapping] Parsing remapping data succeeded for controller type: knuckles.
+Fri Nov 28 2025 12:17:15.763 [Info] - [Remapping] Setting up device remapping for controller type: oculus_touch.
+Fri Nov 28 2025 12:17:15.763 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: pico_controller to controller: oculus_touch.
+Fri Nov 28 2025 12:17:15.764 [Info] - [Remapping] Parsing remapping data succeeded for controller type: oculus_touch.
+Fri Nov 28 2025 12:17:15.764 [Info] - [Remapping] Setting up device remapping for controller type: pico_controller.
+Fri Nov 28 2025 12:17:15.764 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: oculus_touch to controller: pico_controller.
+Fri Nov 28 2025 12:17:15.764 [Info] - [Remapping] Parsing remapping data succeeded for controller type: pico_controller.
+Fri Nov 28 2025 12:17:15.764 [Info] - [Remapping] Setting up device remapping for controller type: vive_controller.
+Fri Nov 28 2025 12:17:15.764 [Info] - [Remapping] Parsing remapping data succeeded for controller type: vive_controller.
+Fri Nov 28 2025 12:17:15.764 [Info] - Refusing connect from 123888: vrstartup because VRInitError_Init_HmdNotFound
+Fri Nov 28 2025 12:17:15.764 [Info] - Processing message VRMsg_Connect from 123888: vrstartup took 0.504 seconds
+Fri Nov 28 2025 12:17:15.764 [Info] - Closing pipe 123888: vrstartup because it was broken from the other end
+Fri Nov 28 2025 12:17:15.764 [Info] - Process 123888: vrstartup disconnected (Thread(0x00000000049503C0/0x000)
+Fri Nov 28 2025 12:17:15.764 [Info] - AppInfoManager.ProcessDisconnected processid=123888 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 12:17:15.764 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrstartup PID was 123888
+Fri Nov 28 2025 12:17:15.764 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrstartup PID because 123888 has exited
+Fri Nov 28 2025 12:17:15.861 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:15.861 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:15.871 [Info] - Connecting client (VR_ServerPipe_89760) app container status: 1
+Fri Nov 28 2025 12:17:15.871 [Info] - New Connect message from C:\WINDOWS\SysWOW64\rundll32.exe (VRApplication_Utility) (Args: c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\bin\win32\driver_holographic.dll,_ProcessFileChangeNotification@16) 12052 
+Fri Nov 28 2025 12:17:15.881 [Info] - Creating Builtin AppInfo for C:\WINDOWS\SysWOW64\rundll32.exe (VRApplication_Utility). , , 12052
+Fri Nov 28 2025 12:17:15.881 [Info] - AppInfoManager.ProcessConnected BEGIN 12052 C:\WINDOWS\SysWOW64\rundll32.exe 4 system.generated.rundll32.exe
+Fri Nov 28 2025 12:17:15.887 [Info] - SetApplicationPid appkey=system.generated.rundll32.exe pid=12052, external transition
+Fri Nov 28 2025 12:17:15.887 [Info] - SetApplicationPid: Setting app system.generated.rundll32.exe PID to 12052
+Fri Nov 28 2025 12:17:15.887 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:17:15.887 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:17:15.887 [Info] - [Input] Enabling legacy input for system.generated.rundll32.exe
+Fri Nov 28 2025 12:17:15.888 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 12052: rundll32 because it is VRApplication_Utility
+Fri Nov 28 2025 12:17:15.888 [Info] - Processing message VRMsg_Connect from 12052: rundll32 took 0.0177 seconds
+Fri Nov 28 2025 12:17:15.895 [Info] - Closing pipe 12052: rundll32 because it was broken from the other end
+Fri Nov 28 2025 12:17:15.895 [Info] - Process 12052: rundll32 disconnected (Thread(0x000000000420CC00/0x000)
+Fri Nov 28 2025 12:17:15.895 [Info] - AppInfoManager.ProcessDisconnected processid=12052 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 12:17:15.895 [Info] - AppInfoManager.ProcessDisconnected: Clearing application system.generated.rundll32.exe PID was 12052
+Fri Nov 28 2025 12:17:15.895 [Info] - AppInfoManager.ProcessDisconnected: Clearing application system.generated.rundll32.exe PID because 12052 has exited
+Fri Nov 28 2025 12:17:15.945 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:15.945 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:15.955 [Info] - Connecting client (VR_ServerPipe_89760) app container status: 1
+Fri Nov 28 2025 12:17:15.955 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrmonitor.exe (VRApplication_VRMonitor) (Args: -nokillprocess -startupappid 250820 -startupreason steamvr_vrstartup -startupapptype 7) 125480 
+Fri Nov 28 2025 12:17:15.965 [Info] - AppInfoManager.ProcessConnected BEGIN 125480 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrmonitor.exe 5 openvr.component.vrmonitor
+Fri Nov 28 2025 12:17:15.973 [Info] - SetApplicationPid appkey=openvr.component.vrmonitor pid=125480, external transition
+Fri Nov 28 2025 12:17:15.973 [Info] - SetApplicationPid: Setting app openvr.component.vrmonitor PID to 125480
+Fri Nov 28 2025 12:17:15.973 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:17:15.973 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:17:15.973 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:17:15.973 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '125480: vrmonitor' with key 'openvr.component.vrmonitor'
+Fri Nov 28 2025 12:17:15.973 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 125480: vrmonitor because it is VRApplication_VRMonitor
+Fri Nov 28 2025 12:17:15.973 [Info] - Processing message VRMsg_Connect from 125480: vrmonitor took 0.018 seconds
+Fri Nov 28 2025 12:17:15.987 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:15.987 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:16.050 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:16.050 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:16.060 [Info] - Connecting client (VR_ServerPipe_89760) app container status: 1
+Fri Nov 28 2025 12:17:16.060 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: -lang=en_us) 125180 
+Fri Nov 28 2025 12:17:16.067 [Info] - AppInfoManager.ProcessConnected BEGIN 125180 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 12:17:16.072 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=125180, external transition
+Fri Nov 28 2025 12:17:16.072 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 125180
+Fri Nov 28 2025 12:17:16.072 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:17:16.072 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:17:16.072 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:17:16.072 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '125180: vrwebhelper_main' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 12:17:16.072 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 125180: vrwebhelper_main because it is VRApplication_WebHelper
+Fri Nov 28 2025 12:17:16.072 [Info] - Processing message VRMsg_Connect from 125180: vrwebhelper_main took 0.0126 seconds
+Fri Nov 28 2025 12:17:16.364 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:16.364 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:16.804 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:16.804 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:16.804 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:16.804 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:16.836 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:16.836 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:16.836 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 12:17:16.836 [Info] - CSharedResourceNamespaceServer sent namespace data: 89760
+Fri Nov 28 2025 12:17:16.846 [Info] - Connecting client (VR_ServerPipe_89760) app container status: 1
+Fri Nov 28 2025 12:17:16.846 [Info] - Connecting client (VR_ServerPipe_89760) app container status: 1
+Fri Nov 28 2025 12:17:16.847 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: --type=renderer --log-severity=disable --user-agent-product=SteamVR HTML --disable-spell-checking --user-data-dir=C:\Users\jurre\AppData\Local\SteamVR\htmlcache --no-sandbox --autoplay-policy=no-user-gesture-required --enable-experimental-web-platform-features --enable-blink-features=ResizeObserver --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1762928948721181 --launch-time-ticks=1399687842004 --field-trial-handle=3744,i,587834561442682550,18381569510323583779,262144 --enable-features=BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsFromPrivate,BlockInsecurePrivateNetworkRequestsFromUnknown,CSSDisplayModePictureInPicture,ClientHintsFormFactors,CookieSameSiteConsidersRedirectChain,CreateImageBitmapOrientationNone,CriticalClientHint,DocumentPolicyIncludeJSCallStacksInCrashReports,DocumentPolicyNegotiation,DocumentReporting,EnableCanvas2DLayers,ExperimentalContentSecurityPolicyFeatures,OriginIsolationHeader,PrivateNetworkAccessRespectPreflightResults,SchemefulSameSite,ThirdPartyStoragePartitioning --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version --mojo-platform-channel-handle=3740 /prefetch:1) 114024 
+Fri Nov 28 2025 12:17:16.858 [Info] - AppInfoManager.ProcessConnected BEGIN 114024 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 12:17:16.866 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=114024, external transition
+Fri Nov 28 2025 12:17:16.866 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 114024
+Fri Nov 28 2025 12:17:16.866 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:17:16.866 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:17:16.866 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:17:16.866 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '114024: vrwebhelper_pairing' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 12:17:16.866 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 114024: vrwebhelper_pairing because it is VRApplication_WebHelper
+Fri Nov 28 2025 12:17:16.866 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: --type=renderer --log-severity=disable --user-agent-product=SteamVR HTML --disable-spell-checking --user-data-dir=C:\Users\jurre\AppData\Local\SteamVR\htmlcache --no-sandbox --autoplay-policy=no-user-gesture-required --enable-experimental-web-platform-features --enable-blink-features=ResizeObserver --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1762928948721181 --launch-time-ticks=1399687850223 --field-trial-handle=3860,i,587834561442682550,18381569510323583779,262144 --enable-features=BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsFromPrivate,BlockInsecurePrivateNetworkRequestsFromUnknown,CSSDisplayModePictureInPicture,ClientHintsFormFactors,CookieSameSiteConsidersRedirectChain,CreateImageBitmapOrientationNone,CriticalClientHint,DocumentPolicyIncludeJSCallStacksInCrashReports,DocumentPolicyNegotiation,DocumentReporting,EnableCanvas2DLayers,ExperimentalContentSecurityPolicyFeatures,OriginIsolationHeader,PrivateNetworkAccessRespectPreflightResults,SchemefulSameSite,ThirdPartyStoragePartitioning --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version --mojo-platform-channel-handle=3856 /prefetch:1) 69576 
+Fri Nov 28 2025 12:17:16.866 [Info] - Processing message VRMsg_Connect from 114024: vrwebhelper_pairing took 0.0203 seconds
+Fri Nov 28 2025 12:17:16.874 [Info] - AppInfoManager.ProcessConnected BEGIN 69576 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 12:17:16.878 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=69576, external transition
+Fri Nov 28 2025 12:17:16.878 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 69576
+Fri Nov 28 2025 12:17:16.878 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 12:17:16.878 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 12:17:16.878 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 12:17:16.878 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '69576: vrwebhelper_settings_desktop' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 12:17:16.878 [Info] - Allowing driver load failure VRInitError_Init_HmdNotFound for application 69576: vrwebhelper_settings_desktop because it is VRApplication_WebHelper
+Fri Nov 28 2025 12:17:16.878 [Info] - Processing message VRMsg_Connect from 69576: vrwebhelper_settings_desktop took 0.0318 seconds

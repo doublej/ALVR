@@ -1,0 +1,1033 @@
+Fri Nov 28 2025 08:48:15.340 [Info] - //==============================================================================================
+Fri Nov 28 2025 08:48:15.340 [Info] - ================================================================================================
+Fri Nov 28 2025 08:48:15.340 [Info] - ================================================================================================
+Fri Nov 28 2025 08:48:15.340 [Info] - vrserver 2.14.3 startup with PID=123752, config=C:\Program Files (x86)\Steam\config, runtime=c:\program files (x86)\steam\steamapps\common\SteamVR, arch=win64
+Fri Nov 28 2025 08:48:15.340 [Info] - [vrserver] watchdogs enabled
+Fri Nov 28 2025 08:48:15.341 [Info] - CSharedResourceNamespaceServer starting up
+Fri Nov 28 2025 08:48:15.342 [Info] - Set thread FFFFFFFFFFFFFFFE priority to: 1
+Fri Nov 28 2025 08:48:15.342 [Info] - WaitNamedPipe SteamVR_Namespace failed because no one is listening at that name.
+Fri Nov 28 2025 08:48:15.342 [Error] - CSharedResourceNamespaceClient::Init(): failed connect
+Fri Nov 28 2025 08:48:15.342 [Warning] - CSharedResourceNamespaceClient::Init(): still waiting for vrserver to reply with namespace data
+Fri Nov 28 2025 08:48:15.342 [Info] - Set thread FFFFFFFFFFFFFFFE priority to: -15
+Fri Nov 28 2025 08:48:15.405 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:15.405 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:15.442 [Info] - Client (SteamVR_Namespace) app container state: 1
+Fri Nov 28 2025 08:48:15.447 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:15.447 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:15.447 [Info] - Closing pipe SteamVR_Namespace because it was broken from the other end
+Fri Nov 28 2025 08:48:15.447 [Info] - CSharedResourceNamespaceClient::Init(): received namespace data 123752
+Fri Nov 28 2025 08:48:15.447 [Info] - Self queried namespace: 123752
+Fri Nov 28 2025 08:48:15.448 [Info] - [Init] VR server 2.14.3 (v1763764086) starting up with config=C:\Program Files (x86)\Steam\config
+Fri Nov 28 2025 08:48:15.448 [Info] - [Init] VRServer will wait for VRMonitor before exiting
+Fri Nov 28 2025 08:48:15.451 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\htc\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.451 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\lighthouse\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.451 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\null\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.451 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.451 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.451 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.452 [Info] - [Settings] Load Json Settings from C:\Program Files (x86)\Steam\config\steamvr.vrsettings
+Fri Nov 28 2025 08:48:15.455 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.455 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\MixedRealityVRDriver\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.455 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\htc\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.455 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\lighthouse\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.455 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\null\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.456 [Info] - [Settings] Load Default Json Settings from c:\program files (x86)\steam\steamapps\common\SteamVR\resources\settings\default.vrsettings
+Fri Nov 28 2025 08:48:15.456 [Info] - [Settings] Load Json Settings from C:\Program Files (x86)\Steam\config\steamvr.vrsettings
+Fri Nov 28 2025 08:48:15.464 [Info] - [Display] Enabling direct mode for NVIDIA [Vid=0xD94D Pid=0xC207]...
+Fri Nov 28 2025 08:48:15.464 [Info] - [Display] Successfully set display visibility.
+Fri Nov 28 2025 08:48:15.475 [Info] - C:\Program Files (x86)\Steam\config\steamapps.vrmanifest - App steam.app.667970 was already described in manifest C:\Program Files (x86)\Steam\config\steamapps.vrmanifest. Skipping
+Fri Nov 28 2025 08:48:15.475 [Info] - C:\Program Files (x86)\Steam\steamapps\common\DesktopPlus\manifest.vrmanifest - App steam.overlay.1494460 was already described in manifest C:\Program Files (x86)\Steam\config\steamapps.vrmanifest. Skipping
+Fri Nov 28 2025 08:48:15.478 [Info] - [Remapping] Loading automap templates.
+Fri Nov 28 2025 08:48:15.478 [Info] - [Remapping] Loaded 2 global remappings.
+Fri Nov 28 2025 08:48:15.479 [Info] - [Controller Setup] Adding controller type vive
+Fri Nov 28 2025 08:48:15.479 [Info] - [Controller Setup] Adding controller type rift
+Fri Nov 28 2025 08:48:15.479 [Info] - [Controller Setup] Adding controller type indexhmd
+Fri Nov 28 2025 08:48:15.479 [Info] - [Controller Setup] Adding controller type holographic_hmd
+Fri Nov 28 2025 08:48:15.480 [Info] - [Remapping] Setting up device remapping for controller type: vive_controller.
+Fri Nov 28 2025 08:48:15.480 [Info] - [Controller Setup] Adding controller type vive_controller
+Fri Nov 28 2025 08:48:15.481 [Info] - [Remapping] Setting up device remapping for controller type: oculus_touch.
+Fri Nov 28 2025 08:48:15.481 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: pico_controller to controller: oculus_touch.
+Fri Nov 28 2025 08:48:15.481 [Info] - [Controller Setup] Adding controller type oculus_touch
+Fri Nov 28 2025 08:48:15.481 [Info] - [Remapping] Setting up device remapping for controller type: knuckles.
+Fri Nov 28 2025 08:48:15.482 [Info] - [Controller Setup] Adding controller type knuckles
+Fri Nov 28 2025 08:48:15.482 [Info] - [Controller Setup] Adding controller type vive_tracker_camera
+Fri Nov 28 2025 08:48:15.482 [Info] - [Controller Setup] Adding controller type vive_tracker_chest
+Fri Nov 28 2025 08:48:15.483 [Info] - [Controller Setup] Adding controller type vive_tracker_handed
+Fri Nov 28 2025 08:48:15.483 [Info] - [Controller Setup] Adding controller type vive_tracker_keyboard
+Fri Nov 28 2025 08:48:15.483 [Info] - [Controller Setup] Adding controller type vive_tracker_left_ankle
+Fri Nov 28 2025 08:48:15.483 [Info] - [Controller Setup] Adding controller type vive_tracker_left_elbow
+Fri Nov 28 2025 08:48:15.484 [Info] - [Controller Setup] Adding controller type vive_tracker_left_foot
+Fri Nov 28 2025 08:48:15.484 [Info] - [Controller Setup] Adding controller type vive_tracker_left_knee
+Fri Nov 28 2025 08:48:15.484 [Info] - [Controller Setup] Adding controller type vive_tracker_left_shoulder
+Fri Nov 28 2025 08:48:15.484 [Info] - [Controller Setup] Adding controller type vive_tracker_left_wrist
+Fri Nov 28 2025 08:48:15.485 [Info] - [Controller Setup] Adding controller type vive_tracker_right_ankle
+Fri Nov 28 2025 08:48:15.485 [Info] - [Controller Setup] Adding controller type vive_tracker_right_elbow
+Fri Nov 28 2025 08:48:15.485 [Info] - [Controller Setup] Adding controller type vive_tracker_right_foot
+Fri Nov 28 2025 08:48:15.485 [Info] - [Controller Setup] Adding controller type vive_tracker_right_knee
+Fri Nov 28 2025 08:48:15.486 [Info] - [Controller Setup] Adding controller type vive_tracker_right_shoulder
+Fri Nov 28 2025 08:48:15.486 [Info] - [Controller Setup] Adding controller type vive_tracker_right_wrist
+Fri Nov 28 2025 08:48:15.486 [Info] - [Controller Setup] Adding controller type vive_tracker_waist
+Fri Nov 28 2025 08:48:15.486 [Info] - [Controller Setup] Adding controller type vive_tracker
+Fri Nov 28 2025 08:48:15.486 [Warning] - [Controller Setup] Warning: Cannot use 'compatibility_mode_controller_type' and 'remapping' in the same input profile. 'compatibility_mode_controller_type' will be ignored.
+Fri Nov 28 2025 08:48:15.487 [Info] - [Remapping] Setting up device remapping for controller type: pico_controller.
+Fri Nov 28 2025 08:48:15.487 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: oculus_touch to controller: pico_controller.
+Fri Nov 28 2025 08:48:15.487 [Info] - [Controller Setup] Adding controller type pico_controller
+Fri Nov 28 2025 08:48:15.488 [Info] - [Remapping] Setting up device remapping for controller type: holographic_controller.
+Fri Nov 28 2025 08:48:15.488 [Info] - [Controller Setup] Adding controller type holographic_controller
+Fri Nov 28 2025 08:48:15.489 [Warning] - [Controller Setup] Warning: Cannot use 'fallback_controller_type' and 'remapping' in the same input profile. 'fallback_controller_type' will be ignored.
+Fri Nov 28 2025 08:48:15.489 [Info] - [Remapping] Setting up device remapping for controller type: hpmotioncontroller.
+Fri Nov 28 2025 08:48:15.490 [Info] - [Controller Setup] Adding controller type hpmotioncontroller
+Fri Nov 28 2025 08:48:15.490 [Info] - [Controller Setup] Adding controller type khr_simple_controller
+Fri Nov 28 2025 08:48:15.490 [Info] - [Controller Setup] Adding controller type khr_generic_controller
+Fri Nov 28 2025 08:48:15.491 [Info] - [Controller Setup] Adding controller type hand_interaction_ext
+Fri Nov 28 2025 08:48:15.491 [Info] - [Controller Setup] Adding controller type gamepad
+Fri Nov 28 2025 08:48:15.492 [Info] - Add Json firmware manifest from {htc}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 08:48:15.492 [Info] - Add Json firmware manifest from {indexcontroller}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 08:48:15.492 [Info] - Add Json firmware manifest from {indexhmd}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 08:48:15.492 [Info] - Add Json firmware manifest from {lighthouse}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 08:48:15.493 [Info] - Add Json firmware manifest from {tundra_labs}/firmware/manifest.vrfirmware
+Fri Nov 28 2025 08:48:15.493 [Info] - Web language is english
+Fri Nov 28 2025 08:48:15.493 [Info] - [Web] Starting web server on port 27062
+Fri Nov 28 2025 08:48:15.495 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black-italic.ttf.
+Fri Nov 28 2025 08:48:15.498 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black-italic.ttf.
+Fri Nov 28 2025 08:48:15.500 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-black.ttf.
+Fri Nov 28 2025 08:48:15.503 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-bold-italic.ttf.
+Fri Nov 28 2025 08:48:15.505 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-bold.ttf.
+Fri Nov 28 2025 08:48:15.507 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-extrabold-italic.ttf.
+Fri Nov 28 2025 08:48:15.509 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-extrabold.ttf.
+Fri Nov 28 2025 08:48:15.512 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-light-italic.ttf.
+Fri Nov 28 2025 08:48:15.514 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-light.ttf.
+Fri Nov 28 2025 08:48:15.515 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-medium-italic.ttf.
+Fri Nov 28 2025 08:48:15.517 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-medium.ttf.
+Fri Nov 28 2025 08:48:15.520 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-regular-italic.ttf.
+Fri Nov 28 2025 08:48:15.522 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-regular.ttf.
+Fri Nov 28 2025 08:48:15.524 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-thin-italic.ttf.
+Fri Nov 28 2025 08:48:15.525 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans-thin.ttf.
+Fri Nov 28 2025 08:48:15.527 [Info] - Caching webfont c:\program files (x86)\steam\steamapps\common\SteamVR\resources\webinterface\fonts\motiva-sans.ttf.
+Fri Nov 28 2025 08:48:15.529 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:15.529 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrstartup.exe (VRApplication_Bootstrapper) (Args: ) 60352 
+Fri Nov 28 2025 08:48:15.538 [Info] - AppInfoManager.ProcessConnected BEGIN 60352 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrstartup.exe 7 openvr.component.vrstartup
+Fri Nov 28 2025 08:48:15.542 [Info] - System audio devices:
+Fri Nov 28 2025 08:48:15.542 [Info] - AUDIO: Refreshing audio devices
+Fri Nov 28 2025 08:48:15.546 [Info] - SetApplicationPid appkey=openvr.component.vrstartup pid=60352, external transition
+Fri Nov 28 2025 08:48:15.546 [Info] - SetApplicationPid: Setting app openvr.component.vrstartup PID to 60352
+Fri Nov 28 2025 08:48:15.546 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:15.546 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:15.546 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:15.546 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '60352: vrstartup' with key 'openvr.component.vrstartup'
+Fri Nov 28 2025 08:48:15.546 [Info] - Succesfully turned IGNORE_TIMER_RESOLUTION throttling off.
+Fri Nov 28 2025 08:48:15.549 [Info] - [Steam] Steam INIT.
+Fri Nov 28 2025 08:48:15.550 [Info] - [Steam] Steam API available
+Fri Nov 28 2025 08:48:15.550 [Info] - [Steam] Steam user logged in
+Fri Nov 28 2025 08:48:15.564 [Info] - AUDIO: Detected 39 playback and 25 record devices
+Fri Nov 28 2025 08:48:15.564 [Info] - Playback devices:
+Fri Nov 28 2025 08:48:15.564 [Info] - 	-->Headphones (3- Arctis Nova 7X),0,Headphones,3- Arctis Nova 7X,VID_1038/PID_2206,USB\VID_1038&PID_2206&MI_00\8&288e2fb5&0&0000,{0.0.0.00000000}.{0062c08d-e60a-421e-9a23-af0df017d7ce}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B4,,{0.0.0.00000000}.{085fea1b-310c-4661-8ada-83d8ddeff79b}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,,{0.0.0.00000000}.{19096754-03e8-4034-979e-8e1e1267c9d9}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Speakers (3- Sonic Studio Virtual Mixer),2,Speakers,3- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{19bfb587-d404-423d-90ff-ee57df9c1a97}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{30cd0a54-1278-4572-8637-87d58cd24510}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{330da8b1-aa5b-4ea8-9061-9a6a6dd0d5fb}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	DELL U2723QE (NVIDIA High Definition Audio),2,DELL U2723QE,NVIDIA High Definition Audio,VID_AC10/PID_4278,,{0.0.0.00000000}.{41ec0f23-65b2-486d-955b-13230a98ba66}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Speakers (Bigscreen Audio Stream 1.2),0,Speakers,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,ROOT\MEDIA\0003,{0.0.0.00000000}.{452f9877-8801-400c-bb45-464ecdd87591}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{5ed6038a-19c5-4027-8397-6dbdde069cf0}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{610272d4-9090-474b-9d30-d8a5e06d510d}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{62fe9613-8ab7-42e0-ade7-2727087c95a3}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Speakers (2- Sonic Studio Virtual Mixer),2,Speakers,2- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{63846255-088c-410d-889d-dc8ff1fd69f6}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{73214ac9-d847-4454-950d-4e2922f83764}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Headset (AIAIAI TMA-2 (H10) Hands-Free),2,Headset,AIAIAI TMA-2 (H10) Hands-Free,VID_0000/PID_0000,,{0.0.0.00000000}.{73f54c94-1d31-4532-9847-39027ecb34ec}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Headphones (Arctis Nova 7X),2,Headphones,Arctis Nova 7X,VID_0000/PID_0000,,{0.0.0.00000000}.{748f3505-ea94-4280-847b-263f2f624521}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Speakers (Steam Streaming Speakers),1,Speakers,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.0.00000000}.{751ec123-9e1c-4179-b9b4-02e288bf59c6}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{8576cb88-7269-46d9-8965-56dbfe4f932a}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{8a529a78-6ab2-4042-b797-578fb1e7e961}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Speakers (Sonic Studio Virtual Mixer),2,Speakers,Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.0.00000000}.{9dab54e6-4daf-474a-ab2c-b687d7ec38df}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{9ee04fe5-02ec-4733-bda7-ba182d1741fd}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	NVIDIA Output (NVIDIA High Definition Audio),2,NVIDIA Output,NVIDIA High Definition Audio,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{a44abc4c-e894-4692-87f6-afd243c2a563}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	DELL U2720Q (High Definition Audio Device),2,DELL U2720Q,High Definition Audio Device,VID_AC10/PID_41B3,,{0.0.0.00000000}.{a667e232-0a6d-4953-9873-9add4a278e1a}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Headphones (Realtek USB Audio),2,Headphones,Realtek USB Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{a7bee347-214f-440d-9751-380f115ff684}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{b66aa8ba-e43b-44b5-8018-65033619b27e}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Speakers (2- SoundLink Max JJ),2,Speakers,2- SoundLink Max JJ,VID_0000/PID_0000,,{0.0.0.00000000}.{bc358896-7a96-4b68-b367-751bc734f622}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Headphones (Oculus Virtual Audio Device),0,Headphones,Oculus Virtual Audio Device,VID_0000/PID_0000,ROOT\MEDIA\0001,{0.0.0.00000000}.{c1b8cf0f-a851-4a27-a67b-908e5e13cfb4}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Headphones (2- AIAIAI TMA-2 (H10)),2,Headphones,2- AIAIAI TMA-2 (H10),VID_0000/PID_0000,,{0.0.0.00000000}.{c7bd1a25-b1f4-49a4-be3e-0cce420392b8}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Digital Output,,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{ca5f7a25-b52e-406e-a1b6-3a3fd1da558f}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Digital Audio (HDMI),,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{d1b20ed5-5f0f-41a0-aea2-9c8cff9cf982}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	SPDIF Interface (Realtek USB Audio),2,SPDIF Interface,Realtek USB Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{d320700d-371c-486c-99bf-c34a2209a196}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Speakers,,VID_0000/PID_0000,,{0.0.0.00000000}.{d88ac54f-156e-4042-869b-354e713e2dd5}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{dc5da2cf-2b89-4757-9c7e-a6e376d7f839}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),2,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,,{0.0.0.00000000}.{e1ae2635-3fac-4fe3-b1d9-90f15c3e7f4c}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{e1c3a2bb-f5ac-4a59-bbc0-df0b0c56c80a}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Speakers (Virtual Desktop Audio),1,Speakers,Virtual Desktop Audio,VID_0000/PID_0000,,{0.0.0.00000000}.{e91c2632-f4e9-42dd-98ae-d8dbf295ce2d}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	DELL U2720Q (NVIDIA High Definition Audio),0,DELL U2720Q,NVIDIA High Definition Audio,VID_AC10/PID_41B3,HDAUDIO\FUNC_01&VEN_10DE&DEV_00A4&SUBSYS_14625117&REV_1001\5&1f0f386b&0&0001,{0.0.0.00000000}.{ef5a64ff-8062-4622-945b-6b84ac7d48bf}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Digital Audio (HDMI) (High Definition Audio Device),2,Digital Audio (HDMI),High Definition Audio Device,VID_FBAD/PID_FBAD,,{0.0.0.00000000}.{f3d6f98c-4bfd-42f8-86c7-edf4ef7cd7a3}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Speakers (Steam Streaming Microphone),1,Speakers,Steam Streaming Microphone,VID_0000/PID_0000,,{0.0.0.00000000}.{f521bc51-0ba5-4083-a711-df179b9e2a4d}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (Steam Streaming Speakers),2,Internal AUX Jack,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.0.00000000}.{fb0791cd-8a4c-4137-8ecb-28be1dd4d054}
+Fri Nov 28 2025 08:48:15.564 [Info] - Recording devices:
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{06bfccd9-0d38-4303-ae6a-545552f7bde2}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	-->Microphone (3- Arctis Nova 7X),0,Microphone,3- Arctis Nova 7X,VID_1038/PID_2206,USB\VID_1038&PID_2206&MI_00\8&288e2fb5&0&0000,{0.0.1.00000000}.{0ddc17b6-7baf-4a52-9288-49ad8c610986}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Headset (AIAIAI TMA-2 (H10) Hands-Free),2,Headset,AIAIAI TMA-2 (H10) Hands-Free,VID_0000/PID_0000,,{0.0.1.00000000}.{1050a653-3c8d-487d-b75d-9c6624a903c8}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (Steam Streaming Speakers),2,Microphone,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.1.00000000}.{157724f9-7495-4816-abc7-0162b48211d8}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	MIDI (Bigscreen Audio Stream 1.2),2,MIDI,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,,{0.0.1.00000000}.{1b2f197e-9621-4767-8942-1ffcb2b22475}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Headset (Realtek USB Audio),2,Headset,Realtek USB Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{3084d4ef-ec9f-46df-ae0f-be784dd7bf43}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (Steam Streaming Microphone),1,Microphone,Steam Streaming Microphone,VID_0000/PID_0000,,{0.0.1.00000000}.{32249551-be20-4847-8c7a-2b26076e20ea}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (Arctis Nova 7X),2,Microphone,Arctis Nova 7X,VID_0000/PID_0000,,{0.0.1.00000000}.{34866de3-f3b3-4084-adbe-67d32b9968cd}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (Virtual Desktop Audio),1,Microphone,Virtual Desktop Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{3fdd3e85-618e-47cc-8130-433d941e0e6e}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	MIDI (Bigscreen Audio Stream 1.2),1,MIDI,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,,{0.0.1.00000000}.{431b7c53-ab53-4698-9c25-3ff311b4bbdb}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Microphone,,VID_0000/PID_0000,,{0.0.1.00000000}.{47ed6b68-78fc-4cdd-ade7-90e7b4498a4f}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (Sonic Studio Virtual Mixer),2,Microphone,Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{5a56a1ef-5e47-4539-82b3-d80204c96edf}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{84b8a144-52af-4d38-900e-f83b78af9ef1}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (Steam Streaming Speakers),1,Internal AUX Jack,Steam Streaming Speakers,VID_0000/PID_0000,,{0.0.1.00000000}.{8969ca11-9e24-4811-8ff7-b3a4f945b935}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (2- Sonic Studio Virtual Mixer),2,Microphone,2- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{901a9289-10ab-470a-b7d2-06c65384ca9c}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	,2,Microphone,,VID_0000/PID_0000,,{0.0.1.00000000}.{a4ca1ea0-0fb5-488d-bc3f-14b3babb3847}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{a6f7a7c8-5569-4a21-829e-76cffd110ab5}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Headset Microphone (Oculus Virtual Audio Device),0,Headset Microphone,Oculus Virtual Audio Device,VID_0000/PID_0000,ROOT\MEDIA\0001,{0.0.1.00000000}.{abd70fda-3266-4f89-9a81-d7430e77aef0}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{ac5d1bdb-5dd0-4948-ae5d-b4af11a21616}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{adaf84d5-522d-4a58-99b8-5db998d5d0ca}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (3- Sonic Studio Virtual Mixer),2,Microphone,3- Sonic Studio Virtual Mixer,VID_0000/PID_0000,,{0.0.1.00000000}.{b2e06191-f9ad-4756-a9cf-4a3df1333d22}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (Realtek USB Audio),2,Microphone,Realtek USB Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{b48c9934-e9d4-493d-ae5f-5bb00d5aafbe}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Microphone (Bigscreen Audio Stream 1.2),0,Microphone,Bigscreen Audio Stream 1.2,VID_0000/PID_0000,ROOT\MEDIA\0003,{0.0.1.00000000}.{b5151663-e579-4c11-8f77-5f687d82a29a}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (NVIDIA High Definition Audio),2,Internal AUX Jack,NVIDIA High Definition Audio,VID_0000/PID_0000,,{0.0.1.00000000}.{bc59fa5c-4104-4974-af68-6c538afb7f93}
+Fri Nov 28 2025 08:48:15.564 [Info] - 	Internal AUX Jack (High Definition Audio Device),2,Internal AUX Jack,High Definition Audio Device,VID_0000/PID_0000,,{0.0.1.00000000}.{d31de4da-d6f0-4878-b9fb-6f6ba655ab06}
+Fri Nov 28 2025 08:48:16.251 [Info] - Driver 'alvr_server' started activation of tracked device with serial number '1WMHH000X00000'
+Fri Nov 28 2025 08:48:16.251 [Info] -   driver alvr_server implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_002 IVRDriverDirectModeComponent_007 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 
+Fri Nov 28 2025 08:48:16.251 [Info] - DriverManager alvr_server init called SetUnhandledExceptionFilter
+Fri Nov 28 2025 08:48:16.251 [Info] - Loaded server driver alvr_server (IServerTrackedDeviceProvider_004) from C:\Users\jurre\PycharmProjects\ALVR\build\alvr_streamer_windows\bin\win64\driver_alvr_server.dll
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.251 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.252 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:16.416 [Error] - VendorSpecificEvent 105 outside of reserved range
+Fri Nov 28 2025 08:48:16.416 [Info] - Active HMD set to alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:16.416 [Info] - Initialized EyeToHead Left Translation -0.031500 0.000000 0.000000 
+Fri Nov 28 2025 08:48:16.416 [Info] - Initialized EyeToHead Right Translation 0.031500 0.000000 0.000000 
+Fri Nov 28 2025 08:48:16.417 [Info] - Set thread 0000000000000A08 priority to: 15
+Fri Nov 28 2025 08:48:16.417 [Info] - [Controller Setup] Adding controller type oculus_hmd
+Fri Nov 28 2025 08:48:16.417 [Info] - Driver 'alvr_server' finished adding tracked device with serial number '1WMHH000X00000'
+Fri Nov 28 2025 08:48:16.419 [Info] -   driver gamepad implements interfaces IVRSettings_003 ITrackedDeviceServerDriver_005 IVRDisplayComponent_003 IVRDriverDirectModeComponent_009 IVRCameraComponent_003 IServerTrackedDeviceProvider_004 IVRWatchdogProvider_001 IVRVirtualDisplay_002 IVRDriverManager_001 IVRResources_001 IVRCompositorPluginProvider_001 IVRIPCResourceManagerClient_003 
+Fri Nov 28 2025 08:48:16.419 [Info] - Loaded server driver gamepad (IServerTrackedDeviceProvider_004) from c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\gamepad\bin\win64\driver_gamepad.dll
+Fri Nov 28 2025 08:48:16.419 [Info] - [Remapping] Setting up device remapping for controller type: holographic_controller.
+Fri Nov 28 2025 08:48:16.420 [Info] - [Remapping] Parsing remapping data succeeded for controller type: holographic_controller.
+Fri Nov 28 2025 08:48:16.420 [Info] - [Remapping] Setting up device remapping for controller type: hpmotioncontroller.
+Fri Nov 28 2025 08:48:16.422 [Info] - [Remapping] Parsing remapping data succeeded for controller type: hpmotioncontroller.
+Fri Nov 28 2025 08:48:16.422 [Info] - [Remapping] Setting up device remapping for controller type: knuckles.
+Fri Nov 28 2025 08:48:16.422 [Info] - [Remapping] Parsing remapping data succeeded for controller type: knuckles.
+Fri Nov 28 2025 08:48:16.422 [Info] - [Remapping] Setting up device remapping for controller type: oculus_touch.
+Fri Nov 28 2025 08:48:16.422 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: pico_controller to controller: oculus_touch.
+Fri Nov 28 2025 08:48:16.423 [Info] - [Remapping] Parsing remapping data succeeded for controller type: oculus_touch.
+Fri Nov 28 2025 08:48:16.423 [Info] - [Remapping] Setting up device remapping for controller type: pico_controller.
+Fri Nov 28 2025 08:48:16.423 [Warning] - [Remapping] ParseRemappingData warning. No remappings or autoremappings specified in layout from controller: oculus_touch to controller: pico_controller.
+Fri Nov 28 2025 08:48:16.423 [Info] - [Remapping] Parsing remapping data succeeded for controller type: pico_controller.
+Fri Nov 28 2025 08:48:16.423 [Info] - [Remapping] Setting up device remapping for controller type: vive_controller.
+Fri Nov 28 2025 08:48:16.424 [Info] - [Remapping] Parsing remapping data succeeded for controller type: vive_controller.
+Fri Nov 28 2025 08:48:16.424 [Info] - Processing message VRMsg_Connect from 60352: vrstartup took 0.894 seconds
+Fri Nov 28 2025 08:48:16.428 [Info] - Read chaperone JSON from C:\Program Files (x86)\Steam\config\chaperone_info.vrchap
+Fri Nov 28 2025 08:48:16.428 [Info] - Found universe 2 in chaperone file
+Fri Nov 28 2025 08:48:16.485 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:16.485 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:16.494 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:17.223 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrcompositor.exe (VRApplication_Background) (Args: ) 106432 
+Fri Nov 28 2025 08:48:17.236 [Info] - AppInfoManager.ProcessConnected BEGIN 106432 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrcompositor.exe 3 openvr.component.vrcompositor
+Fri Nov 28 2025 08:48:17.244 [Info] - SetApplicationPid appkey=openvr.component.vrcompositor pid=106432, external transition
+Fri Nov 28 2025 08:48:17.244 [Info] - SetApplicationPid: Setting app openvr.component.vrcompositor PID to 106432
+Fri Nov 28 2025 08:48:17.244 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:17.244 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:17.245 [Info] - [Input] openvr.component.vrcompositor (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/vrcompositor_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:17.245 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:17.245 [Info] - Processing message VRMsg_Connect from 106432: vrcompositor took 0.0228 seconds
+Fri Nov 28 2025 08:48:17.249 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:17.249 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:17.252 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\vrcompositor_bindings_generic_hmd.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:17.252 [Info] - [Steam] Connected to Steam, calling StartVRDashboard
+Fri Nov 28 2025 08:48:17.254 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:17.254 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrserver.exe (VRApplication_Background) (Args: -waitformonitor) 123752 
+Fri Nov 28 2025 08:48:17.259 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:17.259 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:17.261 [Info] - Creating Builtin AppInfo for c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrserver.exe (VRApplication_Background). , , 123752
+Fri Nov 28 2025 08:48:17.261 [Info] - AppInfoManager.ProcessConnected BEGIN 123752 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrserver.exe 3 system.generated.vrserver.exe
+Fri Nov 28 2025 08:48:17.266 [Info] - SetApplicationPid appkey=system.generated.vrserver.exe pid=123752, external transition
+Fri Nov 28 2025 08:48:17.266 [Info] - SetApplicationPid: Setting app system.generated.vrserver.exe PID to 123752
+Fri Nov 28 2025 08:48:17.266 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:17.266 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:17.267 [Info] - [Input] Enabling legacy input for system.generated.vrserver.exe
+Fri Nov 28 2025 08:48:17.267 [Info] - [Input] system.generated.vrserver.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:17.267 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:17.267 [Info] - Processing message VRMsg_Connect from 123752: vrserver took 0.0131 seconds
+Fri Nov 28 2025 08:48:17.273 [Info] - Read chaperone JSON from C:\Program Files (x86)\Steam\config\chaperone_info.vrchap
+Fri Nov 28 2025 08:48:17.281 [Info] - Wrote chaperone data to C:\Program Files (x86)\Steam\config\chaperone_info.vrchap
+Fri Nov 28 2025 08:48:17.281 [Info] - Processing message VRMsg_UpdateChaperoneUniverse from 123752: vrserver took 0.00901 seconds
+Fri Nov 28 2025 08:48:17.353 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:17.353 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:17.360 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:17.360 [Info] - New Connect message from c:\program files (x86)\steam\steam.exe (VRApplication_Background) (Args: -- steam://run/250820) 119724 
+Fri Nov 28 2025 08:48:17.370 [Info] - Creating Builtin AppInfo for c:\program files (x86)\steam\steam.exe (VRApplication_Background). steam.client, , 119724
+Fri Nov 28 2025 08:48:17.370 [Info] - AppInfoManager.ProcessConnected BEGIN 119724 c:\program files (x86)\steam\steam.exe 3 steam.client
+Fri Nov 28 2025 08:48:17.376 [Info] - SetApplicationPid appkey=steam.client pid=119724, external transition
+Fri Nov 28 2025 08:48:17.376 [Info] - SetApplicationPid: Setting app steam.client PID to 119724
+Fri Nov 28 2025 08:48:17.376 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:17.376 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:17.376 [Info] - [Input] Enabling legacy input for steam.client
+Fri Nov 28 2025 08:48:17.377 [Info] - [Input] steam.client (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:17.377 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:17.377 [Info] - Processing message VRMsg_Connect from 119724: steam took 0.0172 seconds
+Fri Nov 28 2025 08:48:17.496 [Info] - DriverDirectMode::SubmitFrameThread sending legacy vsync events automatically.
+Fri Nov 28 2025 08:48:17.496 [Info] - Set thread 00000000000020B8 priority to: 15
+Fri Nov 28 2025 08:48:17.496 [Info] - Exchange capabilities (ESteamVRMutualCapability) w/Steam Client
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:1 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:2 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:3 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:4 steamvr_support: 0 mutual_support: 0
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:5 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:6 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:7 steamvr_support: 0 mutual_support: 0
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:8 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:9 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:10 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:11 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:12 steamvr_support: 0 mutual_support: 0
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:13 steamvr_support: 0 mutual_support: 0
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:14 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:15 steamvr_support: 0 mutual_support: 0
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:16 steamvr_support: 0 mutual_support: 0
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:17 steamvr_support: 0 mutual_support: 0
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:18 steamvr_support: 1 mutual_support: 1
+Fri Nov 28 2025 08:48:17.496 [Info] - enum:19 steamvr_support: 1 mutual_support: 0
+Fri Nov 28 2025 08:48:17.497 [Info] - Adding application manifest path: c:\program files (x86)\steam\config\steamapps.vrmanifest
+Fri Nov 28 2025 08:48:17.509 [Info] - c:\program files (x86)\steam\config\steamapps.vrmanifest - App steam.app.327140 was already described in manifest C:\Program Files (x86)\Steam\config\steamapps.vrmanifest. Skipping
+Fri Nov 28 2025 08:48:17.509 [Info] - c:\program files (x86)\steam\config\steamapps.vrmanifest - App steam.app.348250 was already described in manifest C:\Program Files (x86)\Steam\config\steamapps.vrmanifest. Skipping
+Fri Nov 28 2025 08:48:17.509 [Info] - c:\program files (x86)\steam\config\steamapps.vrmanifest - A total of 14 apps were already described in another manifest. Skipping those.
+Fri Nov 28 2025 08:48:17.510 [Info] - Processing message VRMsg_AddApplicationManifest from 119724: steam took 0.0126 seconds
+Fri Nov 28 2025 08:48:17.513 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:17.513 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:17.513 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:17.513 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:17.594 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:17.594 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:17.596 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:17.596 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: -lang=en_us) 100376 
+Fri Nov 28 2025 08:48:17.605 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:17.605 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:17.607 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:17.609 [Info] - AppInfoManager.ProcessConnected BEGIN 100376 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 08:48:17.615 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:17.615 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:17.618 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:17.618 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=100376, external transition
+Fri Nov 28 2025 08:48:17.618 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 100376
+Fri Nov 28 2025 08:48:17.618 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:17.618 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:17.618 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:17.618 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '100376: vrwebhelper_main' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 08:48:17.618 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:17.618 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 119352 
+Fri Nov 28 2025 08:48:17.618 [Info] - Processing message VRMsg_Connect from 100376: vrwebhelper_main took 0.0217 seconds
+Fri Nov 28 2025 08:48:17.628 [Info] - AppInfoManager.ProcessConnected BEGIN 119352 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrstartup
+Fri Nov 28 2025 08:48:17.639 [Info] - SetApplicationPid appkey=openvr.component.vrstartup pid=119352, external transition
+Fri Nov 28 2025 08:48:17.639 [Info] - SetApplicationPid: Setting app openvr.component.vrstartup PID to 119352
+Fri Nov 28 2025 08:48:17.639 [Info] - VRDashboard watchdog enabled for pid:119352
+Fri Nov 28 2025 08:48:17.639 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:17.639 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:17.640 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:17.640 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '119352: vrdashboard' with key 'openvr.component.vrstartup'
+Fri Nov 28 2025 08:48:17.640 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:17.640 [Info] - Processing message VRMsg_Connect from 119352: vrdashboard took 0.0323 seconds
+Fri Nov 28 2025 08:48:17.640 [Info] - New Connect message from C:\Program Files (x86)\Steam\bin\cef\cef.win7x64\steamwebhelper.exe (VRApplication_Background) (Args: -nocrashdialog -lang=en_US -cachedir=C:\Users\jurre\AppData\Local\Steam\htmlcache -steampid=119724 -buildid=1763795278 -steamid=0 -logdir=c:\program files (x86)\steam\logs -uimode=7 -startcount=0 -steamuniverse=Public -realm=Global -clientui=c:\program files (x86)\steam\clientui -steampath=c:\program files (x86)\steam\steam.exe -launcher=0 --valve-initial-threadpool-size=4 --valve-enable-site-isolation --enable-smooth-scrolling --log-file=C:\Program Files (x86)\Steam\logs\cef_log.txt --disable-quick-menu --disable-component-update --gaia-url=http://disabled.invalid --enable-features=PlatformHEVCDecoderSupport --disable-features=WinRetrieveSuggestionsOnlyOnDemand,SpareRendererForSitePerProcess,DcheckIsFatal,BlockPromptsIfIgnoredOften,ValveFFmpegAllowLowDelayHEVC) 14460 
+Fri Nov 28 2025 08:48:17.653 [Info] - Creating Builtin AppInfo for C:\Program Files (x86)\Steam\bin\cef\cef.win7x64\steamwebhelper.exe (VRApplication_Background). , , 14460
+Fri Nov 28 2025 08:48:17.653 [Info] - AppInfoManager.ProcessConnected BEGIN 14460 C:\Program Files (x86)\Steam\bin\cef\cef.win7x64\steamwebhelper.exe 3 system.generated.steamwebhelper.exe
+Fri Nov 28 2025 08:48:17.663 [Info] - SetApplicationPid appkey=system.generated.steamwebhelper.exe pid=14460, external transition
+Fri Nov 28 2025 08:48:17.663 [Info] - SetApplicationPid: Setting app system.generated.steamwebhelper.exe PID to 14460
+Fri Nov 28 2025 08:48:17.663 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:17.663 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:17.663 [Info] - [Input] Enabling legacy input for system.generated.steamwebhelper.exe
+Fri Nov 28 2025 08:48:17.665 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:17.665 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:17.665 [Info] - Processing message VRMsg_Connect from 14460: steamwebhelper took 0.047 seconds
+Fri Nov 28 2025 08:48:17.713 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:17.713 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:17.719 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:17.719 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:17.724 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:17.724 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrmonitor.exe (VRApplication_VRMonitor) (Args: -nokillprocess -startupappid 250820 -startupreason steamvr_vrstartup -startupapptype 7) 62088 
+Fri Nov 28 2025 08:48:17.737 [Info] - [Settings] Save Json Settings to C:\Program Files (x86)\Steam\config\steamvr.vrsettings
+Fri Nov 28 2025 08:48:17.744 [Info] - AppInfoManager.ProcessConnected BEGIN 62088 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrmonitor.exe 5 openvr.component.vrmonitor
+Fri Nov 28 2025 08:48:17.756 [Info] - SetApplicationPid appkey=openvr.component.vrmonitor pid=62088, external transition
+Fri Nov 28 2025 08:48:17.756 [Info] - SetApplicationPid: Setting app openvr.component.vrmonitor PID to 62088
+Fri Nov 28 2025 08:48:17.756 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:17.756 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:17.756 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:17.756 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '62088: vrmonitor' with key 'openvr.component.vrmonitor'
+Fri Nov 28 2025 08:48:17.756 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:17.756 [Info] - Processing message VRMsg_Connect from 62088: vrmonitor took 0.0323 seconds
+Fri Nov 28 2025 08:48:17.885 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:17.885 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:18.038 [Info] - Closing pipe 119352: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:18.038 [Info] - Process 119352: vrdashboard disconnected (Thread(0x0000000006E13220/0x000)
+Fri Nov 28 2025 08:48:18.038 [Info] - AppInfoManager.ProcessDisconnected processid=119352 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:18.038 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrstartup PID was 119352
+Fri Nov 28 2025 08:48:18.038 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrstartup PID because 119352 has exited
+Fri Nov 28 2025 08:48:18.111 [Info] - Closing pipe 60352: vrstartup because it was broken from the other end
+Fri Nov 28 2025 08:48:18.111 [Info] - Process 60352: vrstartup disconnected (Thread(0x0000000004341D90/0x000)
+Fri Nov 28 2025 08:48:18.111 [Info] - AppInfoManager.ProcessDisconnected processid=60352 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:18.164 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:18.164 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:18.362 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:18.362 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:18.362 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:18.362 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:18.405 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:18.405 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:18.405 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:18.405 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:18.408 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:18.409 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:18.409 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: --type=renderer --log-severity=disable --user-agent-product=SteamVR HTML --disable-spell-checking --user-data-dir=C:\Users\jurre\AppData\Local\SteamVR\htmlcache --no-sandbox --autoplay-policy=no-user-gesture-required --enable-experimental-web-platform-features --enable-blink-features=ResizeObserver --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=5 --time-ticks-at-unix-epoch=-1762928949078987 --launch-time-ticks=1387148983655 --field-trial-handle=4344,i,13051486733714478027,13569574915994427502,262144 --enable-features=BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsFromPrivate,BlockInsecurePrivateNetworkRequestsFromUnknown,CSSDisplayModePictureInPicture,ClientHintsFormFactors,CookieSameSiteConsidersRedirectChain,CreateImageBitmapOrientationNone,CriticalClientHint,DocumentPolicyIncludeJSCallStacksInCrashReports,DocumentPolicyNegotiation,DocumentReporting,EnableCanvas2DLayers,ExperimentalContentSecurityPolicyFeatures,OriginIsolationHeader,PrivateNetworkAccessRespectPreflightResults,SchemefulSameSite,ThirdPartyStoragePartitioning --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version --mojo-platform-channel-handle=4316 /prefetch:1) 123652 
+Fri Nov 28 2025 08:48:18.425 [Info] - AppInfoManager.ProcessConnected BEGIN 123652 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 08:48:18.437 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=123652, external transition
+Fri Nov 28 2025 08:48:18.437 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 123652
+Fri Nov 28 2025 08:48:18.437 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:18.437 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:18.437 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:18.437 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '123652: vrwebhelper_pairing' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 08:48:18.437 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:18.437 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: --type=renderer --log-severity=disable --user-agent-product=SteamVR HTML --disable-spell-checking --user-data-dir=C:\Users\jurre\AppData\Local\SteamVR\htmlcache --no-sandbox --autoplay-policy=no-user-gesture-required --enable-experimental-web-platform-features --enable-blink-features=ResizeObserver --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=7 --time-ticks-at-unix-epoch=-1762928949078987 --launch-time-ticks=1387148999227 --field-trial-handle=4544,i,13051486733714478027,13569574915994427502,262144 --enable-features=BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsFromPrivate,BlockInsecurePrivateNetworkRequestsFromUnknown,CSSDisplayModePictureInPicture,ClientHintsFormFactors,CookieSameSiteConsidersRedirectChain,CreateImageBitmapOrientationNone,CriticalClientHint,DocumentPolicyIncludeJSCallStacksInCrashReports,DocumentPolicyNegotiation,DocumentReporting,EnableCanvas2DLayers,ExperimentalContentSecurityPolicyFeatures,OriginIsolationHeader,PrivateNetworkAccessRespectPreflightResults,SchemefulSameSite,ThirdPartyStoragePartitioning --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version --mojo-platform-channel-handle=4540 /prefetch:1) 89360 
+Fri Nov 28 2025 08:48:18.437 [Info] - Processing message VRMsg_Connect from 123652: vrwebhelper_pairing took 0.0289 seconds
+Fri Nov 28 2025 08:48:18.449 [Info] - AppInfoManager.ProcessConnected BEGIN 89360 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 08:48:18.461 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=89360, external transition
+Fri Nov 28 2025 08:48:18.461 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 89360
+Fri Nov 28 2025 08:48:18.461 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:18.461 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:18.461 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:18.461 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '89360: vrwebhelper_systemui' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 08:48:18.461 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:18.461 [Info] - Processing message VRMsg_Connect from 89360: vrwebhelper_systemui took 0.0521 seconds
+Fri Nov 28 2025 08:48:18.468 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:18.468 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:18.472 [Info] - SetApplicationPid appkey=system.systemui pid=89360, external transition
+Fri Nov 28 2025 08:48:18.472 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:18.472 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '89360: vrwebhelper_systemui' with key 'system.systemui'
+Fri Nov 28 2025 08:48:18.509 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:18.509 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:18.510 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:18.511 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe (VRApplication_WebHelper) (Args: --type=renderer --log-severity=disable --user-agent-product=SteamVR HTML --disable-spell-checking --user-data-dir=C:\Users\jurre\AppData\Local\SteamVR\htmlcache --no-sandbox --autoplay-policy=no-user-gesture-required --enable-experimental-web-platform-features --enable-blink-features=ResizeObserver --lang=en-US --device-scale-factor=1 --num-raster-threads=4 --enable-main-frame-before-activation --renderer-client-id=6 --time-ticks-at-unix-epoch=-1762928949078987 --launch-time-ticks=1387148993792 --field-trial-handle=4504,i,13051486733714478027,13569574915994427502,262144 --enable-features=BlockInsecurePrivateNetworkRequests,BlockInsecurePrivateNetworkRequestsFromPrivate,BlockInsecurePrivateNetworkRequestsFromUnknown,CSSDisplayModePictureInPicture,ClientHintsFormFactors,CookieSameSiteConsidersRedirectChain,CreateImageBitmapOrientationNone,CriticalClientHint,DocumentPolicyIncludeJSCallStacksInCrashReports,DocumentPolicyNegotiation,DocumentReporting,EnableCanvas2DLayers,ExperimentalContentSecurityPolicyFeatures,OriginIsolationHeader,PrivateNetworkAccessRespectPreflightResults,SchemefulSameSite,ThirdPartyStoragePartitioning --disable-features=BackForwardCache,DocumentPictureInPictureAPI --variations-seed-version --mojo-platform-channel-handle=4500 /prefetch:1) 119024 
+Fri Nov 28 2025 08:48:18.525 [Info] - AppInfoManager.ProcessConnected BEGIN 119024 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\vrwebhelper\win64\vrwebhelper.exe 8 openvr.component.vrwebhelper
+Fri Nov 28 2025 08:48:18.538 [Info] - SetApplicationPid appkey=openvr.component.vrwebhelper pid=119024, external transition
+Fri Nov 28 2025 08:48:18.538 [Info] - SetApplicationPid: Setting app openvr.component.vrwebhelper PID to 119024
+Fri Nov 28 2025 08:48:18.538 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:18.538 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:18.538 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:18.538 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '119024: vrwebhelper_settings_desktop' with key 'openvr.component.vrwebhelper'
+Fri Nov 28 2025 08:48:18.538 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:18.538 [Info] - Processing message VRMsg_Connect from 119024: vrwebhelper_settings_desktop took 0.0273 seconds
+Fri Nov 28 2025 08:48:19.141 [Info] - CWebSteam::AddConnection: 0000000000002218 port=46697
+Fri Nov 28 2025 08:48:19.640 [Info] - VRDashboard process 119352 has stopped. Attempt 0. Restarting it.
+Fri Nov 28 2025 08:48:19.646 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 109388
+Fri Nov 28 2025 08:48:19.743 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:19.743 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:19.744 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:19.744 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 109388 
+Fri Nov 28 2025 08:48:19.756 [Info] - AppInfoManager.ProcessConnected BEGIN 109388 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:19.766 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=109388, external transition
+Fri Nov 28 2025 08:48:19.766 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 109388
+Fri Nov 28 2025 08:48:19.766 [Info] - VRDashboard watchdog enabled for pid:109388
+Fri Nov 28 2025 08:48:19.766 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:19.766 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:19.766 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:19.766 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '109388: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:19.766 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:19.766 [Info] - Processing message VRMsg_Connect from 109388: vrdashboard took 0.0228 seconds
+Fri Nov 28 2025 08:48:20.145 [Info] - Closing pipe 109388: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:20.145 [Info] - Process 109388: vrdashboard disconnected (Thread(0x0000000006DF7350/0x000)
+Fri Nov 28 2025 08:48:20.145 [Info] - AppInfoManager.ProcessDisconnected processid=109388 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:20.145 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 109388
+Fri Nov 28 2025 08:48:20.145 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 109388 has exited
+Fri Nov 28 2025 08:48:21.773 [Info] - VRDashboard process 109388 has stopped. Attempt 1. Restarting it.
+Fri Nov 28 2025 08:48:21.776 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 120640
+Fri Nov 28 2025 08:48:21.883 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:21.883 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:21.890 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:21.890 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 120640 
+Fri Nov 28 2025 08:48:21.907 [Info] - AppInfoManager.ProcessConnected BEGIN 120640 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:21.919 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=120640, external transition
+Fri Nov 28 2025 08:48:21.919 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 120640
+Fri Nov 28 2025 08:48:21.919 [Info] - VRDashboard watchdog enabled for pid:120640
+Fri Nov 28 2025 08:48:21.919 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:21.919 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:21.919 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:21.919 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '120640: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:21.919 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:21.919 [Info] - Processing message VRMsg_Connect from 120640: vrdashboard took 0.0289 seconds
+Fri Nov 28 2025 08:48:22.322 [Info] - Closing pipe 120640: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:22.322 [Info] - Process 120640: vrdashboard disconnected (Thread(0x0000000006E137C0/0x000)
+Fri Nov 28 2025 08:48:22.322 [Info] - AppInfoManager.ProcessDisconnected processid=120640 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:22.322 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 120640
+Fri Nov 28 2025 08:48:22.322 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 120640 has exited
+Fri Nov 28 2025 08:48:23.921 [Info] - VRDashboard process 120640 has stopped. Attempt 2. Restarting it.
+Fri Nov 28 2025 08:48:23.925 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 110884
+Fri Nov 28 2025 08:48:24.046 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:24.046 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:24.047 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:24.048 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 110884 
+Fri Nov 28 2025 08:48:24.072 [Info] - AppInfoManager.ProcessConnected BEGIN 110884 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:24.093 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=110884, external transition
+Fri Nov 28 2025 08:48:24.093 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 110884
+Fri Nov 28 2025 08:48:24.093 [Info] - VRDashboard watchdog enabled for pid:110884
+Fri Nov 28 2025 08:48:24.093 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:24.093 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:24.093 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:24.093 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '110884: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:24.093 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:24.093 [Info] - Processing message VRMsg_Connect from 110884: vrdashboard took 0.0459 seconds
+Fri Nov 28 2025 08:48:24.506 [Info] - Closing pipe 110884: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:24.506 [Info] - Process 110884: vrdashboard disconnected (Thread(0x0000000006DF6E40/0x000)
+Fri Nov 28 2025 08:48:24.506 [Info] - AppInfoManager.ProcessDisconnected processid=110884 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:24.506 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 110884
+Fri Nov 28 2025 08:48:24.506 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 110884 has exited
+Fri Nov 28 2025 08:48:26.095 [Info] - VRDashboard process 110884 has stopped. Attempt 3. Restarting it.
+Fri Nov 28 2025 08:48:26.100 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 95844
+Fri Nov 28 2025 08:48:26.217 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:26.217 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:26.223 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:26.224 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 95844 
+Fri Nov 28 2025 08:48:26.243 [Info] - AppInfoManager.ProcessConnected BEGIN 95844 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:26.261 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=95844, external transition
+Fri Nov 28 2025 08:48:26.261 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 95844
+Fri Nov 28 2025 08:48:26.261 [Info] - VRDashboard watchdog enabled for pid:95844
+Fri Nov 28 2025 08:48:26.261 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:26.261 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:26.261 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:26.261 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '95844: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:26.261 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:26.261 [Info] - Processing message VRMsg_Connect from 95844: vrdashboard took 0.0376 seconds
+Fri Nov 28 2025 08:48:26.685 [Info] - Closing pipe 95844: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:26.685 [Info] - Process 95844: vrdashboard disconnected (Thread(0x0000000006E00A40/0x000)
+Fri Nov 28 2025 08:48:26.685 [Info] - AppInfoManager.ProcessDisconnected processid=95844 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:26.685 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 95844
+Fri Nov 28 2025 08:48:26.685 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 95844 has exited
+Fri Nov 28 2025 08:48:28.263 [Info] - VRDashboard process 95844 has stopped. Attempt 4. Restarting it.
+Fri Nov 28 2025 08:48:28.266 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 101400
+Fri Nov 28 2025 08:48:28.369 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:28.369 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:28.377 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:28.378 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 101400 
+Fri Nov 28 2025 08:48:28.394 [Info] - AppInfoManager.ProcessConnected BEGIN 101400 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:28.408 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=101400, external transition
+Fri Nov 28 2025 08:48:28.409 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 101400
+Fri Nov 28 2025 08:48:28.409 [Info] - VRDashboard watchdog enabled for pid:101400
+Fri Nov 28 2025 08:48:28.409 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:28.409 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:28.409 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:28.409 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '101400: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:28.409 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:28.409 [Info] - Processing message VRMsg_Connect from 101400: vrdashboard took 0.0315 seconds
+Fri Nov 28 2025 08:48:28.820 [Info] - Closing pipe 101400: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:28.820 [Info] - Process 101400: vrdashboard disconnected (Thread(0x0000000006DF7350/0x000)
+Fri Nov 28 2025 08:48:28.820 [Info] - AppInfoManager.ProcessDisconnected processid=101400 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:28.820 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 101400
+Fri Nov 28 2025 08:48:28.820 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 101400 has exited
+Fri Nov 28 2025 08:48:29.413 [Info] - Driver 'alvr_server' started activation of tracked device with serial number '1WMHH000X00000_Controller_Left'
+Fri Nov 28 2025 08:48:29.418 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.418 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.418 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.418 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.418 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.418 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.418 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.418 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.419 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: Reading data for: 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\rendermodels\oculus_quest2_controller_left' from 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\rendermodels\oculus_quest2_controller_left\oculus_quest2_controller_left.json'
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=base inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=body inputRouting=0 filename=oculus_quest2_controller_left_body.obj
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=button_enter inputRouting=1 filename=oculus_quest2_controller_left_button_menu.obj
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=button_grip inputRouting=2 filename=oculus_quest2_controller_left_grip.obj
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=button_x inputRouting=1 filename=oculus_quest2_controller_left_button_x.obj
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=button_y inputRouting=1 filename=oculus_quest2_controller_left_button_y.obj
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=grip inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=handgrip inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=openxr_aim inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=openxr_grip inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=openxr_handmodel inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=openxr_pinch inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=openxr_poke inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=thumbstick inputRouting=2 filename=oculus_quest2_controller_left_thumbstick.obj
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=tip inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: name=trigger inputRouting=2 filename=oculus_quest2_controller_left_trigger.obj
+Fri Nov 28 2025 08:48:29.422 [Info] - RendermodelManager: Finished setting up render model template: c:\program files (x86)\steam\steamapps\common\SteamVR\resources\rendermodels\oculus_quest2_controller_left.
+Fri Nov 28 2025 08:48:29.422 [Info] - Driver 'alvr_server' finished adding tracked device with serial number '1WMHH000X00000_Controller_Left'
+Fri Nov 28 2025 08:48:29.422 [Info] - Driver 'alvr_server' started activation of tracked device with serial number '1WMHH000X00000_Controller_Right'
+Fri Nov 28 2025 08:48:29.423 [Info] - [Input] openvr.component.vrcompositor (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/vrcompositor_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.423 [Info] - [Input] openvr.component.vrcompositor (oculus_touch) attempting to load current setting config from vr-input-workshop://3431784521
+Fri Nov 28 2025 08:48:29.424 [Info] - [Input] system.generated.vrserver.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.424 [Info] - [Input] system.generated.vrserver.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.425 [Info] - [Input] steam.client (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.425 [Info] - [Input] steam.client (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.425 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.425 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.430 [Info] - [Input] openvr.component.vrcompositor (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/vrcompositor_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.431 [Info] - [Input] openvr.component.vrcompositor (oculus_touch) attempting to load current setting config from vr-input-workshop://3431784521
+Fri Nov 28 2025 08:48:29.431 [Info] - [Input] system.generated.vrserver.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.431 [Info] - [Input] system.generated.vrserver.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.432 [Info] - [Input] steam.client (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.432 [Info] - [Input] steam.client (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.433 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.433 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\vrcompositor_bindings_generic_hmd.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.434 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.435 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.435 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.435 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.435 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.435 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.436 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.436 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.436 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.436 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.436 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.436 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.436 [Info] - RendermodelManager: Reading data for: 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\rendermodels\oculus_quest2_controller_right' from 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\rendermodels\oculus_quest2_controller_right\oculus_quest2_controller_right.json'
+Fri Nov 28 2025 08:48:29.436 [Info] - RendermodelManager: name=base inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.436 [Info] - RendermodelManager: name=body inputRouting=0 filename=oculus_quest2_controller_right_body.obj
+Fri Nov 28 2025 08:48:29.436 [Info] - RendermodelManager: name=button_a inputRouting=1 filename=oculus_quest2_controller_right_button_a.obj
+Fri Nov 28 2025 08:48:29.436 [Info] - RendermodelManager: name=button_b inputRouting=1 filename=oculus_quest2_controller_right_button_b.obj
+Fri Nov 28 2025 08:48:29.436 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=button_enter inputRouting=1 filename=oculus_quest2_controller_right_button_menu.obj
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=button_grip inputRouting=2 filename=oculus_quest2_controller_right_grip.obj
+Fri Nov 28 2025 08:48:29.437 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=grip inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=handgrip inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=openxr_aim inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=openxr_grip inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=openxr_handmodel inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=openxr_pinch inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=openxr_poke inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=thumbstick inputRouting=2 filename=oculus_quest2_controller_right_thumbstick.obj
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=tip inputRouting=0 filename=
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: name=trigger inputRouting=2 filename=oculus_quest2_controller_right_trigger.obj
+Fri Nov 28 2025 08:48:29.437 [Info] - RendermodelManager: Finished setting up render model template: c:\program files (x86)\steam\steamapps\common\SteamVR\resources\rendermodels\oculus_quest2_controller_right.
+Fri Nov 28 2025 08:48:29.437 [Info] - Driver 'alvr_server' finished adding tracked device with serial number '1WMHH000X00000_Controller_Right'
+Fri Nov 28 2025 08:48:29.437 [Info] - Driver 'alvr_server' started activation of tracked device with serial number 'ALVR_Left_Hand_Full_Skeletal'
+Fri Nov 28 2025 08:48:29.438 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.439 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.439 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\vrcompositor_bindings_generic_hmd.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:29.439 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.439 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.440 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.440 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.440 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.440 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.441 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.441 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.441 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.441 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.443 [Info] - [Input] openvr.component.vrcompositor (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/vrcompositor_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.443 [Info] - [Input] openvr.component.vrcompositor (oculus_touch) attempting to load current setting config from vr-input-workshop://3431784521
+Fri Nov 28 2025 08:48:29.444 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.444 [Info] - [Input] system.generated.vrserver.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.444 [Info] - [Input] system.generated.vrserver.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.444 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.445 [Info] - [Input] steam.client (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.445 [Info] - [Input] steam.client (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.445 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.445 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.445 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.446 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.447 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.448 [Info] - [Remapping] Setting up device remapping for controller type: svl_hand_interaction_augmented.
+Fri Nov 28 2025 08:48:29.448 [Info] - [Remapping] Parsing remapping data succeeded for controller type: svl_hand_interaction_augmented.
+Fri Nov 28 2025 08:48:29.449 [Info] - [Controller Setup] Adding controller type svl_hand_interaction_augmented
+Fri Nov 28 2025 08:48:29.449 [Info] - RendermodelManager: Reading data for: 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\rendermodels\shuttlecock' from 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\rendermodels\shuttlecock\shuttlecock.json'
+Fri Nov 28 2025 08:48:29.449 [Info] - RendermodelManager: name=body inputRouting=0 filename=shuttlecock.obj
+Fri Nov 28 2025 08:48:29.449 [Info] - RendermodelManager: Both grip and aim are at 0, couldn't guess which direction is outwards for poke/pinch creation.
+Fri Nov 28 2025 08:48:29.449 [Error] - RendermodelManager: Failed to create openxr_pinch because no 'openxr_grip', 'grip', or 'handgrip' pose was found.
+Fri Nov 28 2025 08:48:29.449 [Error] - RendermodelManager: Failed to create openxr_pinch because no 'openxr_aim', 'tip', or 'aim' pose was found.
+Fri Nov 28 2025 08:48:29.449 [Info] - RendermodelManager: Finished setting up render model template: c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\rendermodels\shuttlecock.
+Fri Nov 28 2025 08:48:29.449 [Info] - Driver 'alvr_server' finished adding tracked device with serial number 'ALVR_Left_Hand_Full_Skeletal'
+Fri Nov 28 2025 08:48:29.449 [Info] - Driver 'alvr_server' started activation of tracked device with serial number 'ALVR_Right_Hand_Full_Skeletal'
+Fri Nov 28 2025 08:48:29.450 [Info] - [Input] openvr.component.vrcompositor (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/vrcompositor_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.451 [Info] - [Input] openvr.component.vrcompositor (oculus_touch) attempting to load current setting config from vr-input-workshop://3431784521
+Fri Nov 28 2025 08:48:29.451 [Info] - [Input] openvr.component.vrcompositor (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/vrcompositor_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] system.generated.vrserver.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] system.generated.vrserver.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] system.generated.vrserver.exe (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] steam.client (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] steam.client (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] steam.client (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.452 [Info] - [Input] system.generated.steamwebhelper.exe (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.456 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.457 [Info] - Driver 'alvr_server' finished adding tracked device with serial number 'ALVR_Right_Hand_Full_Skeletal'
+Fri Nov 28 2025 08:48:29.467 [Info] - [Input] openvr.component.vrcompositor (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/vrcompositor_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.467 [Info] - [Input] openvr.component.vrcompositor (oculus_touch) attempting to load current setting config from vr-input-workshop://3431784521
+Fri Nov 28 2025 08:48:29.467 [Info] - [Input] openvr.component.vrcompositor (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/vrcompositor_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:29.468 [Info] - [Input] system.generated.vrserver.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.468 [Info] - [Input] system.generated.vrserver.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.468 [Info] - [Input] system.generated.vrserver.exe (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:29.469 [Info] - [Input] steam.client (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.469 [Info] - [Input] steam.client (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.469 [Info] - [Input] steam.client (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:29.469 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:29.469 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:29.469 [Info] - [Input] system.generated.steamwebhelper.exe (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:29.513 [Error] - VendorSpecificEvent 111 outside of reserved range
+Fri Nov 28 2025 08:48:29.514 [Info] - Read chaperone JSON from C:\Program Files (x86)\Steam\config\chaperone_info.vrchap
+Fri Nov 28 2025 08:48:29.526 [Info] - Wrote chaperone data to C:\Program Files (x86)\Steam\config\chaperone_info.vrchap
+Fri Nov 28 2025 08:48:29.526 [Info] - Processing message VRMsg_UpdateChaperoneUniverse from 123752: vrserver took 0.0127 seconds
+Fri Nov 28 2025 08:48:29.544 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\vrcompositor_bindings_generic_hmd.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:29.545 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.545 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.545 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.546 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.546 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.546 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.547 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.547 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.547 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.547 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.547 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.548 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.549 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\vrcompositor_bindings_generic_hmd.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:29.550 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.550 [Info] - Invalid input type click for controller (/user/hand/right/input/pinky_pinch)
+Fri Nov 28 2025 08:48:29.550 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\vrcompositor_bindings_svl_hand_interaction_augmented.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:29.550 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.550 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.551 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.551 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.552 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.552 [Info] - Invalid input type pull for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.552 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.552 [Info] - Invalid input type click for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.552 [Info] - Invalid input type touch for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.552 [Info] - Invalid input type click for controller (/user/hand/right/input/pinky_pinch)
+Fri Nov 28 2025 08:48:29.552 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.552 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.553 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.553 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.553 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.554 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.554 [Info] - Invalid input type pull for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.554 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.554 [Info] - Invalid input type click for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.554 [Info] - Invalid input type touch for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.554 [Info] - Invalid input type click for controller (/user/hand/right/input/pinky_pinch)
+Fri Nov 28 2025 08:48:29.554 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.554 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.554 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.554 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.555 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.557 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.557 [Info] - Invalid input type pull for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.557 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.557 [Info] - Invalid input type click for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.557 [Info] - Invalid input type touch for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.557 [Info] - Invalid input type click for controller (/user/hand/right/input/pinky_pinch)
+Fri Nov 28 2025 08:48:29.557 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.557 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\vrcompositor_bindings_generic_hmd.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:29.558 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.558 [Info] - Invalid input type click for controller (/user/hand/right/input/pinky_pinch)
+Fri Nov 28 2025 08:48:29.558 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\vrcompositor_bindings_svl_hand_interaction_augmented.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:29.558 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.558 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.559 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.559 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.560 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.560 [Info] - Invalid input type pull for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.560 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.560 [Info] - Invalid input type click for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.560 [Info] - Invalid input type touch for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.560 [Info] - Invalid input type click for controller (/user/hand/right/input/pinky_pinch)
+Fri Nov 28 2025 08:48:29.560 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:29.560 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.560 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.561 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.561 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.561 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.561 [Info] - Invalid input type pull for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.561 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.562 [Info] - Invalid input type click for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.562 [Info] - Invalid input type touch for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.562 [Info] - Invalid input type click for controller (/user/hand/right/input/pinky_pinch)
+Fri Nov 28 2025 08:48:29.562 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:29.562 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.562 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.563 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:29.563 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.563 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.563 [Info] - Invalid input type pull for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.563 [Info] - Invalid input type click for controller (/user/hand/right/input/index_pinch)
+Fri Nov 28 2025 08:48:29.563 [Info] - Invalid input type click for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.563 [Info] - Invalid input type touch for controller (/user/hand/right/input/index_point)
+Fri Nov 28 2025 08:48:29.563 [Info] - Invalid input type click for controller (/user/hand/right/input/pinky_pinch)
+Fri Nov 28 2025 08:48:29.564 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:29.765 [Info] - Couldn't find action /actions/system/in/showpowermenu. Ignoring it.
+Fri Nov 28 2025 08:48:29.782 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\workshop\content\250820\3431784521\9559452528230044664_legacy.bin' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:29.983 [Info] - Couldn't find action /actions/system/in/showpowermenu. Ignoring it.
+Fri Nov 28 2025 08:48:29.995 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\workshop\content\250820\3431784521\9559452528230044664_legacy.bin' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:30.296 [Info] - Couldn't find action /actions/system/in/showpowermenu. Ignoring it.
+Fri Nov 28 2025 08:48:30.310 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\workshop\content\250820\3431784521\9559452528230044664_legacy.bin' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:30.413 [Info] - VRDashboard process 101400 has stopped. Attempt 5. Restarting it.
+Fri Nov 28 2025 08:48:30.418 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 90544
+Fri Nov 28 2025 08:48:30.511 [Info] - Couldn't find action /actions/system/in/showpowermenu. Ignoring it.
+Fri Nov 28 2025 08:48:30.523 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\workshop\content\250820\3431784521\9559452528230044664_legacy.bin' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:30.538 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:30.538 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:30.549 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:30.549 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 90544 
+Fri Nov 28 2025 08:48:30.563 [Info] - AppInfoManager.ProcessConnected BEGIN 90544 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:30.578 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=90544, external transition
+Fri Nov 28 2025 08:48:30.578 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 90544
+Fri Nov 28 2025 08:48:30.578 [Info] - VRDashboard watchdog enabled for pid:90544
+Fri Nov 28 2025 08:48:30.578 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:30.578 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:30.579 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:30.579 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '90544: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:30.579 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:30.579 [Info] - Processing message VRMsg_Connect from 90544: vrdashboard took 0.0297 seconds
+Fri Nov 28 2025 08:48:30.725 [Info] - Couldn't find action /actions/system/in/showpowermenu. Ignoring it.
+Fri Nov 28 2025 08:48:30.735 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\workshop\content\250820\3431784521\9559452528230044664_legacy.bin' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:31.001 [Info] - Closing pipe 90544: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:31.001 [Info] - Process 90544: vrdashboard disconnected (Thread(0x0000000006C8E190/0x000)
+Fri Nov 28 2025 08:48:31.001 [Info] - AppInfoManager.ProcessDisconnected processid=90544 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:31.001 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 90544
+Fri Nov 28 2025 08:48:31.001 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 90544 has exited
+Fri Nov 28 2025 08:48:31.553 [Info] - [Input] openvr.component.vrcompositor (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/vrcompositor_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:31.553 [Info] - [Input] openvr.component.vrcompositor (oculus_touch) attempting to load current setting config from vr-input-workshop://3431784521
+Fri Nov 28 2025 08:48:31.553 [Info] - [Input] openvr.component.vrcompositor (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/vrcompositor_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:31.554 [Info] - [Input] system.generated.vrserver.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:31.554 [Info] - [Input] system.generated.vrserver.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:31.554 [Info] - [Input] system.generated.vrserver.exe (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:31.555 [Info] - [Input] steam.client (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:31.555 [Info] - [Input] steam.client (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:31.555 [Info] - [Input] steam.client (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:31.556 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_hmd) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/resources/config/legacy_bindings_generic_hmd.json
+Fri Nov 28 2025 08:48:31.556 [Info] - [Input] system.generated.steamwebhelper.exe (oculus_touch) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/oculus/resources/input/legacy_bindings_touch.json
+Fri Nov 28 2025 08:48:31.556 [Info] - [Input] system.generated.steamwebhelper.exe (svl_hand_interaction_augmented) attempting to load default config from file:///c:/program%20files%20%28x86%29/steam/steamapps/common/SteamVR/drivers/vrlink/resources/input/legacy_bindings_svl_hand_interaction_augmented.json
+Fri Nov 28 2025 08:48:31.638 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\vrcompositor_bindings_generic_hmd.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:31.638 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\vrcompositor_bindings_svl_hand_interaction_augmented.json' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:31.638 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:31.638 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:31.639 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:31.639 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:31.640 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'system.generated.vrserver.exe'.
+Fri Nov 28 2025 08:48:31.640 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:31.640 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:31.640 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:31.641 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:31.641 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'steam.client'.
+Fri Nov 28 2025 08:48:31.641 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:31.641 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\resources\config\legacy_bindings_generic_hmd.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:31.642 [Info] - Determined this is a legacy app.
+Fri Nov 28 2025 08:48:31.642 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\oculus\resources\input\legacy_bindings_touch.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:31.642 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\common\SteamVR\drivers\vrlink\resources\input\legacy_bindings_svl_hand_interaction_augmented.json' for app 'system.generated.steamwebhelper.exe'.
+Fri Nov 28 2025 08:48:31.945 [Info] - Couldn't find action /actions/system/in/showpowermenu. Ignoring it.
+Fri Nov 28 2025 08:48:31.957 [Info] - [Workshop] Successfully loaded binding file 'c:\program files (x86)\steam\steamapps\workshop\content\250820\3431784521\9559452528230044664_legacy.bin' for app 'openvr.component.vrcompositor'.
+Fri Nov 28 2025 08:48:32.580 [Info] - VRDashboard process 90544 has stopped. Attempt 6. Restarting it.
+Fri Nov 28 2025 08:48:32.583 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 123700
+Fri Nov 28 2025 08:48:32.689 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:32.689 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:32.694 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:32.695 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 123700 
+Fri Nov 28 2025 08:48:32.713 [Info] - AppInfoManager.ProcessConnected BEGIN 123700 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:32.730 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=123700, external transition
+Fri Nov 28 2025 08:48:32.730 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 123700
+Fri Nov 28 2025 08:48:32.730 [Info] - VRDashboard watchdog enabled for pid:123700
+Fri Nov 28 2025 08:48:32.730 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:32.730 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:32.730 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:32.730 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '123700: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:32.730 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:32.730 [Info] - Processing message VRMsg_Connect from 123700: vrdashboard took 0.0354 seconds
+Fri Nov 28 2025 08:48:33.136 [Info] - Closing pipe 123700: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:33.136 [Info] - Process 123700: vrdashboard disconnected (Thread(0x0000000007522840/0x000)
+Fri Nov 28 2025 08:48:33.136 [Info] - AppInfoManager.ProcessDisconnected processid=123700 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:33.136 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 123700
+Fri Nov 28 2025 08:48:33.136 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 123700 has exited
+Fri Nov 28 2025 08:48:34.733 [Info] - VRDashboard process 123700 has stopped. Attempt 7. Restarting it.
+Fri Nov 28 2025 08:48:34.737 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 80100
+Fri Nov 28 2025 08:48:34.833 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:34.833 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:34.837 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:34.838 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 80100 
+Fri Nov 28 2025 08:48:34.851 [Info] - AppInfoManager.ProcessConnected BEGIN 80100 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:34.863 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=80100, external transition
+Fri Nov 28 2025 08:48:34.863 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 80100
+Fri Nov 28 2025 08:48:34.863 [Info] - VRDashboard watchdog enabled for pid:80100
+Fri Nov 28 2025 08:48:34.863 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:34.863 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:34.863 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:34.863 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '80100: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:34.863 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:34.863 [Info] - Processing message VRMsg_Connect from 80100: vrdashboard took 0.0255 seconds
+Fri Nov 28 2025 08:48:35.259 [Info] - Closing pipe 80100: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:35.259 [Info] - Process 80100: vrdashboard disconnected (Thread(0x00000000153DE070/0x000)
+Fri Nov 28 2025 08:48:35.259 [Info] - AppInfoManager.ProcessDisconnected processid=80100 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:35.259 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 80100
+Fri Nov 28 2025 08:48:35.259 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 80100 has exited
+Fri Nov 28 2025 08:48:36.868 [Info] - VRDashboard process 80100 has stopped. Attempt 8. Restarting it.
+Fri Nov 28 2025 08:48:36.872 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 125112
+Fri Nov 28 2025 08:48:36.990 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:36.990 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:37.000 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:37.000 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 125112 
+Fri Nov 28 2025 08:48:37.016 [Info] - AppInfoManager.ProcessConnected BEGIN 125112 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:37.030 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=125112, external transition
+Fri Nov 28 2025 08:48:37.030 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 125112
+Fri Nov 28 2025 08:48:37.030 [Info] - VRDashboard watchdog enabled for pid:125112
+Fri Nov 28 2025 08:48:37.030 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:37.030 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:37.030 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:37.030 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '125112: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:37.030 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:37.030 [Info] - Processing message VRMsg_Connect from 125112: vrdashboard took 0.0295 seconds
+Fri Nov 28 2025 08:48:37.436 [Info] - Closing pipe 125112: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:37.436 [Info] - Process 125112: vrdashboard disconnected (Thread(0x0000000015885800/0x000)
+Fri Nov 28 2025 08:48:37.436 [Info] - AppInfoManager.ProcessDisconnected processid=125112 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:37.436 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 125112
+Fri Nov 28 2025 08:48:37.436 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 125112 has exited
+Fri Nov 28 2025 08:48:39.038 [Info] - VRDashboard process 125112 has stopped. Attempt 9. Restarting it.
+Fri Nov 28 2025 08:48:39.042 [Info] - VRDashboard (c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe) started with pid 125524
+Fri Nov 28 2025 08:48:39.138 [Info] - Connecting client (SteamVR_Namespace) app container status: 1
+Fri Nov 28 2025 08:48:39.138 [Info] - CSharedResourceNamespaceServer sent namespace data: 123752
+Fri Nov 28 2025 08:48:39.146 [Info] - Connecting client (VR_ServerPipe_123752) app container status: 1
+Fri Nov 28 2025 08:48:39.146 [Info] - New Connect message from c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe (VRApplication_Overlay) (Args: ) 125524 
+Fri Nov 28 2025 08:48:39.159 [Info] - AppInfoManager.ProcessConnected BEGIN 125524 c:\program files (x86)\steam\steamapps\common\SteamVR\bin\win64\vrdashboard.exe 2 openvr.component.vrdashboard
+Fri Nov 28 2025 08:48:39.171 [Info] - SetApplicationPid appkey=openvr.component.vrdashboard pid=125524, external transition
+Fri Nov 28 2025 08:48:39.171 [Info] - SetApplicationPid: Setting app openvr.component.vrdashboard PID to 125524
+Fri Nov 28 2025 08:48:39.171 [Info] - VRDashboard watchdog enabled for pid:125524
+Fri Nov 28 2025 08:48:39.171 [Info] - AppInfoManager.ProcessConnected END
+Fri Nov 28 2025 08:48:39.171 [Info] - We don't yet have an input context. This should be okay, but noted.
+Fri Nov 28 2025 08:48:39.171 [Info] - [Input] App likely not using input.
+Fri Nov 28 2025 08:48:39.171 [Error] - [Input] LoadActionManifest failed. Could not find action manifest for app '125524: vrdashboard' with key 'openvr.component.vrdashboard'
+Fri Nov 28 2025 08:48:39.171 [Info] - Using existing HMD alvr_server.1WMHH000X00000
+Fri Nov 28 2025 08:48:39.171 [Info] - Processing message VRMsg_Connect from 125524: vrdashboard took 0.0254 seconds
+Fri Nov 28 2025 08:48:39.562 [Info] - Closing pipe 125524: vrdashboard because it was broken from the other end
+Fri Nov 28 2025 08:48:39.562 [Info] - Process 125524: vrdashboard disconnected (Thread(0x0000000015B74DE0/0x000)
+Fri Nov 28 2025 08:48:39.562 [Info] - AppInfoManager.ProcessDisconnected processid=125524 eLaunchingApp=LaunchingApp_None
+Fri Nov 28 2025 08:48:39.562 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID was 125524
+Fri Nov 28 2025 08:48:39.562 [Info] - AppInfoManager.ProcessDisconnected: Clearing application openvr.component.vrdashboard PID because 125524 has exited
+Fri Nov 28 2025 08:48:41.177 [Info] - VRDashboard process failed to start 10 times. Giving up.
+Fri Nov 28 2025 08:48:41.177 [Info] - VRDashboard watchdog disabled.

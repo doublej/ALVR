@@ -1,0 +1,118 @@
+
+ALVR USB/WIRED CONNECTION TEST ANALYSIS
+Test Iteration: iteration_1_20251128_093613
+Test Date: November 28, 2025
+
+EXECUTIVE SUMMARY
+=================
+The USB/wired connection test FAILED. The connection experienced continuous handshake
+failures with no successful streaming established, despite the session showing a
+"Streaming" state for the client.
+
+CONNECTION STATUS
+=================
+RESULT: FAILED
+- USB/wired connection: NOT ESTABLISHED
+- Handshake Errors: 57 consecutive errors
+- Time Duration: From 09:23:32.315 to 09:34:50.045 (11 minutes 18 seconds)
+- Session State: Marked as "Streaming" (incorrect - streaming never actually started)
+
+ERROR PATTERN
+=============
+All 57 errors follow identical pattern:
+  [ERROR] Handshake error for client.wired: Try again
+
+The errors occurred at regular ~11-12 second intervals:
+- First error: 09:23:32.315
+- Last error: 09:34:50.045
+- No successful connection attempt detected in the interval
+
+KEY FINDINGS
+============
+1. HANDSHAKE FAILURES: Persistent "Try again" errors indicate the client and server
+   cannot establish protocol agreement during connection initialization.
+
+2. IP CONFIGURATION ISSUE:
+   - Client ID: "client.wired" (Quest 3 headset)
+   - Current IP: 127.0.0.1 (localhost)
+   - This is problematic for a USB/wired connection to a headset
+   - Localhost (127.0.0.1) indicates the connection is not properly routed through USB
+
+3. SESSION STATE MISMATCH:
+   - Session.json reports connection_state: "Streaming"
+   - Crash_log.txt shows continuous handshake errors
+   - The session state does not reflect actual connection status
+
+4. STEAMVR DRIVER STATUS:
+   - ALVR driver (driver_alvr_server.dll) loaded successfully
+   - HMD device recognized: 1WMHH000X00000
+   - Controllers added successfully (Left/Right + hand skeletal tracking)
+   - Graphics pipeline initialized (foveated encoding enabled)
+   - This suggests the hardware layer is functioning correctly
+
+5. NO NETWORK CONNECTION ESTABLISHED:
+   - Despite multiple retry attempts over 11 minutes
+   - No successful TCP/UDP handshake achieved
+   - Client cannot authenticate with server
+
+ROOT CAUSE ANALYSIS
+===================
+The issue appears to be in the handshake protocol negotiation between the client (headset)
+and server (ALVR driver/dashboard). Possible causes:
+
+a) USB ADB Connection Issue:
+   - The wired USB connection may not be properly bridged to network stack
+   - adb (Android Debug Bridge) may not have established proper routing
+   - USB device may be in wrong state (not in file transfer mode)
+
+b) Protocol Version Mismatch:
+   - Client and server may be using incompatible protocol versions
+   - Server expects different handshake format than client is sending
+
+c) Network Configuration:
+   - IP address assigned to localhost prevents proper communication
+   - USB port forwarding may not be active or misconfigured
+   - Android network permissions may be blocking connection
+
+d) Firewall/Security Restrictions:
+   - Windows firewall blocking ALVR ports
+   - Android security policies preventing network communication
+
+RECOMMENDATIONS
+===============
+1. Verify USB connection status via ADB:
+   - Confirm headset is visible: adb devices
+   - Check device is in file transfer mode (not MTP only)
+   - Verify port forwarding: adb forward tcp:9943 tcp:9943
+
+2. Check IP Configuration:
+   - The 127.0.0.1 address must be properly routed through USB
+   - Verify ADB port forwarding is active for all ALVR ports
+   - Confirm client sees server as reachable
+
+3. Protocol Debugging:
+   - Enable connection debug logging in session settings
+   - Check for protocol version mismatches in detailed logs
+   - Review handshake timeout and retry logic
+
+4. Test Network Connectivity:
+   - Ping test between client and server
+   - Verify ALVR ports are accessible (9943, 8082, etc)
+   - Check if WiFi fallback works (to isolate USB-specific issue)
+
+RELATED LOG FILES
+=================
+- crash_log.txt: Contains all 57 handshake errors with timestamps
+- vrserver.txt: SteamVR driver logs (3388 lines) - driver initialized successfully
+- session.json: Configuration showing client.wired with localhost IP
+- alvr_logcat.txt: Additional debug information
+- analysis.json: Reported "Crash occurred - see crash_log.txt"
+
+CONCLUSION
+==========
+The USB/wired connection failed to establish successfully. While the ALVR SteamVR driver
+loaded correctly and detected the headset hardware, the network handshake between client
+and server never completed. The persistent "Try again" errors suggest a fundamental issue
+with how the USB connection is being bridged to the network stack or with the handshake
+protocol itself. Further investigation of USB ADB routing and protocol debugging is
+required to resolve this issue.

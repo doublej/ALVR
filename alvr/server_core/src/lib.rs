@@ -111,6 +111,12 @@ pub struct ConnectionContext {
 // received the initial IDR yet.
 static STREAM_CORRUPTED: AtomicBool = AtomicBool::new(true);
 
+// Latched once per frame at its first slice (sliced path only). Slices of a frame arrive
+// sequentially, so deciding to drop a frame at its first slice and then dropping every subsequent
+// slice keeps the drop consistent: the send thread never begins a frame it cannot finish, and no
+// orphan slices (or their stats) leak through.
+static DROPPING_FRAME: AtomicBool = AtomicBool::new(false);
+
 pub fn create_recording_file(connection_context: &ConnectionContext, settings: &Settings) {
     let codec = settings.video.preferred_codec;
     let ext = match codec {
@@ -480,14 +486,20 @@ impl ServerCoreContext {
                 STREAM_CORRUPTED.store(false, Ordering::SeqCst);
             }
 
-            let waiting_for_idr = STREAM_CORRUPTED.load(Ordering::SeqCst)
-                && SESSION_MANAGER
-                    .read()
-                    .settings()
-                    .connection
-                    .avoid_video_glitching;
-            if waiting_for_idr {
-                // Drop the whole frame consistently until the next IDR.
+            // Decide whether to drop ONCE, at the frame's first slice, and latch it. Re-evaluating
+            // per slice could begin a frame and then drop its tail (stranding a partial FrameSender
+            // in the send thread); latching guarantees a begun frame is always finished.
+            if is_first {
+                let waiting_for_idr = STREAM_CORRUPTED.load(Ordering::SeqCst)
+                    && SESSION_MANAGER
+                        .read()
+                        .settings()
+                        .connection
+                        .avoid_video_glitching;
+                DROPPING_FRAME.store(waiting_for_idr, Ordering::SeqCst);
+            }
+            if DROPPING_FRAME.load(Ordering::SeqCst) {
+                // Drop every slice of this frame consistently until the next IDR.
                 return;
             }
 

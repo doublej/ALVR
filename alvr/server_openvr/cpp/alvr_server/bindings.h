@@ -124,6 +124,19 @@ extern "C" void (*SetVideoConfigNals)(const unsigned char* configBuffer, int len
 extern "C" void (*VideoSend)(
     unsigned long long targetTimestampNs, unsigned char* buf, int len, bool isIdr
 );
+// Sliced variant: emits one slice of a frame as it finishes encoding (encode/network overlap).
+// isFirst carries the frame header (maxFrameSize sizes the receiver buffer); isLast carries
+// frameTotalSize for statistics. Slices of a frame are reassembled whole on the client.
+extern "C" void (*VideoSliceSend)(
+    unsigned long long targetTimestampNs,
+    unsigned char* buf,
+    int len,
+    bool isIdr,
+    bool isFirst,
+    bool isLast,
+    unsigned int maxFrameSize,
+    unsigned int frameTotalSize
+);
 extern "C" void (*HapticsSend)(
     unsigned long long path, float duration_s, float frequency, float amplitude
 );

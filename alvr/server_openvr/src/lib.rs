@@ -404,6 +404,61 @@ extern "C" fn send_video(timestamp_ns: u64, buffer_ptr: *mut u8, len: i32, is_id
     }
 }
 
+#[allow(clippy::too_many_arguments)]
+extern "C" fn send_video_slice(
+    timestamp_ns: u64,
+    buffer_ptr: *mut u8,
+    len: i32,
+    is_idr: bool,
+    is_first: bool,
+    is_last: bool,
+    max_frame_size: u32,
+    frame_total_size: u32,
+) {
+    if let Some(context) = &*SERVER_CORE_CONTEXT.read() {
+        let timestamp = Duration::from_nanos(timestamp_ns);
+        let buffer = unsafe { std::slice::from_raw_parts(buffer_ptr, len as usize) };
+
+        // The header (and thus view params) is only needed on the first slice of a frame.
+        let global_view_params = if is_first {
+            let Some(head_pose) = HEAD_POSE_QUEUE
+                .lock()
+                .iter()
+                .find_map(|(ts, pose)| (*ts == timestamp).then_some(*pose))
+            else {
+                // Can't start the frame without its pose; downstream ignores the orphan slices.
+                return;
+            };
+
+            let local_views_params = LOCAL_VIEW_PARAMS.read();
+
+            [
+                ViewParams {
+                    pose: head_pose * local_views_params[0].pose,
+                    fov: local_views_params[0].fov,
+                },
+                ViewParams {
+                    pose: head_pose * local_views_params[1].pose,
+                    fov: local_views_params[1].fov,
+                },
+            ]
+        } else {
+            [ViewParams::DUMMY; 2]
+        };
+
+        context.send_video_slice(
+            timestamp,
+            global_view_params,
+            is_idr,
+            is_first,
+            is_last,
+            max_frame_size as usize,
+            frame_total_size as usize,
+            buffer.to_vec(),
+        );
+    }
+}
+
 extern "C" fn get_dynamic_encoder_params() -> FfiDynamicEncoderParams {
     if let Some(context) = &*SERVER_CORE_CONTEXT.read()
         && let Some(params) = context.get_dynamic_encoder_params()
@@ -531,6 +586,7 @@ pub unsafe extern "C" fn HmdDriverFactory(
             HapticsSend = Some(send_haptics);
             SetVideoConfigNals = Some(set_video_config_nals);
             VideoSend = Some(send_video);
+            VideoSliceSend = Some(send_video_slice);
             GetDynamicEncoderParams = Some(get_dynamic_encoder_params);
             ReportComposed = Some(report_composed);
             ReportPresent = Some(report_present);

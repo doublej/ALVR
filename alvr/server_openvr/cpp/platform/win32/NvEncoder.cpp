@@ -553,7 +553,20 @@ void NvEncoder::EncodeFrameSliced(
         NV_ENC_LOCK_BITSTREAM lockBitstreamData = { NV_ENC_LOCK_BITSTREAM_VER };
         lockBitstreamData.outputBitstream = outputBuffer;
         lockBitstreamData.doNotWait = 1;
-        NVENC_API_CALL(m_nvenc.nvEncLockBitstream(m_hEncoder, &lockBitstreamData));
+
+        // A non-blocking lock returns NV_ENC_ERR_LOCK_BUSY when no new slice data is ready yet; this
+        // is a documented, expected, non-fatal "retry" condition (not an error). Do NOT route it
+        // through NVENC_API_CALL (which throws) and do NOT unlock when the lock did not succeed.
+        const NVENCSTATUS lockStatus = m_nvenc.nvEncLockBitstream(m_hEncoder, &lockBitstreamData);
+        if (lockStatus == NV_ENC_ERR_LOCK_BUSY)
+        {
+            std::this_thread::yield();
+            continue;
+        }
+        if (lockStatus != NV_ENC_SUCCESS)
+        {
+            NVENC_THROW_ERROR("nvEncLockBitstream failed", lockStatus);
+        }
 
         const uint32_t available = lockBitstreamData.bitstreamSizeInBytes;
         const bool done = (lockBitstreamData.hwEncodeStatus == HW_ENCODE_STATUS_DONE);

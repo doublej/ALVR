@@ -602,6 +602,11 @@ void NvEncoder::EncodeFrameSliced(
         }
     }
 
+    // Safety net: if the loop exited via the MAX_POLLS bound rather than a clean completion, flush
+    // whatever was staged as the final slice so the frame is still terminated downstream (the send
+    // thread gets its is_last and never strands an open FrameSender). No-op after a normal break.
+    flushPending(true);
+
     // Consume the completion event (no-op in sync mode) and release input, mirroring
     // GetEncodedPacket so the ring-buffer bookkeeping stays consistent.
     WaitForCompletionEvent(m_iGot % m_nEncoderBuffer);

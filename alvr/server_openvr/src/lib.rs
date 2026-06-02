@@ -16,7 +16,7 @@ use bindings::*;
 
 use alvr_common::{
     BUTTON_INFO, HAND_LEFT_ID, HAND_RIGHT_ID, HAND_TRACKER_LEFT_ID, HAND_TRACKER_RIGHT_ID, HEAD_ID,
-    Pose, ViewParams, error,
+    Pose, RelaxedAtomic, ViewParams, error,
     parking_lot::{Mutex, RwLock},
     settings_schema::Switch,
     warn,
@@ -36,6 +36,9 @@ use std::{
 
 static SERVER_CORE_CONTEXT: RwLock<Option<ServerCoreContext>> = RwLock::new(None);
 static LOCAL_VIEW_PARAMS: RwLock<[ViewParams; 2]> = RwLock::new([ViewParams::DUMMY; 2]);
+// Latched at a sliced frame's first slice: if we cannot start the frame (its head pose is missing),
+// every remaining slice of that frame is dropped too, so no orphan slices reach server_core.
+static SLICE_FRAME_DROPPED: RelaxedAtomic = RelaxedAtomic::new(false);
 static HEAD_POSE_QUEUE: Mutex<VecDeque<(Duration, Pose)>> = Mutex::new(VecDeque::new());
 
 fn event_loop(events_receiver: mpsc::Receiver<ServerCoreEvent>) {
@@ -417,18 +420,28 @@ extern "C" fn send_video_slice(
 ) {
     if let Some(context) = &*SERVER_CORE_CONTEXT.read() {
         let timestamp = Duration::from_nanos(timestamp_ns);
-        let buffer = unsafe { std::slice::from_raw_parts(buffer_ptr, len as usize) };
+        // from_raw_parts requires a non-null, aligned pointer even for len 0; the encoder may emit a
+        // zero-length terminating slice with a null pointer for a degenerate frame.
+        let buffer: &[u8] = if buffer_ptr.is_null() || len <= 0 {
+            &[]
+        } else {
+            unsafe { std::slice::from_raw_parts(buffer_ptr, len as usize) }
+        };
 
-        // The header (and thus view params) is only needed on the first slice of a frame.
+        // The header (and thus view params) is only needed on the first slice of a frame. Decide
+        // once, at the first slice, whether the frame can be started; latch it so the rest of a
+        // dropped frame is dropped too (no orphan slices, no spurious stats downstream).
         let global_view_params = if is_first {
-            let Some(head_pose) = HEAD_POSE_QUEUE
+            let maybe_head_pose = HEAD_POSE_QUEUE
                 .lock()
                 .iter()
-                .find_map(|(ts, pose)| (*ts == timestamp).then_some(*pose))
-            else {
-                // Can't start the frame without its pose; downstream ignores the orphan slices.
+                .find_map(|(ts, pose)| (*ts == timestamp).then_some(*pose));
+            let Some(head_pose) = maybe_head_pose else {
+                // Can't start the frame without its pose; drop this and every later slice of it.
+                SLICE_FRAME_DROPPED.set(true);
                 return;
             };
+            SLICE_FRAME_DROPPED.set(false);
 
             let local_views_params = LOCAL_VIEW_PARAMS.read();
 
@@ -443,6 +456,9 @@ extern "C" fn send_video_slice(
                 },
             ]
         } else {
+            if SLICE_FRAME_DROPPED.value() {
+                return;
+            }
             [ViewParams::DUMMY; 2]
         };
 

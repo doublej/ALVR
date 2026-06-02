@@ -1,71 +1,113 @@
 //! ALVR egui theme playground.
 //!
-//! Standalone eframe app for experimenting with the dashboard's egui style.
-//! Edit colors / spacing on the left, see the live preview in the middle, and
-//! copy paste-ready `theme.rs` code from the right. See README.md.
+//! Standalone eframe app for designing the dashboard's egui look — typography,
+//! color and elements — then exporting paste-ready `theme.rs`. See README.md.
 
 mod editor;
 mod gallery;
 mod params;
+mod typography;
 
 use eframe::egui;
+use egui::{Frame, Margin, Mesh, Shape};
 use gallery::DemoState;
 use params::ThemeParams;
+use typography::TypeScale;
 
 fn main() -> eframe::Result {
     env_logger::init();
     let options = eframe::NativeOptions {
-        viewport: egui::ViewportBuilder::default().with_inner_size([1180.0, 780.0]),
+        viewport: egui::ViewportBuilder::default()
+            .with_inner_size([1240.0, 820.0])
+            .with_min_inner_size([900.0, 600.0]),
         ..Default::default()
     };
     eframe::run_native(
-        "ALVR egui Theme Playground",
+        "ALVR Theme Studio",
         options,
-        Box::new(|_cc| Ok(Box::<App>::default())),
+        Box::new(|cc| {
+            typography::install_fonts(&cc.egui_ctx);
+            Ok(Box::<App>::default())
+        }),
     )
 }
 
 #[derive(Default)]
 struct App {
-    params: ThemeParams,
+    theme: ThemeParams,
+    scale: TypeScale,
     demo: DemoState,
 }
 
 impl eframe::App for App {
-    // egui 0.34: the per-frame method is `ui` (receives a `&mut Ui` directly).
     fn ui(&mut self, ui: &mut egui::Ui, _frame: &mut eframe::Frame) {
-        // Re-apply every frame so edits are immediately visible.
-        self.params.apply(ui.ctx());
+        self.theme.apply(ui.ctx(), &self.scale);
+        // `ctx.set_style` only affects newly-created Uis; the Ui eframe handed us
+        // (and its panel children) still carries the frame-start style. Pull the
+        // freshly-applied style onto it so custom text styles/visuals are live now.
+        let style = ui.ctx().style();
+        ui.set_style(style);
+
+        let panel_frame = Frame::new()
+            .fill(self.theme.elevated_bg)
+            .inner_margin(Margin::same(16));
 
         egui::Panel::left("editor")
             .resizable(true)
-            .default_size(340.0)
+            .default_size(364.0)
+            .frame(panel_frame.clone())
             .show_inside(ui, |ui| {
-                egui::ScrollArea::vertical().show(ui, |ui| editor::show(ui, &mut self.params));
+                egui::ScrollArea::vertical()
+                    .show(ui, |ui| editor::show(ui, &mut self.theme, &mut self.scale));
             });
 
         egui::Panel::right("export")
             .resizable(true)
-            .default_size(380.0)
-            .show_inside(ui, |ui| {
-                ui.heading("Export → theme.rs");
-                if ui.button("📋 Copy code").clicked() {
-                    ui.ctx().copy_text(self.params.export_rust());
-                }
-                ui.separator();
-                let mut code = self.params.export_rust();
-                egui::ScrollArea::both().show(ui, |ui| {
-                    ui.add(
-                        egui::TextEdit::multiline(&mut code)
-                            .code_editor()
-                            .desired_width(f32::INFINITY),
-                    );
-                });
-            });
+            .default_size(400.0)
+            .frame(panel_frame)
+            .show_inside(ui, |ui| export_panel(ui, &self.theme));
 
         egui::CentralPanel::default().show_inside(ui, |ui| {
-            egui::ScrollArea::vertical()
-                .show(ui, |ui| gallery::show(ui, &mut self.demo, &self.params));
+            backdrop(ui, &self.theme);
+            egui::ScrollArea::vertical().show(ui, |ui| {
+                ui.add_space(6.0);
+                gallery::show(ui, &mut self.demo, &self.theme);
+                ui.add_space(8.0);
+            });
         });
     }
+}
+
+fn export_panel(ui: &mut egui::Ui, theme: &ThemeParams) {
+    ui.label(egui::RichText::new("Export").text_style(typography::ts_display()).size(18.0));
+    ui.add_space(4.0);
+    ui.label(egui::RichText::new("Paste into alvr/gui_common/src/theme.rs").color(theme.text_muted).size(12.0));
+    ui.add_space(6.0);
+    if ui.button("📋  Copy theme.rs").clicked() {
+        ui.ctx().copy_text(theme.export_rust());
+    }
+    ui.add_space(8.0);
+    let mut code = theme.export_rust();
+    egui::ScrollArea::both().show(ui, |ui| {
+        ui.add(
+            egui::TextEdit::multiline(&mut code)
+                .code_editor()
+                .desired_width(f32::INFINITY),
+        );
+    });
+}
+
+/// Subtle top-down gradient so the central area has depth, not a flat fill.
+fn backdrop(ui: &mut egui::Ui, theme: &ThemeParams) {
+    let rect = ui.max_rect();
+    let top = theme.bg.lerp_to_gamma(theme.elevated_bg, 0.7);
+    let bottom = theme.bg;
+    let mut mesh = Mesh::default();
+    mesh.colored_vertex(rect.left_top(), top);
+    mesh.colored_vertex(rect.right_top(), top);
+    mesh.colored_vertex(rect.right_bottom(), bottom);
+    mesh.colored_vertex(rect.left_bottom(), bottom);
+    mesh.add_triangle(0, 1, 2);
+    mesh.add_triangle(0, 2, 3);
+    ui.painter().add(Shape::mesh(mesh));
 }

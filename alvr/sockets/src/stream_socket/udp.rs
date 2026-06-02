@@ -17,8 +17,31 @@ use std::{
 
 pub const SHARD_PREFIX_SIZE: usize = mem::size_of::<u16>() // stream ID
     + mem::size_of::<u32>() // packet index
-    + mem::size_of::<u32>() // shards count
-    + mem::size_of::<u32>(); // shards index
+    + mem::size_of::<u32>() // capacity hint (upper bound on shard count, for buffer reservation)
+    + mem::size_of::<u32>(); // shard index (low 31 bits) + is_final flag (high bit)
+
+// The high bit of the shard-index field marks the last shard of a packet. This lets the receiver
+// detect completion even when the total shard count is not known up front (incremental/sliced
+// sends), while staying within the existing 14-byte prefix. Real shard counts are at most a few
+// thousand, far below 2^31, so stealing the top bit is safe.
+const IS_FINAL_BIT: u32 = 1 << 31;
+const SHARD_INDEX_MASK: u32 = !IS_FINAL_BIT;
+
+fn write_shard_prefix(
+    shard: &mut [u8],
+    stream_id: u16,
+    packet_index: u32,
+    capacity_hint: u32,
+    shard_index: u32,
+    is_final: bool,
+) {
+    let index_field = (shard_index & SHARD_INDEX_MASK) | if is_final { IS_FINAL_BIT } else { 0 };
+
+    shard[0..2].copy_from_slice(&stream_id.to_le_bytes());
+    shard[2..6].copy_from_slice(&packet_index.to_le_bytes());
+    shard[6..10].copy_from_slice(&capacity_hint.to_le_bytes());
+    shard[10..14].copy_from_slice(&index_field.to_le_bytes());
+}
 
 fn socket_peek(socket: &mut Socket, buffer: &mut [u8]) -> ConResult<usize> {
     #[cfg(windows)]
@@ -67,6 +90,10 @@ impl MultiplexedSocketWriter for MultiplexedUdpWriter {
         SHARD_PREFIX_SIZE
     }
 
+    fn incremental_shard_size(&self) -> Option<usize> {
+        Some(self.max_packet_size - SHARD_PREFIX_SIZE)
+    }
+
     fn send(&mut self, stream_id: u16, packet_index: u32, buffer: &mut Vec<u8>) -> Result<()> {
         let max_shard_size = self.max_packet_size - SHARD_PREFIX_SIZE;
         let payload_size = buffer.len() - SHARD_PREFIX_SIZE;
@@ -81,13 +108,42 @@ impl MultiplexedSocketWriter for MultiplexedUdpWriter {
 
             let shard_view = &mut buffer[shard_start_position..][..SHARD_PREFIX_SIZE + shard_size];
 
-            shard_view[0..2].copy_from_slice(&stream_id.to_le_bytes());
-            shard_view[2..6].copy_from_slice(&packet_index.to_le_bytes());
-            shard_view[6..10].copy_from_slice(&(shards_count as u32).to_le_bytes());
-            shard_view[10..14].copy_from_slice(&(shard_idx as u32).to_le_bytes());
+            // For whole-buffer sends the capacity hint is the exact shard count, so the receiver
+            // reserves precisely and behaves exactly as before.
+            write_shard_prefix(
+                shard_view,
+                stream_id,
+                packet_index,
+                shards_count as u32,
+                shard_idx as u32,
+                shard_idx + 1 == shards_count,
+            );
 
             self.inner.send(shard_view)?;
         }
+
+        Ok(())
+    }
+
+    fn send_shard(
+        &mut self,
+        stream_id: u16,
+        packet_index: u32,
+        capacity_hint: u32,
+        shard_index: u32,
+        is_final: bool,
+        shard: &mut [u8],
+    ) -> Result<()> {
+        write_shard_prefix(
+            shard,
+            stream_id,
+            packet_index,
+            capacity_hint,
+            shard_index,
+            is_final,
+        );
+
+        self.inner.send(shard)?;
 
         Ok(())
     }
@@ -101,7 +157,10 @@ impl MultiplexedSocketWriter for MultiplexedUdpWriter {
 struct InProgressPacket {
     buffer: Vec<u8>,    // contains the prefix
     buffer_size: usize, // size of the packet counting prefix
-    shards_count: usize,
+    capacity_hint: usize,
+    // Set once the final shard (highest index) is received. The packet is complete when this is
+    // known and every shard index up to and including it has arrived.
+    final_shard_index: Option<usize>,
     received_shard_indices: HashSet<usize>,
 }
 
@@ -131,16 +190,17 @@ impl MultiplexedSocketReader for MultiplexedUdpReader {
             return discard_and_try_again(&self.inner);
         }
 
-        // The values obtained from the prefix (stream ID, packet index, shards count, shard index)
+        // The values obtained from the prefix (stream ID, packet index, capacity hint, shard index)
         // could be corrupted somehow. This method has safety checks against corrupted values and
         // the relative packet would be discarded.
         let stream_id = u16::from_le_bytes(prefix_bytes[0..2].try_into().unwrap());
         let packet_index = u32::from_le_bytes(prefix_bytes[2..6].try_into().unwrap());
-        let maybe_shards_count =
-            u32::from_le_bytes(prefix_bytes[6..10].try_into().unwrap()) as usize;
-        let shard_index = u32::from_le_bytes(prefix_bytes[10..14].try_into().unwrap()) as usize;
+        let capacity_hint = u32::from_le_bytes(prefix_bytes[6..10].try_into().unwrap()) as usize;
+        let index_field = u32::from_le_bytes(prefix_bytes[10..14].try_into().unwrap());
+        let is_final = index_field & IS_FINAL_BIT != 0;
+        let shard_index = (index_field & SHARD_INDEX_MASK) as usize;
 
-        if maybe_shards_count == 0 {
+        if capacity_hint == 0 {
             return discard_and_try_again(&self.inner);
         }
 
@@ -158,27 +218,29 @@ impl MultiplexedSocketReader for MultiplexedUdpReader {
             let idx = *in_progress_packets.iter().next()?.0;
             Some(in_progress_packets.remove(&idx).unwrap().buffer)
         }) {
-            // The first shard prefix will dictate the actual number of shards of the packet. The
-            // reserved capacity is an upper bound: we don't know yet the exact size, the last
-            // shard could be smaller than max_shard_data_size
+            // The capacity hint is an upper bound on the shard count for this packet. Reserving from
+            // it up front means the zero-copy shard writes below never trigger a reallocation (which
+            // would discard the data already written into the spare capacity). For whole-buffer
+            // sends the hint equals the exact count; for incremental sends it is a safe upper bound.
             buffer.clear();
-            buffer.reserve(SHARD_PREFIX_SIZE + max_shard_data_size * maybe_shards_count);
+            buffer.reserve(SHARD_PREFIX_SIZE + max_shard_data_size * capacity_hint);
 
             in_progress_packets
                 .entry(packet_index)
                 .or_insert(InProgressPacket {
                     buffer,
                     buffer_size: 0,
-                    shards_count: maybe_shards_count,
+                    capacity_hint,
+                    final_shard_index: None,
                     // todo: find a way to skipping this allocation
-                    received_shard_indices: HashSet::with_capacity(maybe_shards_count),
+                    received_shard_indices: HashSet::with_capacity(capacity_hint),
                 })
         } else {
             // This branch may be hit in case the thread related to the stream hangs for some reason
             return discard_and_try_again(&self.inner);
         };
 
-        if shard_index >= in_progress_packet.shards_count
+        if shard_index >= in_progress_packet.capacity_hint
             || in_progress_packet
                 .received_shard_indices
                 .contains(&shard_index)
@@ -210,12 +272,23 @@ impl MultiplexedSocketReader for MultiplexedUdpReader {
             packet_start_index + received_size,
         );
 
+        if is_final {
+            in_progress_packet.final_shard_index = Some(shard_index);
+        }
+
         in_progress_packet
             .received_shard_indices
             .insert(shard_index);
 
-        // Check if packet is complete (and not dummy) and send
-        if in_progress_packet.received_shard_indices.len() == in_progress_packet.shards_count {
+        // The packet is complete once the final shard is known and every shard up to it has arrived.
+        // Indices are contiguous (0..=final), so a matching count means none are missing.
+        let complete = in_progress_packet
+            .final_shard_index
+            .is_some_and(|final_idx| {
+                in_progress_packet.received_shard_indices.len() == final_idx + 1
+            });
+
+        if complete {
             if let Some(mut packet) = in_progress_packets.remove(&packet_index) {
                 // All writing was done to uninit capacity, here we set the final buffer length
                 unsafe { packet.buffer.set_len(packet.buffer_size) };

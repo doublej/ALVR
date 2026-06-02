@@ -10,7 +10,7 @@ use std::{
     io::Write,
     mem::{self, MaybeUninit},
     net::{IpAddr, SocketAddr, TcpListener, TcpStream},
-    time::Duration,
+    time::{Duration, Instant},
 };
 
 pub const PACKET_PREFIX_SIZE: usize = mem::size_of::<u16>() // stream ID
@@ -134,6 +134,7 @@ impl MultiplexedSocketReader for MultiplexedTcpReader {
         } else {
             let mut prefix_bytes = [0u8; PACKET_PREFIX_SIZE];
 
+            let deadline = Instant::now() + self.used_buffers_poll_timeout;
             loop {
                 let count = self
                     .inner
@@ -141,8 +142,12 @@ impl MultiplexedSocketReader for MultiplexedTcpReader {
                         &mut *(&mut prefix_bytes as *mut [u8] as *mut [MaybeUninit<u8>])
                     })
                     .handle_try_again()?;
-                if count == PACKET_PREFIX_SIZE {
+                if count == 0 {
+                    con_bail!("Stream socket closed by peer");
+                } else if count == PACKET_PREFIX_SIZE {
                     break;
+                } else if Instant::now() > deadline {
+                    return alvr_common::try_again();
                 }
             }
 
@@ -174,11 +179,22 @@ impl MultiplexedSocketReader for MultiplexedTcpReader {
             })
         };
 
+        let deadline = Instant::now() + self.used_buffers_poll_timeout;
         while in_progress_packet.cursor < in_progress_packet.buffer_size {
             let sub_buffer = &mut in_progress_packet.buffer.spare_capacity_mut()
                 [in_progress_packet.cursor..in_progress_packet.buffer_size];
 
-            in_progress_packet.cursor += self.inner.recv(sub_buffer).handle_try_again()?;
+            let count = self.inner.recv(sub_buffer).handle_try_again()?;
+            if count == 0 {
+                con_bail!("Stream socket closed by peer mid-packet");
+            }
+            in_progress_packet.cursor += count;
+
+            if in_progress_packet.cursor < in_progress_packet.buffer_size
+                && Instant::now() > deadline
+            {
+                return alvr_common::try_again();
+            }
         }
 
         // All writing was done to uninit capacity, here we set the final buffer length

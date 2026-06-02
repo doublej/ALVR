@@ -27,6 +27,12 @@ pub const SHARD_PREFIX_SIZE: usize = mem::size_of::<u16>() // stream ID
 const IS_FINAL_BIT: u32 = 1 << 31;
 const SHARD_INDEX_MASK: u32 = !IS_FINAL_BIT;
 
+// Upper clamp on the (wire-supplied, possibly corrupted) capacity hint before it drives a buffer
+// reservation. Without it, a single malformed datagram with a near-u32::MAX hint would request a
+// multi-terabyte allocation and abort the process. ~64k shards covers any realistic frame
+// (e.g. a raw 8K-class frame is well under this) while bounding the worst-case reservation.
+const MAX_CAPACITY_HINT: usize = 1 << 16;
+
 fn write_shard_prefix(
     shard: &mut [u8],
     stream_id: u16,
@@ -200,7 +206,7 @@ impl MultiplexedSocketReader for MultiplexedUdpReader {
         let is_final = index_field & IS_FINAL_BIT != 0;
         let shard_index = (index_field & SHARD_INDEX_MASK) as usize;
 
-        if capacity_hint == 0 {
+        if capacity_hint == 0 || capacity_hint > MAX_CAPACITY_HINT {
             return discard_and_try_again(&self.inner);
         }
 

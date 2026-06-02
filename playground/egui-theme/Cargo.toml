@@ -1,0 +1,20 @@
+[package]
+name = "alvr_theme_playground"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.88"
+publish = false
+
+[dependencies]
+# Pinned to match the repo's resolved versions so `apply()` mirrors theme.rs
+# 1:1 and the playground exercises the exact same egui APIs as the build.
+eframe = "=0.34.1"
+egui = "=0.34.1"
+env_logger = "0.11"
+# Path dep on the real shared crate: the playground renders the actual ALVR
+# components (switch, button group) and starts from the live theme constants.
+alvr_gui_common = { path = "../../alvr/gui_common" }
+
+# Empty table detaches this crate from the parent ALVR workspace
+# (`members = ["alvr/*"]`) so it stays out of the main build / clippy / CI.
+[workspace]

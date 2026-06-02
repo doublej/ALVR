@@ -588,13 +588,25 @@ fn connection_pipeline(
 
     dbg_connection!("connection_pipeline: Destroying streams");
 
+    // Teardown instrumentation: a hung join here blocks the whole reconnect loop
+    // (no further "Connection attempt #N"). The last "join: X" with no following
+    // "all stream threads joined" names the thread that never exits.
+    info!("Disconnecting: joining stream threads");
+    info!("join: video_receive");
     video_receive_thread.join().ok();
+    info!("join: game_audio");
     game_audio_thread.join().ok();
+    info!("join: microphone");
     microphone_thread.join().ok();
+    info!("join: haptics");
     haptics_receive_thread.join().ok();
+    info!("join: control_send");
     control_send_thread.join().ok();
+    info!("join: control_receive");
     control_receive_thread.join().ok();
+    info!("join: stream_receive");
     stream_receive_thread.join().ok();
+    info!("All stream threads joined; connection_pipeline returning (will retry)");
 
     dbg_connection!("connection_pipeline: End");
 

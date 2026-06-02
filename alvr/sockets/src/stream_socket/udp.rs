@@ -29,9 +29,12 @@ const SHARD_INDEX_MASK: u32 = !IS_FINAL_BIT;
 
 // Upper clamp on the (wire-supplied, possibly corrupted) capacity hint before it drives a buffer
 // reservation. Without it, a single malformed datagram with a near-u32::MAX hint would request a
-// multi-terabyte allocation and abort the process. ~64k shards covers any realistic frame
-// (e.g. a raw 8K-class frame is well under this) while bounding the worst-case reservation.
-const MAX_CAPACITY_HINT: usize = 1 << 16;
+// multi-terabyte allocation and abort the process. The clamp must sit ABOVE any legitimate frame's
+// shard count (the sliced path derives the hint from a raw-frame-size upper bound, so heavy
+// supersampling pushes it into the tens/low-hundreds of thousands) yet far below u32::MAX. 256Ki
+// shards covers well past 4x-supersampled VR while bounding the worst-case reservation to a few
+// hundred MB at realistic packet sizes.
+const MAX_CAPACITY_HINT: usize = 1 << 18;
 
 fn write_shard_prefix(
     shard: &mut [u8],

@@ -168,13 +168,21 @@ impl<H: Serialize> StreamSender<H> {
     /// header). It must not be exceeded: the receiver uses it to size its reassembly buffer, and
     /// shards beyond the bound would be rejected. On transports without incremental support (TCP)
     /// the payload is buffered and sent whole on `finish()`.
-    pub fn begin_frame(&mut self, header: &H, max_payload_size: usize) -> Result<FrameSender<'_, H>> {
+    ///
+    /// `buffer` is a (possibly empty) scratch buffer to build the packet in; `finish()` returns it
+    /// so callers can recycle one allocation across frames. The returned `FrameSender` owns a handle
+    /// to the socket, so it can outlive the borrow of `self` (e.g. be held across channel messages).
+    pub fn begin_frame(
+        &mut self,
+        header: &H,
+        max_payload_size: usize,
+        mut buffer: Vec<u8>,
+    ) -> Result<FrameSender<H>> {
         let packet_index = self.next_packet_index;
         self.next_packet_index = self.next_packet_index.wrapping_add(1);
 
         let shard_data_size = self.inner.lock().incremental_shard_size();
 
-        let mut buffer = self.used_buffers.pop().unwrap_or_default();
         buffer.clear();
         buffer.resize(self.payload_offset, 0);
         let header_size =
@@ -187,28 +195,35 @@ impl<H: Serialize> StreamSender<H> {
             .unwrap_or(0);
 
         Ok(FrameSender {
-            sender: self,
+            inner: Arc::clone(&self.inner),
+            stream_id: self.stream_id,
+            payload_offset: self.payload_offset,
             buffer,
             shard_data_size,
             capacity_hint,
             packet_index,
             sent_shards: 0,
+            _phantom: PhantomData,
         })
     }
 }
 
 /// In-progress incremental packet. Created by [`StreamSender::begin_frame`]. Call [`Self::push`] as
-/// payload becomes available and [`Self::finish`] when the packet is complete.
-pub struct FrameSender<'a, H> {
-    sender: &'a mut StreamSender<H>,
+/// payload becomes available and [`Self::finish`] when the packet is complete. Owns a socket handle
+/// so it can be stored across multiple producer steps (e.g. one channel message per slice).
+pub struct FrameSender<H> {
+    inner: Arc<Mutex<Box<dyn MultiplexedSocketWriter + Send>>>,
+    stream_id: u16,
+    payload_offset: usize,
     buffer: Vec<u8>, // [prefix space][header][payload...]
     shard_data_size: Option<usize>,
     capacity_hint: u32,
     packet_index: u32,
     sent_shards: usize,
+    _phantom: PhantomData<H>,
 }
 
-impl<H> FrameSender<'_, H> {
+impl<H> FrameSender<H> {
     /// Append a slice of payload, flushing any shards that are now fully available. Only shards that
     /// are guaranteed not to be the final one are flushed here; the tail is sent by `finish()`.
     pub fn push(&mut self, data: &[u8]) -> Result<()> {
@@ -217,7 +232,7 @@ impl<H> FrameSender<'_, H> {
         let Some(shard_data_size) = self.shard_data_size else {
             return Ok(()); // non-incremental transport: buffer everything, send on finish
         };
-        let prefix = self.sender.payload_offset;
+        let prefix = self.payload_offset;
 
         // Flush full shards with strictly more data after them, so they are never the final shard.
         while self.buffer.len() > (self.sent_shards + 1) * shard_data_size + prefix {
@@ -228,9 +243,10 @@ impl<H> FrameSender<'_, H> {
         Ok(())
     }
 
-    /// Flush the remaining payload (marking the last shard final) and recycle the buffer.
-    pub fn finish(mut self) -> Result<()> {
-        let prefix = self.sender.payload_offset;
+    /// Flush the remaining payload (marking the last shard final) and return the scratch buffer for
+    /// reuse.
+    pub fn finish(mut self) -> Result<Vec<u8>> {
+        let prefix = self.payload_offset;
 
         if let Some(shard_data_size) = self.shard_data_size {
             let payload_size = self.buffer.len() - prefix;
@@ -243,16 +259,12 @@ impl<H> FrameSender<'_, H> {
             }
         } else {
             // No incremental support: send the whole packet in one shot.
-            self.sender.inner.lock().send(
-                self.sender.stream_id,
-                self.packet_index,
-                &mut self.buffer,
-            )?;
+            self.inner
+                .lock()
+                .send(self.stream_id, self.packet_index, &mut self.buffer)?;
         }
 
-        self.sender.used_buffers.push(mem::take(&mut self.buffer));
-
-        Ok(())
+        Ok(mem::take(&mut self.buffer))
     }
 
     fn flush_shard(
@@ -261,7 +273,7 @@ impl<H> FrameSender<'_, H> {
         shard_index: usize,
         is_final: bool,
     ) -> Result<()> {
-        let prefix = self.sender.payload_offset;
+        let prefix = self.payload_offset;
         let payload_size = self.buffer.len() - prefix;
         let shard_start = shard_index * shard_data_size;
         let shard_size = usize::min(shard_data_size, payload_size - shard_start);
@@ -270,8 +282,8 @@ impl<H> FrameSender<'_, H> {
         // bytes overwrite the tail of the previous, already-sent shard, matching the receiver layout.
         let shard = &mut self.buffer[shard_start..][..prefix + shard_size];
 
-        self.sender.inner.lock().send_shard(
-            self.sender.stream_id,
+        self.inner.lock().send_shard(
+            self.stream_id,
             self.packet_index,
             self.capacity_hint,
             shard_index as u32,
@@ -604,11 +616,11 @@ mod tests {
         assert_eq!(data, payload.as_slice(), "whole-buffer payload mismatch");
 
         // 2) incremental, pushed in awkwardly-sized chunks that don't align to shard boundaries
-        let mut frame = sender.begin_frame(&header, payload.len()).unwrap();
+        let mut frame = sender.begin_frame(&header, payload.len(), Vec::new()).unwrap();
         for chunk in payload.chunks(577) {
             frame.push(chunk).unwrap();
         }
-        frame.finish().unwrap();
+        let _recycled = frame.finish().unwrap();
         let got = recv_with_retry(&mut receiver);
         let (h, data) = got.get().unwrap();
         assert_eq!(h, header);

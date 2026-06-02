@@ -518,7 +518,10 @@ fn connection_pipeline(
                     }
                     Err(e) => {
                         info!("{SERVER_DISCONNECTED_MESSAGE} Cause: {e}");
-                        set_hud_message(&event_queue, SERVER_DISCONNECTED_MESSAGE);
+                        set_hud_message(
+                            &event_queue,
+                            &format!("{SERVER_DISCONNECTED_MESSAGE}\nCause: {e}"),
+                        );
                         disconnect_notif.notify_one();
                     }
                 }
@@ -539,7 +542,10 @@ fn connection_pipeline(
                     Err(ConnectionError::TryAgain(_)) => continue,
                     Err(e) => {
                         info!("Client disconnected. Cause: {e}");
-                        set_hud_message(&event_queue, SERVER_DISCONNECTED_MESSAGE);
+                        set_hud_message(
+                            &event_queue,
+                            &format!("{SERVER_DISCONNECTED_MESSAGE}\nCause: {e}"),
+                        );
                         disconnect_notif.notify_one();
                     }
                 }

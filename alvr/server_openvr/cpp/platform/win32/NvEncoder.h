@@ -14,6 +14,7 @@
 #include <vector>
 #include "alvr_server/nvEncodeAPI.h"
 #include <stdint.h>
+#include <functional>
 #include <mutex>
 #include <string>
 #include <iostream>
@@ -125,6 +126,22 @@ public:
     *  GetNextInputFrame() function.
     */
     virtual void EncodeFrame(std::vector<std::vector<uint8_t>> &vPacket, NV_ENC_PIC_PARAMS *pPicParams = nullptr);
+
+    /**
+    *  @brief Encodes one frame and reads the output bitstream back incrementally, slice by slice,
+    *  as the hardware finishes each slice (NVENC subframe readback). For every newly-available
+    *  chunk of bitstream it invokes emit(data, size, isFirst, isLast). This overlaps the in-flight
+    *  encode with downstream transmission. Requires EnableSubFrameWrite() set before init and zero
+    *  output delay (no B-frames / lookahead, as used for low-latency streaming).
+    */
+    void EncodeFrameSliced(NV_ENC_PIC_PARAMS *pPicParams,
+        const std::function<void(const uint8_t *, int, bool, bool)> &emit);
+
+    /**
+    *  @brief Enables NVENC subframe write so the bitstream can be read back slice-by-slice.
+    *  Must be called before CreateDefaultEncoderParams().
+    */
+    void EnableSubFrameWrite(bool enable) { m_bSubFrameWrite = enable; }
 
     /**
     *  @brief  This function to flush the encoder queue.
@@ -427,6 +444,7 @@ protected:
     int32_t m_iGot = 0;
     int32_t m_nEncoderBuffer = 0;
     int32_t m_nOutputDelay = 0;
+    bool m_bSubFrameWrite = false;
     IVFUtils m_IVFUtils;
     bool m_bWriteIVFFileHeader = true;
     bool m_bUseIVFContainer = true;

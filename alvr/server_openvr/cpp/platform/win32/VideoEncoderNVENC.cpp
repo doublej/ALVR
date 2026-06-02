@@ -4,6 +4,8 @@
 #include "alvr_server/Logger.h"
 #include "alvr_server/Settings.h"
 #include "alvr_server/Utils.h"
+#include "alvr_server/bindings.h"
+#include <cstdlib>
 
 VideoEncoderNVENC::VideoEncoderNVENC(std::shared_ptr<CD3DRender> pD3DRender, int width, int height)
     : m_pD3DRender(pD3DRender)
@@ -11,7 +13,18 @@ VideoEncoderNVENC::VideoEncoderNVENC(std::shared_ptr<CD3DRender> pD3DRender, int
     , m_refreshRate(Settings::Instance().m_refreshRate)
     , m_renderWidth(width)
     , m_renderHeight(height)
-    , m_bitrateInMBits(30) { }
+    , m_bitrateInMBits(30)
+    , m_sliceCount(0) {
+    // Opt-in sliced (subframe-readback) streaming. ALVR_SLICED_ENCODING = number of slices per
+    // frame (e.g. 4). Unset, <=1, or out of range keeps the default whole-frame path. AV1 excluded.
+    if (const char* env = std::getenv("ALVR_SLICED_ENCODING")) {
+        int n = atoi(env);
+        if (n > 1 && n <= 32) {
+            m_sliceCount = n;
+            Info("NVENC sliced encoding enabled: %d slices/frame\n", n);
+        }
+    }
+}
 
 VideoEncoderNVENC::~VideoEncoderNVENC() { }
 
@@ -126,6 +139,38 @@ void VideoEncoderNVENC::Transmit(
         Debug("Inserting IDR frame.\n");
         picParams.encodePicFlags = NV_ENC_PIC_FLAG_FORCEIDR;
     }
+
+    if (m_sliceCount > 0 && m_codec != ALVR_CODEC_AV1) {
+        // Sliced path: transmit each slice the moment the encoder finishes it, overlapping the
+        // in-flight encode with the network. The client reassembles the slices into one frame.
+        const unsigned int maxFrameSize
+            = (unsigned int)m_renderWidth * (unsigned int)m_renderHeight;
+        unsigned int frameTotalSize = 0;
+        m_NvNecoder->EncodeFrameSliced(
+            &picParams,
+            [&](const uint8_t* data, int len, bool isFirst, bool isLast) {
+                if (len > 0) {
+                    frameTotalSize += (unsigned int)len;
+                    if (fpOut) {
+                        fpOut.write(reinterpret_cast<const char*>(data), len);
+                    }
+                }
+                ParseFrameNalsSliced(
+                    m_codec,
+                    const_cast<unsigned char*>(data),
+                    len,
+                    targetTimestampNs,
+                    insertIDR,
+                    isFirst,
+                    isLast,
+                    maxFrameSize,
+                    isLast ? frameTotalSize : 0u
+                );
+            }
+        );
+        return;
+    }
+
     m_NvNecoder->EncodeFrame(vPacket, &picParams);
 
     for (std::vector<uint8_t>& packet : vPacket) {
@@ -212,6 +257,9 @@ void VideoEncoderNVENC::FillEncodeConfig(
     NV_ENC_TUNING_INFO tuningPreset
         = static_cast<NV_ENC_TUNING_INFO>(Settings::Instance().m_nvencTuningPreset);
 
+    // Enable subframe readback before the default params are built (it sets enableSubFrameWrite).
+    m_NvNecoder->EnableSubFrameWrite(m_sliceCount > 0 && m_codec != ALVR_CODEC_AV1);
+
     m_NvNecoder->CreateDefaultEncoderParams(
         &initializeParams, encoderGUID, qualityPreset, tuningPreset
     );
@@ -245,6 +293,12 @@ void VideoEncoderNVENC::FillEncodeConfig(
         auto& config = encodeConfig.encodeCodecConfig.h264Config;
         config.repeatSPSPPS = 1;
         config.enableIntraRefresh = Settings::Instance().m_nvencEnableIntraRefresh;
+
+        if (m_sliceCount > 0) {
+            // sliceMode 3 = fixed number of slices per frame; pairs with subframe readback.
+            config.sliceMode = 3;
+            config.sliceModeData = m_sliceCount;
+        }
 
         if (Settings::Instance().m_nvencIntraRefreshPeriod != -1) {
             config.intraRefreshPeriod = Settings::Instance().m_nvencIntraRefreshPeriod;
@@ -289,6 +343,12 @@ void VideoEncoderNVENC::FillEncodeConfig(
         auto& config = encodeConfig.encodeCodecConfig.hevcConfig;
         config.repeatSPSPPS = 1;
         config.enableIntraRefresh = Settings::Instance().m_nvencEnableIntraRefresh;
+
+        if (m_sliceCount > 0) {
+            // sliceMode 3 = fixed number of slices per frame; pairs with subframe readback.
+            config.sliceMode = 3;
+            config.sliceModeData = m_sliceCount;
+        }
 
         if (Settings::Instance().m_nvencIntraRefreshPeriod != -1) {
             config.intraRefreshPeriod = Settings::Instance().m_nvencIntraRefreshPeriod;

@@ -186,6 +186,20 @@ extern "C" void CaptureFrame();
 void ParseFrameNals(
     int codec, unsigned char* buf, int len, unsigned long long targetTimestampNs, bool isIdr
 );
+// Handles one slice of a frame for sliced streaming. On the first slice it strips and registers the
+// config NALs (SPS/PPS/VPS) exactly as ParseFrameNals does for whole frames, then forwards the
+// slice via VideoSliceSend.
+void ParseFrameNalsSliced(
+    int codec,
+    unsigned char* buf,
+    int len,
+    unsigned long long targetTimestampNs,
+    bool isIdr,
+    bool isFirst,
+    bool isLast,
+    unsigned int maxFrameSize,
+    unsigned int frameTotalSize
+);
 
 // CrashHandler.cpp
 void HookCrashHandler();

@@ -42,4 +42,7 @@ private:
     int m_renderWidth;
     int m_renderHeight;
     int m_bitrateInMBits;
+    // Number of slices per frame for sliced (subframe-readback) streaming. 0 disables it and uses
+    // the default whole-frame encode path. Set from the ALVR_SLICED_ENCODING environment variable.
+    int m_sliceCount;
 };

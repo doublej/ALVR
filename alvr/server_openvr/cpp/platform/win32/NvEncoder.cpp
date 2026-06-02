@@ -11,6 +11,8 @@
 
 #include "NvEncoder.h"
 
+#include <thread>
+
 #ifndef _WIN32
 #include <cstring>
 static inline bool operator==(const GUID &guid1, const GUID &guid2) {
@@ -152,7 +154,7 @@ void NvEncoder::CreateDefaultEncoderParams(NV_ENC_INITIALIZE_PARAMS* pIntializeP
     pIntializeParams->frameRateDen = 1;
     pIntializeParams->enablePTD = 1;
     pIntializeParams->reportSliceOffsets = 0;
-    pIntializeParams->enableSubFrameWrite = 0;
+    pIntializeParams->enableSubFrameWrite = m_bSubFrameWrite ? 1 : 0;
     pIntializeParams->maxEncodeWidth = m_nWidth;
     pIntializeParams->maxEncodeHeight = m_nHeight;
     pIntializeParams->enableMEOnlyMode = m_bMotionEstimationOnly;
@@ -491,6 +493,112 @@ void NvEncoder::EncodeFrame(std::vector<std::vector<uint8_t>> &vPacket, NV_ENC_P
     {
         NVENC_THROW_ERROR("nvEncEncodePicture API failed", nvStatus);
     }
+}
+
+void NvEncoder::EncodeFrameSliced(
+    NV_ENC_PIC_PARAMS *pPicParams,
+    const std::function<void(const uint8_t *, int, bool, bool)> &emit)
+{
+    if (!IsHWEncoderInitialized())
+    {
+        NVENC_THROW_ERROR("Encoder device not found", NV_ENC_ERR_NO_ENCODE_DEVICE);
+    }
+
+    const int bfrIdx = m_iToSend % m_nEncoderBuffer;
+
+    MapResources(bfrIdx);
+
+    NV_ENC_OUTPUT_PTR outputBuffer = m_vBitstreamOutputBuffer[bfrIdx];
+    NVENCSTATUS nvStatus = DoEncode(m_vMappedInputBuffers[bfrIdx], outputBuffer, pPicParams);
+    if (nvStatus != NV_ENC_SUCCESS && nvStatus != NV_ENC_ERR_NEED_MORE_INPUT)
+    {
+        NVENC_THROW_ERROR("nvEncEncodePicture API failed", nvStatus);
+    }
+    m_iToSend++;
+
+    // Subframe readback. With enableSubFrameWrite the bitstream buffer is filled slice by slice
+    // while the frame is still encoding. We poll it with doNotWait so partial data can be flushed
+    // downstream immediately (the completion event never fires on partial data). bitstreamSizeInBytes
+    // is cumulative and hwEncodeStatus == 2 marks frame completion. bitstreamBufferPtr is only valid
+    // while locked, so each chunk is copied out before unlocking, and the buffer must be unlocked
+    // every poll or the hardware cannot make progress.
+    // Ref: https://forums.developer.nvidia.com/t/gtx980-nvenc-subframe-readback-support/43878
+    constexpr uint32_t HW_ENCODE_STATUS_DONE = 2;
+    constexpr int MAX_POLLS = 2000000; // safety bound against a missed completion signal
+
+    uint32_t sentBytes = 0;
+    bool firstEmitted = false;
+    std::vector<uint8_t> pending;
+    bool havePending = false;
+
+    // Emits the staged chunk (if any), marking it first/last as appropriate. Guarantees exactly one
+    // slice carries isLast, even when the final poll yields no new bytes.
+    auto flushPending = [&](bool isLast) {
+        if (havePending)
+        {
+            emit(pending.data(), (int)pending.size(), !firstEmitted, isLast);
+            firstEmitted = true;
+            havePending = false;
+        }
+        else if (isLast && !firstEmitted)
+        {
+            // Degenerate frame with no payload: still start and finish it.
+            emit(nullptr, 0, true, true);
+            firstEmitted = true;
+        }
+    };
+
+    for (int poll = 0; poll < MAX_POLLS; poll++)
+    {
+        NV_ENC_LOCK_BITSTREAM lockBitstreamData = { NV_ENC_LOCK_BITSTREAM_VER };
+        lockBitstreamData.outputBitstream = outputBuffer;
+        lockBitstreamData.doNotWait = 1;
+        NVENC_API_CALL(m_nvenc.nvEncLockBitstream(m_hEncoder, &lockBitstreamData));
+
+        const uint32_t available = lockBitstreamData.bitstreamSizeInBytes;
+        const bool done = (lockBitstreamData.hwEncodeStatus == HW_ENCODE_STATUS_DONE);
+
+        std::vector<uint8_t> fresh;
+        if (available > sentBytes)
+        {
+            const uint8_t *pData = (const uint8_t *)lockBitstreamData.bitstreamBufferPtr;
+            fresh.assign(pData + sentBytes, pData + available);
+            sentBytes = available;
+        }
+        const bool gotData = !fresh.empty();
+
+        NVENC_API_CALL(m_nvenc.nvEncUnlockBitstream(m_hEncoder, outputBuffer));
+
+        if (gotData)
+        {
+            // A previous chunk was staged; more bytes arrived, so it is not the last one.
+            flushPending(false);
+            pending = std::move(fresh);
+            havePending = true;
+        }
+
+        if (done)
+        {
+            flushPending(true);
+            break;
+        }
+
+        if (!gotData)
+        {
+            std::this_thread::yield();
+        }
+    }
+
+    // Consume the completion event (no-op in sync mode) and release input, mirroring
+    // GetEncodedPacket so the ring-buffer bookkeeping stays consistent.
+    WaitForCompletionEvent(m_iGot % m_nEncoderBuffer);
+
+    if (m_vMappedInputBuffers[m_iGot % m_nEncoderBuffer])
+    {
+        NVENC_API_CALL(m_nvenc.nvEncUnmapInputResource(m_hEncoder, m_vMappedInputBuffers[m_iGot % m_nEncoderBuffer]));
+        m_vMappedInputBuffers[m_iGot % m_nEncoderBuffer] = nullptr;
+    }
+    m_iGot++;
 }
 
 void NvEncoder::RunMotionEstimation(std::vector<uint8_t> &mvData)

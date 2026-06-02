@@ -116,3 +116,35 @@ void ParseFrameNals(
 
     VideoSend(targetTimestampNs, buf, len, isIdr);
 }
+
+void ParseFrameNalsSliced(
+    int codec,
+    unsigned char* buf,
+    int len,
+    unsigned long long targetTimestampNs,
+    bool isIdr,
+    bool isFirst,
+    bool isLast,
+    unsigned int maxFrameSize,
+    unsigned int frameTotalSize
+) {
+    // The config NALs (VPS/SPS/PPS, present on IDR frames via repeatSPSPPS) sit at the very start of
+    // the frame, so they live in the first slice. Strip and register them there, exactly as the
+    // whole-frame path does, leaving only coded slice data to transmit. The client reassembles the
+    // slices into one frame and configures its decoder from the separately-sent config NALs.
+    if (isFirst && (unsigned)len >= sizeof(NAL_PREFIX_4B)) {
+        if (codec == ALVR_CODEC_H264) {
+            processH264Nals(buf, len);
+        } else if (codec == ALVR_CODEC_HEVC) {
+            processHevcNals(buf, len);
+        }
+    }
+
+    if (len < 0) {
+        len = 0;
+    }
+
+    VideoSliceSend(
+        targetTimestampNs, buf, len, isIdr, isFirst, isLast, maxFrameSize, frameTotalSize
+    );
+}

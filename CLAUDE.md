@@ -62,11 +62,12 @@ Logging notes for this branch (`diagnostics`), learned the hard way:
 
 - **Capture headset logs in release — no rebuild:**
   ```bash
-  adb logcat -v threadtime -s '[ALVR NATIVE-RUST]:V' '*:E'
+  adb logcat -v threadtime -s 'ALVR-NATIVE-RUST:V' '*:E'
   ```
-  `[ALVR NATIVE-RUST]` is the client's only tag; `*:E` keeps system errors
-  (OOM/ANR/tombstones) that can kill the client. The dashboard Diagnostics tab runs
-  the same filter automatically and writes `client.log` / `diagnostics.log`.
+  `ALVR-NATIVE-RUST` is the client's only tag (space/bracket-free so the `-s`
+  filterspec actually matches); `*:E` keeps system errors (OOM/ANR/tombstones) that
+  can kill the client. The dashboard Diagnostics tab runs the same filter
+  automatically and writes `client.log` / `diagnostics.log`.
 
 - **Full reconnect/handshake trace** (the whole `dbg_connection!` state machine):
   build a **debug** client — `cargo xtask build-client` *without* `--release` — and

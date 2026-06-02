@@ -94,7 +94,10 @@ pub fn init_logging() {
     {
         android_logger::init_once(
             android_logger::Config::default()
-                .with_tag("[ALVR NATIVE-RUST]")
+                // No space/brackets: a logcat tag with a space can't be matched by
+                // a `logcat -s TAG:PRIO` filterspec (logcat tokenizes the tag at the
+                // space), which silently breaks all tag-scoped capture.
+                .with_tag("ALVR-NATIVE-RUST")
                 .format(|f, record| {
                     if send_log(record) {
                         writeln!(f, "{}", record.args())

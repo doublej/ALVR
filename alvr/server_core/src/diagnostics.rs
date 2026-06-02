@@ -813,7 +813,7 @@ pub fn start_logcat(state: &Arc<Mutex<DiagnosticsState>>) -> Result<(), String> 
 
     info!("[Diag] Starting logcat for device: {}", device_serial);
 
-    // Scope to ALVR's own logcat tag ("[ALVR NATIVE-RUST]") so the client signal
+    // Scope to ALVR's own logcat tag ("ALVR-NATIVE-RUST") so the client signal
     // isn't buried under whole-system Android noise (SurfaceFlinger/kernel/etc.).
     // Keep "*:E" so system errors that can kill the client (OOM/ANR/tombstones)
     // are still captured - relevant to "never reconnects until restart".
@@ -823,7 +823,7 @@ pub fn start_logcat(state: &Arc<Mutex<DiagnosticsState>>) -> Result<(), String> 
         "logcat",
         "-v", "threadtime",
         "-T", "100",  // Start with last 100 lines then stream new ones
-        "[ALVR NATIVE-RUST]:V", "*:E",  // filterspec: ALVR verbose + system errors only
+        "ALVR-NATIVE-RUST:V", "*:E",  // filterspec: ALVR verbose + system errors only
     ]);
     cmd.stdout(Stdio::piped());
     cmd.stderr(Stdio::piped());

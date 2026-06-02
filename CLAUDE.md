@@ -51,6 +51,36 @@ cargo xtask clippy --ci  # CI mode
 cargo test -p alvr_session
 ```
 
+## Debugging the headset (logging)
+
+Logging notes for this branch (`diagnostics`), learned the hard way:
+
+- **`dbg_*!` macros are compiled out in release.** Every `dbg_connection!`,
+  `dbg_sockets!`, `dbg_decoder!`, etc. is `#[cfg(debug_assertions)]` (upstream). In a
+  `--release` streamer/APK the **Debug groups** toggles (Settings → Extra → Logging)
+  do nothing — those lines were never compiled in. Release visibility is `info!`+ only.
+
+- **Capture headset logs in release — no rebuild:**
+  ```bash
+  adb logcat -v threadtime -s '[ALVR NATIVE-RUST]:V' '*:E'
+  ```
+  `[ALVR NATIVE-RUST]` is the client's only tag; `*:E` keeps system errors
+  (OOM/ANR/tombstones) that can kill the client. The dashboard Diagnostics tab runs
+  the same filter automatically and writes `client.log` / `diagnostics.log`.
+
+- **Full reconnect/handshake trace** (the whole `dbg_connection!` state machine):
+  build a **debug** client — `cargo xtask build-client` *without* `--release` — and
+  enable Settings → Extra → Logging → Debug groups → Connection. The Android log cap
+  is already raised to Debug on this branch, so the lines reach logcat.
+
+- **Streamer logs:** dashboard Logs tab (live), or enable Settings → Extra → Logging →
+  "Log to disk" to persist `session_log.txt` (survives SteamVR restarts; the
+  maintainer-requested artifact for bug reports).
+
+- **Connected-headset logs mirror to the PC** over the control socket
+  (`client_log_report_level`, defaults to Info here). The mirror dies with the socket,
+  so a *timeout / never-reconnect* is visible only via the `adb logcat` path above.
+
 ## Architecture
 
 ### Two-Application Model

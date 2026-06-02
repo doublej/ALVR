@@ -95,8 +95,11 @@ pub fn connection_lifecycle_loop(
 
     set_hud_message(&event_queue, INITIAL_MESSAGE);
 
+    let mut connection_attempt = 0u64;
     while *lifecycle_state.read() != LifecycleState::ShuttingDown {
         if *lifecycle_state.read() == LifecycleState::Resumed {
+            connection_attempt += 1;
+            info!("Connection attempt #{connection_attempt}");
             if let Err(e) = connection_pipeline(
                 capabilities.clone(),
                 Arc::clone(&ctx),
@@ -134,6 +137,9 @@ fn connection_pipeline(
         let listener_socket =
             alvr_sockets::get_server_listener(HANDSHAKE_ACTION_TIMEOUT).to_con()?;
 
+        // Logged once before the spin (the loop body runs ~2x/s; do NOT log inside it).
+        info!("Announcing presence on the local network, waiting for the streamer to accept");
+
         loop {
             if *lifecycle_state.write() != LifecycleState::Resumed {
                 return Ok(());
@@ -145,6 +151,7 @@ fn connection_pipeline(
                 SOCKET_INIT_RETRY_INTERVAL,
                 PeerType::Server(&listener_socket),
             ) {
+                info!("Streamer accepted connection, starting handshake");
                 set_hud_message(&event_queue, SUCCESS_CONNECT_MESSAGE);
                 break pair;
             }

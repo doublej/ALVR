@@ -19,6 +19,23 @@ Target rig: RTX 4080 Super (Ada, dual NVENC), Windows, Quest 3, wired.
 
 All committed locally on branch `diagnostics` (not pushed).
 
+### Adversarial review pass
+
+A multi-agent adversarial review (5 dimensions → independent verification) found and fixed **9 real
+issues**, including one **critical** crash:
+
+| # | Sev | Fix |
+|---|-----|-----|
+| 1 | critical | NVENC poll wrapped `nvEncLockBitstream(doNotWait=1)` in the throwing `NVENC_API_CALL`; `NV_ENC_ERR_LOCK_BUSY` ("no slice ready yet") would have crashed the encode thread on the first sliced frame. Now treated as yield+retry. |
+| 2 | high | `STREAM_CORRUPTED` was re-checked per slice → a frame could be dropped mid-stream, stranding a partial `FrameSender`. Drop decision now latched once per frame (`DROPPING_FRAME`). |
+| 3-5,9 | high/med | `maxFrameSize` was `width*height` (not a true upper bound); the receiver hard-rejects shards past the implied capacity, so an oversized frame would never reassemble. Now `width*height*3/2` (raw NV12 ceiling). |
+| 6 | low | Wire-supplied `capacity_hint` drove an unbounded `reserve()` (multi-TB DoS). Clamped to `MAX_CAPACITY_HINT`. |
+| 7 | low | Orphan `is_last` (first slice dropped upstream) reported stats for a never-sent frame. Whole frame now dropped consistently (`SLICE_FRAME_DROPPED`). |
+| 8 | low | `send_video_slice` built a slice from a possibly-null pointer (UB) on degenerate frames. Now null/zero-length safe. |
+
+After the fixes: sockets reassembly test green (macOS), `server_core` compiles, and the full
+streamer (driver + dashboard) rebuilds clean on Windows.
+
 ## Architecture
 
 ```
@@ -95,8 +112,10 @@ total **motion-to-photon**, *not* in raw encode time. Compare `ALVR_SLICED_ENCOD
    `MAX_POLLS` safety bound. If frames hang or truncate, log `hwEncodeStatus`/`bitstreamSizeInBytes`
    per poll and adjust.
 2. **Polling `doNotWait=1` while `enableEncodeAsync=1`.** We left async on (only `enableSubFrameWrite`
-   was added) on the theory that subframe write makes partial data lockable regardless of async. If
-   partial reads never appear, try forcing `enableEncodeAsync=0` for the sliced path.
+   was added) on the theory that subframe write makes partial data lockable regardless of async.
+   `NV_ENC_ERR_LOCK_BUSY` ("no slice ready yet") is now handled as a retry, so polling is safe; but
+   if partial reads never actually appear (the loop only ever sees the whole frame at once), the
+   overlap won't materialize — try forcing `enableEncodeAsync=0` for the sliced path.
 3. **`NV_ENC_CAPS_SUPPORT_SUBFRAME_READBACK`** is assumed supported on the 4080S. Add a capability
    check + fallback if any GPU reports unsupported.
 4. **sliceMode=3 / N slices** interaction with intra-refresh and the chosen preset/tuning.

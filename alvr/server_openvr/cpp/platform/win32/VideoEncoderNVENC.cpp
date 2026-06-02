@@ -143,8 +143,14 @@ void VideoEncoderNVENC::Transmit(
     if (m_sliceCount > 0 && m_codec != ALVR_CODEC_AV1) {
         // Sliced path: transmit each slice the moment the encoder finishes it, overlapping the
         // in-flight encode with the network. The client reassembles the slices into one frame.
+        //
+        // maxFrameSize must be a true UPPER BOUND on the encoded frame size: the receiver uses it to
+        // size the reassembly buffer and HARD-rejects any shard whose index exceeds the implied
+        // capacity, so an undersized bound silently drops the final shards and the frame never
+        // completes. The raw NV12 size (1.5 bytes/pixel) is the codec's hard ceiling (I_PCM cannot
+        // exceed raw), so encoded frames are always well under it.
         const unsigned int maxFrameSize
-            = (unsigned int)m_renderWidth * (unsigned int)m_renderHeight;
+            = (unsigned int)m_renderWidth * (unsigned int)m_renderHeight * 3u / 2u;
         unsigned int frameTotalSize = 0;
         m_NvNecoder->EncodeFrameSliced(
             &picParams,

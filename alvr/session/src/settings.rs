@@ -2229,7 +2229,9 @@ pub fn session_settings_default() -> SettingsDefault {
                 client_log_report_level: SwitchDefault {
                     enabled: true,
                     content: LogSeverityDefault {
-                        variant: LogSeverityDefaultVariant::Error,
+                        // Info (was Error) so the connected headset actually mirrors
+                        // its connection lifecycle to the dashboard Logs tab.
+                        variant: LogSeverityDefaultVariant::Info,
                     },
                 },
                 log_to_disk: cfg!(debug_assertions),

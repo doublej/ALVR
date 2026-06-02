@@ -102,7 +102,9 @@ pub fn init_logging() {
                         Ok(())
                     }
                 })
-                .with_max_level(alvr_common::log::LevelFilter::Info),
+                // Debug (was Info) so a debug client build's dbg_*! lines reach
+                // logcat; in release dbg_*! are compiled out, so volume is unchanged.
+                .with_max_level(alvr_common::log::LevelFilter::Debug),
         );
     }
     #[cfg(not(target_os = "android"))]

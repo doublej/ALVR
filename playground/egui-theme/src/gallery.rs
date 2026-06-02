@@ -169,19 +169,37 @@ fn logs_card(ui: &mut Ui, p: &ThemeParams) {
 
 fn palette_card(ui: &mut Ui, p: &ThemeParams) {
     use theme::graph_colors as g;
+    let items = [
+        (g::RENDER, "Render"),
+        (g::IDLE, "Idle"),
+        (g::TRANSCODE, "Transcode"),
+        (g::NETWORK, "Network"),
+        (g::SERVER_FPS, "Server FPS"),
+        (g::CLIENT_FPS, "Client FPS"),
+    ];
     card(ui, p, "Statistics graph palette", |ui| {
-        ui.horizontal_wrapped(|ui| {
-            for (color, name) in [
-                (g::RENDER, "Render"),
-                (g::IDLE, "Idle"),
-                (g::TRANSCODE, "Transcode"),
-                (g::NETWORK, "Network"),
-                (g::SERVER_FPS, "Server FPS"),
-                (g::CLIENT_FPS, "Client FPS"),
-            ] {
-                swatch(ui, p, color, name);
-            }
-        });
+        Grid::new("palette")
+            .num_columns(3)
+            .min_row_height(22.0)
+            .min_col_width(150.0)
+            .spacing([20.0, 12.0])
+            .show(ui, |ui| {
+                for (i, (color, name)) in items.iter().enumerate() {
+                    legend_dot(ui, p, *color, name);
+                    if i % 3 == 2 {
+                        ui.end_row();
+                    }
+                }
+            });
+    });
+}
+
+fn legend_dot(ui: &mut Ui, p: &ThemeParams, color: Color32, name: &str) {
+    ui.horizontal(|ui| {
+        let (r, _) = ui.allocate_exact_size(Vec2::splat(10.0), Sense::hover());
+        ui.painter().rect_filled(r, CornerRadius::same(3), color);
+        ui.add_space(7.0);
+        ui.label(RichText::new(name).size(12.5).color(p.text_muted));
     });
 }
 
@@ -224,23 +242,28 @@ fn subgroup(ui: &mut Ui, p: &ThemeParams, title: &str, add: impl FnOnce(&mut Ui)
 
 // ---- readout rows -----------------------------------------------------------
 
+const READOUT_MEASURE: f32 = 460.0;
+
 fn slider_block(ui: &mut Ui, p: &ThemeParams, spec: &SliderSpec, value: &mut f32) {
-    ui.horizontal(|ui| {
-        ui.label(RichText::new(spec.label).color(p.text_muted).size(13.0));
-        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-            ui.label(mono(spec.unit, 11.0, p.text_faint));
-            ui.add_space(3.0);
-            ui.label(mono_strong(fmt(*value, spec.decimals), 15.0, p.accent_hover));
+    ui.scope(|ui| {
+        ui.set_max_width(READOUT_MEASURE);
+        ui.horizontal(|ui| {
+            ui.label(RichText::new(spec.label).color(p.text_muted).size(13.0));
+            ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                ui.label(mono(spec.unit, 11.0, p.text_faint));
+                ui.add_space(3.0);
+                ui.label(mono_strong(fmt(*value, spec.decimals), 15.0, p.accent_hover));
+            });
         });
-    });
-    ui.add_space(4.0);
-    ui.horizontal(|ui| {
-        ui.label(mono(fmt(*spec.range.start(), spec.decimals), 10.0, p.text_faint));
-        let track = (ui.available_width() - 52.0).max(120.0);
-        ui.spacing_mut().slider_width = track;
-        ui.add(Slider::new(value, spec.range.clone()).show_value(false).step_by(spec.step as f64));
-        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-            ui.label(mono(fmt(*spec.range.end(), spec.decimals), 10.0, p.text_faint));
+        ui.add_space(4.0);
+        ui.horizontal(|ui| {
+            ui.label(mono(fmt(*spec.range.start(), spec.decimals), 10.0, p.text_faint));
+            let track = (ui.available_width() - 52.0).clamp(120.0, READOUT_MEASURE);
+            ui.spacing_mut().slider_width = track;
+            ui.add(Slider::new(value, spec.range.clone()).show_value(false).step_by(spec.step as f64));
+            ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+                ui.label(mono(fmt(*spec.range.end(), spec.decimals), 10.0, p.text_faint));
+            });
         });
     });
     ui.add_space(10.0);
@@ -299,22 +322,6 @@ fn status_pill(ui: &mut Ui, p: &ThemeParams, on: bool) {
                 ui.label(RichText::new(spaced_upper(text)).text_style(ts_eyebrow()).color(fg));
             });
         });
-}
-
-fn swatch(ui: &mut Ui, p: &ThemeParams, color: Color32, name: &str) {
-    Frame::new()
-        .fill(p.darker_bg)
-        .corner_radius(p.widget_radius)
-        .inner_margin(Margin::symmetric(10, 7))
-        .show(ui, |ui| {
-            ui.horizontal(|ui| {
-                let (r, _) = ui.allocate_exact_size(Vec2::splat(11.0), Sense::hover());
-                ui.painter().rect_filled(r, CornerRadius::same(2), color);
-                ui.add_space(3.0);
-                ui.label(RichText::new(name).size(12.0).color(p.text_muted));
-            });
-        });
-    ui.add_space(6.0);
 }
 
 // ---- text helpers -----------------------------------------------------------

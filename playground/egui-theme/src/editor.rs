@@ -85,7 +85,7 @@ fn color(ui: &mut Ui, label: &str, value: &mut Color32) {
 }
 
 fn slider(ui: &mut Ui, label: &str, value: &mut f32, range: RangeInclusive<f32>) {
-    ui.add(egui::Slider::new(value, range).text(label));
+    ui.add(egui::Slider::new(value, range).max_decimals(1).text(label));
 }
 
 fn u8_slider(ui: &mut Ui, label: &str, value: &mut u8, range: RangeInclusive<u8>) {

@@ -18,8 +18,8 @@ fn main() -> eframe::Result {
     env_logger::init();
     let options = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_inner_size([1240.0, 820.0])
-            .with_min_inner_size([900.0, 600.0]),
+            .with_inner_size([1560.0, 900.0])
+            .with_min_inner_size([960.0, 600.0]),
         ..Default::default()
     };
     eframe::run_native(
@@ -74,7 +74,7 @@ impl eframe::App for App {
                 // Fixed, centered measure — controls read as an instrument panel,
                 // not a form rubber-banded to the window width.
                 let avail = ui.available_width();
-                let measure = avail.min(860.0);
+                let measure = avail.min(1080.0);
                 let pad = ((avail - measure) / 2.0).max(0.0);
                 ui.horizontal(|ui| {
                     ui.add_space(pad);

@@ -15,7 +15,7 @@ pub use c_api::*;
 pub use logging_backend::init_logging;
 pub use tracking::HandType;
 
-use crate::connection::VideoPacket;
+use crate::connection::{VideoPacket, VideoStreamPacket};
 use alvr_common::{
     ConnectionState, DEVICE_ID_TO_PATH, DeviceMotion, LifecycleState, Pose, RelaxedAtomic,
     ViewParams, dbg_server_core, error,
@@ -103,9 +103,13 @@ pub struct ConnectionContext {
     video_recording_file: Mutex<Option<File>>,
     connection_threads: Mutex<Vec<JoinHandle<()>>>,
     clients_to_be_removed: Mutex<HashSet<String>>,
-    video_channel_sender: Mutex<Option<SyncSender<VideoPacket>>>,
+    video_channel_sender: Mutex<Option<SyncSender<VideoStreamPacket>>>,
     haptics_sender: Mutex<Option<StreamSender<Haptics>>>,
 }
+
+// Shared by the whole-frame and sliced video send paths. Starts corrupted: the client hasn't
+// received the initial IDR yet.
+static STREAM_CORRUPTED: AtomicBool = AtomicBool::new(true);
 
 pub fn create_recording_file(connection_context: &ConnectionContext, settings: &Settings) {
     let codec = settings.video.preferred_codec;
@@ -374,8 +378,6 @@ impl ServerCoreContext {
     ) {
         dbg_server_core!("send_video_nal");
 
-        // start in the corrupts state, the client didn't receive the initial IDR yet.
-        static STREAM_CORRUPTED: AtomicBool = AtomicBool::new(true);
         static LAST_IDR_INSTANT: LazyLock<Mutex<Instant>> =
             LazyLock::new(|| Mutex::new(Instant::now()));
 
@@ -424,14 +426,14 @@ impl ServerCoreContext {
                     file.write_all(&nal_buffer).ok();
                 }
 
-                let sender_result = sender.try_send(VideoPacket {
+                let sender_result = sender.try_send(VideoStreamPacket::Whole(VideoPacket {
                     header: VideoPacketHeader {
                         timestamp,
                         global_view_params,
                         is_idr,
                     },
                     payload: nal_buffer,
-                });
+                }));
                 if matches!(sender_result, Err(TrySendError::Full(_))) {
                     STREAM_CORRUPTED.store(true, Ordering::SeqCst);
                     self.connection_context
@@ -451,6 +453,76 @@ impl ServerCoreContext {
                     .bitrate_manager
                     .lock()
                     .report_frame_encoded(timestamp, encoder_latency, buffer_size);
+            }
+        }
+    }
+
+    /// Send one slice of a video frame. Slices of a frame are transmitted as they finish encoding
+    /// (overlapping encode with network) and reassembled into a single packet on the client. The
+    /// first slice carries the header; the last carries the frame's total size for statistics.
+    /// `max_frame_size` is a safe upper bound on the whole frame's encoded size (for buffer sizing).
+    #[allow(clippy::too_many_arguments)]
+    pub fn send_video_slice(
+        &self,
+        timestamp: Duration,
+        global_view_params: [ViewParams; 2],
+        is_idr: bool,
+        is_first: bool,
+        is_last: bool,
+        max_frame_size: usize,
+        frame_total_size: usize,
+        slice_buffer: Vec<u8>,
+    ) {
+        dbg_server_core!("send_video_slice");
+
+        if let Some(sender) = &*self.connection_context.video_channel_sender.lock() {
+            if is_first && is_idr {
+                STREAM_CORRUPTED.store(false, Ordering::SeqCst);
+            }
+
+            let waiting_for_idr = STREAM_CORRUPTED.load(Ordering::SeqCst)
+                && SESSION_MANAGER
+                    .read()
+                    .settings()
+                    .connection
+                    .avoid_video_glitching;
+            if waiting_for_idr {
+                // Drop the whole frame consistently until the next IDR.
+                return;
+            }
+
+            let start = is_first.then_some((
+                VideoPacketHeader {
+                    timestamp,
+                    global_view_params,
+                    is_idr,
+                },
+                max_frame_size,
+            ));
+
+            let sender_result = sender.try_send(VideoStreamPacket::Slice {
+                start,
+                payload: slice_buffer,
+                is_last,
+            });
+            if matches!(sender_result, Err(TrySendError::Full(_))) {
+                STREAM_CORRUPTED.store(true, Ordering::SeqCst);
+                self.connection_context
+                    .events_sender
+                    .send(ServerCoreEvent::RequestIDR)
+                    .ok();
+                warn!("Dropping video slice. Reason: Can't push to network");
+            }
+
+            if is_last
+                && let Some(stats) = &mut *self.connection_context.statistics_manager.write()
+            {
+                let encoder_latency = stats.report_frame_encoded(timestamp, frame_total_size);
+
+                self.connection_context
+                    .bitrate_manager
+                    .lock()
+                    .report_frame_encoded(timestamp, encoder_latency, frame_total_size);
             }
         }
     }

@@ -33,6 +33,7 @@ use alvr_sockets::{
 };
 use std::{
     collections::HashMap,
+    mem,
     net::{IpAddr, Ipv4Addr},
     process::Command,
     sync::{Arc, mpsc::RecvTimeoutError},
@@ -50,6 +51,19 @@ const MAX_UNREAD_PACKETS: usize = 10; // Applies per stream
 pub struct VideoPacket {
     pub header: VideoPacketHeader,
     pub payload: Vec<u8>,
+}
+
+/// One message on the video channel. A frame is delivered either whole (default) or as a sequence
+/// of slices that are transmitted as they finish encoding, overlapping encode with network. Slices
+/// of one frame reassemble into a single network packet on the client (no partial-frame decode).
+pub enum VideoStreamPacket {
+    Whole(VideoPacket),
+    Slice {
+        /// `Some((header, max_frame_size))` on the first slice of a frame, `None` on later slices.
+        start: Option<(VideoPacketHeader, usize)>,
+        payload: Vec<u8>,
+        is_last: bool,
+    },
 }
 
 fn align32(value: f32) -> u32 {
@@ -863,24 +877,62 @@ fn connection_pipeline(
         let ctx = Arc::clone(&ctx);
         let client_hostname = client_hostname.clone();
         move || {
+            // Recycled scratch buffer + the in-progress sliced frame (None between frames).
+            let mut spare = Vec::new();
+            let mut frame: Option<alvr_sockets::FrameSender<VideoPacketHeader>> = None;
+
             while is_streaming(&client_hostname) {
-                let VideoPacket {
-                    mut header,
-                    payload,
-                } = match video_channel_receiver.recv_timeout(STREAMING_RECV_TIMEOUT) {
+                let packet = match video_channel_receiver.recv_timeout(STREAMING_RECV_TIMEOUT) {
                     Ok(packet) => packet,
                     Err(RecvTimeoutError::Timeout) => continue,
                     Err(RecvTimeoutError::Disconnected) => return,
                 };
 
-                ctx.tracking_manager
-                    .read()
-                    .unrecenter_view_params(&mut header.global_view_params);
+                let unrecenter = |header: &mut VideoPacketHeader| {
+                    ctx.tracking_manager
+                        .read()
+                        .unrecenter_view_params(&mut header.global_view_params);
+                };
 
-                // todo: use get_buffer and make encoder write to socket buffers directly to avoid copy
-                video_sender
-                    .send_header_with_payload(&header, &payload)
-                    .ok();
+                match packet {
+                    VideoStreamPacket::Whole(VideoPacket {
+                        mut header,
+                        payload,
+                    }) => {
+                        frame = None; // abort any half-sent sliced frame
+                        unrecenter(&mut header);
+                        // todo: use get_buffer and make encoder write to socket buffers directly
+                        video_sender
+                            .send_header_with_payload(&header, &payload)
+                            .ok();
+                    }
+                    VideoStreamPacket::Slice {
+                        start,
+                        payload,
+                        is_last,
+                    } => {
+                        if let Some((mut header, max_frame_size)) = start {
+                            frame = None; // drop any unfinished previous frame
+                            unrecenter(&mut header);
+                            if let Ok(mut sender) =
+                                video_sender.begin_frame(&header, max_frame_size, mem::take(&mut spare))
+                            {
+                                sender.push(&payload).ok();
+                                if is_last {
+                                    spare = sender.finish().unwrap_or_default();
+                                } else {
+                                    frame = Some(sender);
+                                }
+                            }
+                        } else if let Some(sender) = &mut frame {
+                            sender.push(&payload).ok();
+                            if is_last {
+                                spare = frame.take().unwrap().finish().unwrap_or_default();
+                            }
+                        }
+                        // else: orphan slice (first slice was dropped) — ignore
+                    }
+                }
             }
         }
     });

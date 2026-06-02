@@ -451,6 +451,46 @@ pub unsafe extern "C" fn alvr_send_video_nal(
     }
 }
 
+/// Send one slice of a video frame for overlapped (sliced) streaming. The first slice of a frame
+/// has is_first=true and carries the header; the last has is_last=true and carries frame_total_size
+/// (the whole frame's encoded size, for statistics). max_frame_size is a safe upper bound on the
+/// whole frame's encoded size, used to size the client's reassembly buffer.
+/// global_view_params must be an array of length 2
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn alvr_send_video_slice(
+    timestamp_ns: u64,
+    global_view_params: *const AlvrViewParams,
+    is_idr: bool,
+    is_first: bool,
+    is_last: bool,
+    max_frame_size: u32,
+    frame_total_size: u32,
+    buffer_ptr: *mut u8,
+    len: i32,
+) {
+    if let Some(context) = &*SERVER_CORE_CONTEXT.read() {
+        let buffer = unsafe { std::slice::from_raw_parts(buffer_ptr, len as usize) };
+
+        let global_view_params = unsafe {
+            [
+                alvr_common::from_capi_view_params(&(*global_view_params)),
+                alvr_common::from_capi_view_params(&(*global_view_params.add(1))),
+            ]
+        };
+
+        context.send_video_slice(
+            Duration::from_nanos(timestamp_ns),
+            global_view_params,
+            is_idr,
+            is_first,
+            is_last,
+            max_frame_size as usize,
+            frame_total_size as usize,
+            buffer.to_vec(),
+        );
+    }
+}
+
 /// Returns true if updated
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn alvr_get_dynamic_encoder_params(

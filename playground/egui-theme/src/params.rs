@@ -72,14 +72,14 @@ impl Default for ThemeParams {
             log_info: rgb(122, 162, 247),
             log_debug: rgb(150, 156, 167),
             log_event: rgb(108, 114, 126),
-            widget_radius: 7,
-            card_radius: 12,
-            frame_padding: 14.0,
-            item_spacing: Vec2::new(10.0, 9.0),
-            button_padding: Vec2::new(13.0, 7.0),
-            interact_size: 28.0,
-            slider_width: 200.0,
-            frame_text_spacing: 8.0,
+            widget_radius: 4,
+            card_radius: 8,
+            frame_padding: 20.0,
+            item_spacing: Vec2::new(20.0, 10.0),
+            button_padding: Vec2::new(20.0, 5.0),
+            interact_size: 44.0,
+            slider_width: 320.0,
+            frame_text_spacing: 6.0,
             scrollbar_dot_diameter: 16.0,
         }
     }
@@ -132,6 +132,8 @@ impl ThemeParams {
         v.hyperlink_color = self.accent_hover;
         v.selection.bg_fill = with_alpha(self.accent, 80);
         v.selection.stroke = Stroke::new(1.0_f32, self.accent_hover);
+        v.slider_trailing_fill = true;
+        v.handle_shape = egui::style::HandleShape::Circle;
 
         // Labels, separators, card outlines.
         let n = &mut v.widgets.noninteractive;
@@ -254,6 +256,8 @@ pub fn set_theme(ctx: &Context) {{\n\
     v.hyperlink_color = ACCENT_HOVER;\n\
     v.selection.bg_fill = Color32::from_rgba_unmultiplied({ar}, {ag}, {ab}, 80);\n\
     v.selection.stroke = Stroke::new(1.0_f32, ACCENT_HOVER);\n\
+    v.slider_trailing_fill = true;\n\
+    v.handle_shape = egui::style::HandleShape::Circle;\n\
     v.widgets.noninteractive.bg_fill = SECTION_BG;\n\
     v.widgets.noninteractive.bg_stroke = Stroke::new(1.0_f32, SEPARATOR_BG);\n\
     v.widgets.noninteractive.fg_stroke = Stroke::new(1.0_f32, FG);\n\

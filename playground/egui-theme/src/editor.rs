@@ -6,6 +6,14 @@ use egui::{Color32, RichText, Ui, Vec2};
 use std::ops::RangeInclusive;
 
 pub fn show(ui: &mut Ui, p: &mut ThemeParams, scale: &mut TypeScale) {
+    // The editor is a tool, not the product: keep its own controls compact and
+    // readable regardless of how chunky the product theme is being tuned.
+    let s = ui.spacing_mut();
+    s.slider_width = 148.0;
+    s.interact_size = Vec2::splat(20.0);
+    s.item_spacing = Vec2::new(8.0, 6.0);
+    s.button_padding = Vec2::new(8.0, 3.0);
+
     ui.label(RichText::new("Theme studio").text_style(ts_display()).size(18.0));
     ui.add_space(6.0);
     if ui.button("⟲  Reset to defaults").clicked() {

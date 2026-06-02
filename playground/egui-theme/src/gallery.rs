@@ -1,13 +1,15 @@
-//! Central preview: a representative slice of the dashboard rendered with the live
-//! theme + type scale, so every typographic and color decision is visible in context.
+//! Central preview — a telemetry instrument. Everything left-locked; the readout
+//! row (label · hairline track · right-locked mono value + min/max ticks) is the
+//! motif, repeated across sliders, stats and groups.
 
 use crate::params::ThemeParams;
 use crate::typography::{self, ts_display, ts_eyebrow};
 use alvr_gui_common::{DisplayString, button_group_clicked, switch, theme};
 use egui::{
-    Align, Button, Color32, ComboBox, CornerRadius, FontFamily, Frame, Layout, Margin, Rect,
+    Align, Button, Color32, ComboBox, CornerRadius, FontFamily, Frame, Grid, Layout, Margin, Rect,
     RichText, Sense, Slider, Stroke, Ui, Vec2,
 };
+use std::ops::RangeInclusive;
 
 pub struct DemoState {
     pub name: String,
@@ -39,6 +41,14 @@ impl Default for DemoState {
     }
 }
 
+struct SliderSpec {
+    label: &'static str,
+    unit: &'static str,
+    range: RangeInclusive<f32>,
+    step: f32,
+    decimals: usize,
+}
+
 pub fn show(ui: &mut Ui, s: &mut DemoState, p: &ThemeParams) {
     header(ui, p);
     stats_card(ui, p);
@@ -60,7 +70,7 @@ fn header(ui: &mut Ui, p: &ThemeParams) {
     ui.label(RichText::new("Air Light VR — streamer dashboard").color(p.text_muted));
     ui.add_space(12.0);
     accent_rule(ui, p);
-    ui.add_space(p.item_spacing.y + 4.0);
+    ui.add_space(14.0);
 }
 
 fn accent_rule(ui: &mut Ui, p: &ThemeParams) {
@@ -87,40 +97,37 @@ fn stats_card(ui: &mut Ui, p: &ThemeParams) {
 fn connection_card(ui: &mut Ui, s: &mut DemoState, p: &ThemeParams) {
     card(ui, p, "Connection", |ui| {
         ui.horizontal(|ui| {
-            ui.label(RichText::new(s.name.as_str()).text_style(typography::ts_display()).size(16.0).color(p.fg));
+            ui.label(RichText::new(s.name.as_str()).text_style(ts_display()).size(16.0).color(p.fg));
             ui.with_layout(Layout::right_to_left(Align::Center), |ui| status_pill(ui, p, s.enabled));
         });
-        ui.add_space(p.frame_text_spacing);
-        ui.horizontal(|ui| {
-            switch(ui, &mut s.enabled);
-            ui.label(RichText::new("Trust & auto-connect").color(p.text_muted));
-        });
+        ui.add_space(8.0);
+        switch_row(ui, p, &mut s.enabled, "Trust & auto-connect");
     });
 }
 
 fn video_card(ui: &mut Ui, s: &mut DemoState, p: &ThemeParams) {
     card(ui, p, "Video", |ui| {
-        slider_row(ui, p, "Bitrate", &mut s.bitrate, 10.0..=500.0, "Mb/s");
-        slider_row(ui, p, "Resolution", &mut s.resolution, 0.5..=2.0, "×");
-        ui.add_space(2.0);
-        ui.horizontal(|ui| {
-            switch(ui, &mut s.foveation);
-            ui.label(RichText::new("Foveated encoding").color(p.text_muted));
+        subgroup(ui, p, "Throughput", |ui| {
+            slider_block(ui, p, &SliderSpec { label: "Bitrate", unit: "Mb/s", range: 10.0..=500.0, step: 5.0, decimals: 0 }, &mut s.bitrate);
+            slider_block(ui, p, &SliderSpec { label: "Resolution scale", unit: "×", range: 0.5..=2.0, step: 0.05, decimals: 2 }, &mut s.resolution);
         });
-        ui.add_space(p.frame_text_spacing);
-        field_label(ui, p, "Codec");
-        ui.horizontal(|ui| {
-            button_group_clicked(ui, &s.codec_options, &mut s.codec);
+        subgroup(ui, p, "Encoding", |ui| {
+            switch_row(ui, p, &mut s.foveation, "Foveated encoding");
+            ui.add_space(10.0);
+            field_label(ui, p, "Codec");
+            ui.add_space(4.0);
+            ui.horizontal(|ui| button_group_clicked(ui, &s.codec_options, &mut s.codec));
+            ui.add_space(10.0);
+            field_label(ui, p, "Latency preset");
+            ui.add_space(4.0);
+            ComboBox::from_id_salt("preset")
+                .selected_text(&s.preset)
+                .show_ui(ui, |ui| {
+                    for opt in ["Latency", "Balanced", "Quality"] {
+                        ui.selectable_value(&mut s.preset, opt.to_owned(), opt);
+                    }
+                });
         });
-        ui.add_space(p.frame_text_spacing);
-        field_label(ui, p, "Latency preset");
-        ComboBox::from_id_salt("preset")
-            .selected_text(&s.preset)
-            .show_ui(ui, |ui| {
-                for opt in ["Latency", "Balanced", "Quality"] {
-                    ui.selectable_value(&mut s.preset, opt.to_owned(), opt);
-                }
-            });
     });
 }
 
@@ -131,20 +138,32 @@ fn actions_card(ui: &mut Ui, p: &ThemeParams) {
             ui.add(Button::new(RichText::new("Restart SteamVR").color(p.fg)));
             ui.add(Button::new(RichText::new("Cancel").color(p.text_muted)).frame(false));
         });
-        ui.add_space(p.frame_text_spacing);
-        ui.separator();
-        ui.add_space(p.frame_text_spacing);
+        ui.add_space(10.0);
         ui.hyperlink_to(RichText::new("Open the ALVR wiki ↗").size(13.0), "https://github.com/alvr-org/ALVR/wiki");
     });
 }
 
 fn logs_card(ui: &mut Ui, p: &ThemeParams) {
+    let rows = [
+        ("ERROR", p.log_error, "encoder pipeline stalled for 2 frames"),
+        ("WARN", p.log_warning, "bitrate capped by network headroom"),
+        ("INFO", p.log_info, "client connected · 192.168.1.42"),
+        ("DEBUG", p.log_debug, "frame 12944 submitted in 4.1ms"),
+        ("EVENT", p.log_event, "tracking pose received"),
+    ];
     card(ui, p, "Logs", |ui| {
-        log_line(ui, p, "ERROR", p.log_error, "encoder pipeline stalled for 2 frames");
-        log_line(ui, p, "WARN", p.log_warning, "bitrate capped by network headroom");
-        log_line(ui, p, "INFO", p.log_info, "client connected · 192.168.1.42");
-        log_line(ui, p, "DEBUG", p.log_debug, "frame 12944 submitted in 4.1ms");
-        log_line(ui, p, "EVENT", p.log_event, "tracking pose received");
+        Grid::new("logs")
+            .num_columns(2)
+            .min_row_height(20.0)
+            .min_col_width(58.0)
+            .spacing([16.0, 3.0])
+            .show(ui, |ui| {
+                for (level, color, msg) in rows {
+                    ui.label(mono_strong(level, 11.0, color));
+                    ui.label(mono(msg, 12.5, p.text_muted));
+                    ui.end_row();
+                }
+            });
     });
 }
 
@@ -166,7 +185,7 @@ fn palette_card(ui: &mut Ui, p: &ThemeParams) {
     });
 }
 
-// ---- building blocks --------------------------------------------------------
+// ---- structure --------------------------------------------------------------
 
 fn card(ui: &mut Ui, p: &ThemeParams, eyebrow_text: &str, add: impl FnOnce(&mut Ui)) {
     Frame::new()
@@ -178,18 +197,67 @@ fn card(ui: &mut Ui, p: &ThemeParams, eyebrow_text: &str, add: impl FnOnce(&mut 
         .show(ui, |ui| {
             ui.set_width(ui.available_width());
             eyebrow(ui, p, eyebrow_text);
-            ui.add_space(p.frame_text_spacing + 2.0);
+            ui.add_space(p.frame_text_spacing + 6.0);
             add(ui);
         });
     ui.add_space(p.item_spacing.y + 4.0);
 }
 
+/// A labelled subgroup inside a card: eyebrow + hairline rule + indented content.
+fn subgroup(ui: &mut Ui, p: &ThemeParams, title: &str, add: impl FnOnce(&mut Ui)) {
+    ui.horizontal(|ui| {
+        ui.label(RichText::new(spaced_upper(title)).text_style(ts_eyebrow()).color(p.text_muted));
+        ui.add_space(10.0);
+        let w = ui.available_width();
+        if w > 8.0 {
+            let (r, _) = ui.allocate_exact_size(Vec2::new(w, 1.0), Sense::hover());
+            ui.painter().hline(r.x_range(), r.center().y, Stroke::new(1.0_f32, p.separator));
+        }
+    });
+    ui.add_space(10.0);
+    ui.horizontal(|ui| {
+        ui.add_space(2.0);
+        ui.vertical(|ui| add(ui));
+    });
+    ui.add_space(12.0);
+}
+
+// ---- readout rows -----------------------------------------------------------
+
+fn slider_block(ui: &mut Ui, p: &ThemeParams, spec: &SliderSpec, value: &mut f32) {
+    ui.horizontal(|ui| {
+        ui.label(RichText::new(spec.label).color(p.text_muted).size(13.0));
+        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+            ui.label(mono(spec.unit, 11.0, p.text_faint));
+            ui.add_space(3.0);
+            ui.label(mono_strong(fmt(*value, spec.decimals), 15.0, p.accent_hover));
+        });
+    });
+    ui.add_space(4.0);
+    ui.horizontal(|ui| {
+        ui.label(mono(fmt(*spec.range.start(), spec.decimals), 10.0, p.text_faint));
+        let track = (ui.available_width() - 52.0).max(120.0);
+        ui.spacing_mut().slider_width = track;
+        ui.add(Slider::new(value, spec.range.clone()).show_value(false).step_by(spec.step as f64));
+        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
+            ui.label(mono(fmt(*spec.range.end(), spec.decimals), 10.0, p.text_faint));
+        });
+    });
+    ui.add_space(10.0);
+}
+
+fn switch_row(ui: &mut Ui, p: &ThemeParams, value: &mut bool, label: &str) {
+    ui.horizontal(|ui| {
+        switch(ui, value);
+        ui.add_space(6.0);
+        ui.label(RichText::new(label).color(p.fg).size(13.0));
+    });
+}
+
+// ---- atoms ------------------------------------------------------------------
+
 fn eyebrow(ui: &mut Ui, p: &ThemeParams, text: &str) {
-    ui.label(
-        RichText::new(spaced_upper(text))
-            .text_style(ts_eyebrow())
-            .color(p.text_faint),
-    );
+    ui.label(RichText::new(spaced_upper(text)).text_style(ts_eyebrow()).color(p.text_faint));
 }
 
 fn field_label(ui: &mut Ui, p: &ThemeParams, text: &str) {
@@ -201,17 +269,19 @@ fn stat_tile(ui: &mut Ui, p: &ThemeParams, label: &str, value: &str, unit: &str,
         .fill(p.darker_bg)
         .stroke(Stroke::new(1.0_f32, p.separator))
         .corner_radius(p.widget_radius)
-        .inner_margin(Margin::symmetric(13, 11))
+        .inner_margin(Margin::symmetric(14, 12))
         .show(ui, |ui| {
             ui.set_width(ui.available_width());
-            ui.horizontal(|ui| {
-                ui.label(mono_strong(value, 22.0, accent));
-                if !unit.is_empty() {
-                    ui.label(mono(unit, 11.0, p.text_faint));
-                }
+            ui.with_layout(Layout::top_down(Align::Min), |ui| {
+                ui.horizontal(|ui| {
+                    ui.label(mono_strong(value, 23.0, accent));
+                    if !unit.is_empty() {
+                        ui.label(mono(unit, 11.0, p.text_faint));
+                    }
+                });
+                ui.add_space(4.0);
+                ui.label(RichText::new(spaced_upper(label)).text_style(ts_eyebrow()).color(p.text_muted));
             });
-            ui.add_space(3.0);
-            ui.label(RichText::new(spaced_upper(label)).text_style(ts_eyebrow()).color(p.text_muted));
         });
 }
 
@@ -231,38 +301,20 @@ fn status_pill(ui: &mut Ui, p: &ThemeParams, on: bool) {
         });
 }
 
-fn slider_row(ui: &mut Ui, p: &ThemeParams, label: &str, value: &mut f32, range: std::ops::RangeInclusive<f32>, unit: &str) {
-    ui.horizontal(|ui| {
-        ui.add_sized([86.0, p.interact_size], egui::Label::new(RichText::new(label).color(p.text_muted)));
-        ui.add(Slider::new(value, range).show_value(false));
-        ui.with_layout(Layout::right_to_left(Align::Center), |ui| {
-            ui.label(mono_strong(format!("{value:.0}"), 14.0, p.accent_hover));
-            ui.label(mono(unit, 11.0, p.text_faint));
-        });
-    });
-}
-
-fn log_line(ui: &mut Ui, p: &ThemeParams, level: &str, color: Color32, msg: &str) {
-    ui.horizontal(|ui| {
-        ui.add_sized([58.0, 16.0], egui::Label::new(mono_strong(level, 11.0, color)));
-        ui.label(mono(msg, 12.5, p.text_muted));
-    });
-}
-
 fn swatch(ui: &mut Ui, p: &ThemeParams, color: Color32, name: &str) {
     Frame::new()
         .fill(p.darker_bg)
         .corner_radius(p.widget_radius)
-        .inner_margin(Margin::symmetric(9, 6))
+        .inner_margin(Margin::symmetric(10, 7))
         .show(ui, |ui| {
             ui.horizontal(|ui| {
                 let (r, _) = ui.allocate_exact_size(Vec2::splat(11.0), Sense::hover());
-                ui.painter().rect_filled(r, CornerRadius::same(3), color);
-                ui.add_space(2.0);
+                ui.painter().rect_filled(r, CornerRadius::same(2), color);
+                ui.add_space(3.0);
                 ui.label(RichText::new(name).size(12.0).color(p.text_muted));
             });
         });
-    ui.add_space(4.0);
+    ui.add_space(6.0);
 }
 
 // ---- text helpers -----------------------------------------------------------
@@ -278,7 +330,11 @@ fn mono_strong(text: impl Into<String>, size: f32, color: Color32) -> RichText {
         .color(color)
 }
 
-/// Fake letter-spacing for eyebrow/label runs (egui has no global tracking).
+fn fmt(value: f32, decimals: usize) -> String {
+    format!("{value:.decimals$}")
+}
+
+/// Fake letter-spacing for eyebrow runs (egui has no global tracking).
 fn spaced_upper(text: &str) -> String {
     text.to_uppercase()
         .chars()

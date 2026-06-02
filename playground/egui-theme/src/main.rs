@@ -71,7 +71,19 @@ impl eframe::App for App {
             backdrop(ui, &self.theme);
             egui::ScrollArea::vertical().show(ui, |ui| {
                 ui.add_space(6.0);
-                gallery::show(ui, &mut self.demo, &self.theme);
+                // Fixed, centered measure — controls read as an instrument panel,
+                // not a form rubber-banded to the window width.
+                let avail = ui.available_width();
+                let measure = avail.min(860.0);
+                let pad = ((avail - measure) / 2.0).max(0.0);
+                ui.horizontal(|ui| {
+                    ui.add_space(pad);
+                    ui.vertical(|ui| {
+                        ui.set_max_width(measure);
+                        ui.set_width(measure);
+                        gallery::show(ui, &mut self.demo, &self.theme);
+                    });
+                });
                 ui.add_space(8.0);
             });
         });

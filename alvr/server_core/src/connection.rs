@@ -484,6 +484,8 @@ fn try_connect(
         con_bail!("unreachable");
     };
 
+    info!("Initiating connection to {client_hostname}");
+
     dbg_connection!("try_connect: Pushing new client connection thread");
 
     ctx.connection_threads.lock().push(thread::spawn({
@@ -506,6 +508,10 @@ fn try_connect(
 
                 ClientConnectionsAction::RemoveEntry
             } else {
+                info!(
+                    "Client {client_hostname} connection closed; state -> Disconnected \
+                     (eligible to reconnect)"
+                );
                 ClientConnectionsAction::SetConnectionState(ConnectionState::Disconnected)
             };
             SESSION_MANAGER

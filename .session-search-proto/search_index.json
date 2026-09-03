@@ -1,0 +1,33 @@
+{
+  "query": "stream_protocol",
+  "projects": [
+    {
+      "project": "/Users/jurrejan/dev/multi-stack/alvr",
+      "query": "stream_protocol",
+      "match_count": 2,
+      "window_count": 1,
+      "context_messages": 10,
+      "windows": [
+        {
+          "start": "2026-06-02T19:20:21.951000+00:00",
+          "end": "2026-06-02T19:42:47.458000+00:00",
+          "duration_minutes": 22.425116666666668
+        }
+      ],
+      "matches": [
+        {
+          "timestamp": "2026-06-02T19:25:21.951Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "This explains the all-mDNS logs. The config:  ``` stream_protocol         = Udp client_discovery    "
+        },
+        {
+          "timestamp": "2026-06-02T19:37:47.458Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "You're right. Let me stop and be precise about facts instead of theories.  ## What I actually change"
+        }
+      ]
+    }
+  ]
+}

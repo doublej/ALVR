@@ -1,0 +1,275 @@
+{
+  "query": "wired",
+  "projects": [
+    {
+      "project": "/Users/jurrejan/Documents/development/multi-stack/alvr",
+      "query": "wired",
+      "match_count": 34,
+      "window_count": 11,
+      "context_messages": 331,
+      "windows": [
+        {
+          "start": "2026-06-01T23:24:59.721000+00:00",
+          "end": "2026-06-02T00:01:33.923000+00:00",
+          "duration_minutes": 36.570033333333335
+        },
+        {
+          "start": "2026-06-02T00:31:13.465000+00:00",
+          "end": "2026-06-02T01:15:10.465000+00:00",
+          "duration_minutes": 43.95
+        },
+        {
+          "start": "2026-06-02T03:29:47.846000+00:00",
+          "end": "2026-06-02T03:39:47.846000+00:00",
+          "duration_minutes": 10.0
+        },
+        {
+          "start": "2026-06-02T10:25:12.882000+00:00",
+          "end": "2026-06-02T10:35:12.882000+00:00",
+          "duration_minutes": 10.0
+        },
+        {
+          "start": "2026-06-02T12:19:13.795000+00:00",
+          "end": "2026-06-02T12:29:13.795000+00:00",
+          "duration_minutes": 10.0
+        },
+        {
+          "start": "2026-06-02T12:46:06.997000+00:00",
+          "end": "2026-06-02T13:14:49.146000+00:00",
+          "duration_minutes": 28.70248333333333
+        },
+        {
+          "start": "2026-06-02T13:25:48.549000+00:00",
+          "end": "2026-06-02T13:38:28.316000+00:00",
+          "duration_minutes": 12.662783333333334
+        },
+        {
+          "start": "2026-06-02T14:04:55.006000+00:00",
+          "end": "2026-06-02T14:14:55.006000+00:00",
+          "duration_minutes": 10.0
+        },
+        {
+          "start": "2026-06-02T15:34:19.392000+00:00",
+          "end": "2026-06-02T16:11:41.705000+00:00",
+          "duration_minutes": 37.37188333333334
+        },
+        {
+          "start": "2026-06-02T18:40:28.041000+00:00",
+          "end": "2026-06-02T18:52:33.601000+00:00",
+          "duration_minutes": 12.092666666666666
+        },
+        {
+          "start": "2026-06-02T19:11:23.352000+00:00",
+          "end": "2026-06-02T19:42:47.458000+00:00",
+          "duration_minutes": 31.401766666666667
+        }
+      ],
+      "matches": [
+        {
+          "timestamp": "2026-06-01T23:29:59.721Z",
+          "type": "user",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "I want you to distill a list of optimizations relevant to my system. GTX 4080 super, windows, quest "
+        },
+        {
+          "timestamp": "2026-06-01T23:31:17.162Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Confirmed the real knobs. One critical thing to verify for your Ada GPU: whether **AV1 NVENC** is ac"
+        },
+        {
+          "timestamp": "2026-06-01T23:32:48.259Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Key finding that shapes everything: **korejan's fork only has H264/HEVC \u2014 no AV1**, and shinyquagsir"
+        },
+        {
+          "timestamp": "2026-06-01T23:38:48.231Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Excellent \u2014 there's real history here. Let me check one more thing: whether any *fork* actually wire"
+        },
+        {
+          "timestamp": "2026-06-01T23:39:41.615Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Both. \"Split frame\" means two different things in ALVR, and the history differs sharply between them"
+        },
+        {
+          "timestamp": "2026-06-01T23:54:26.354Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Got it \u2014 toolchain's done (nightly check passed, exit 0); build happens on Windows later. Pivoting f"
+        },
+        {
+          "timestamp": "2026-06-01T23:56:33.923Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Ready to go. Status:  **Done (setup)** - \u2705 Nightly current (`2026-05-31`), repo pinned to nightly, `"
+        },
+        {
+          "timestamp": "2026-06-02T00:36:13.465Z",
+          "type": "user",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "<task-notification> <task-id>wbwiph4h9</task-id> <tool-use-id>toolu_013Qq3AiWgrFo4U6b2paALcV</tool-u"
+        },
+        {
+          "timestamp": "2026-06-02T00:36:56.861Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Verifiers were appropriately ruthless for a wired Quest 3 \u2014 **7 actionable** items, the rest dropped"
+        },
+        {
+          "timestamp": "2026-06-02T00:44:31.562Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Done. Here's where things landed.  ## What I did 1. **Toolchain** \u2014 nightly is current (`2026-05-31`"
+        },
+        {
+          "timestamp": "2026-06-02T00:55:00.891Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Now I have the precise path, and a key insight the validator under-weighted: **the server-side encod"
+        },
+        {
+          "timestamp": "2026-06-02T01:10:10.465Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Formatting is clean on my files \u2014 the only `fmt` diff is in `control_socket.rs`, which I never touch"
+        },
+        {
+          "timestamp": "2026-06-02T03:34:47.846Z",
+          "type": "user",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "This session is being continued from a previous conversation that ran out of context. The summary be"
+        },
+        {
+          "timestamp": "2026-06-02T10:30:12.882Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Done. Here's where things landed.  ## Sliced (subframe-readback) streaming \u2014 implemented, reviewed, "
+        },
+        {
+          "timestamp": "2026-06-02T12:24:13.795Z",
+          "type": "user",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "This session is being continued from a previous conversation that ran out of context. The summary be"
+        },
+        {
+          "timestamp": "2026-06-02T12:51:06.997Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Root cause confirmed from the launcher code \u2014 and it's structural, not something on our end:  **Why "
+        },
+        {
+          "timestamp": "2026-06-02T13:09:49.146Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Now the gap is clear and it's **large**. My sliced work is based on upstream master from **~2025-11-"
+        },
+        {
+          "timestamp": "2026-06-02T13:30:48.549Z",
+          "type": "user",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "This session is being continued from a previous conversation that ran out of context. The summary be"
+        },
+        {
+          "timestamp": "2026-06-02T13:33:28.316Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "This is now clear enough to fan out properly. Confirmed bombshells:  1. **`#[cfg(debug_assertions)]`"
+        },
+        {
+          "timestamp": "2026-06-02T14:09:55.006Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Deployed and live. Everything landed clean:  - **Streamer** \u2192 refreshed in `installations\\v21.0.0-de"
+        },
+        {
+          "timestamp": "2026-06-02T15:39:19.392Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Here's the handoff briefing for a fresh session to take over the monitoring \u2014 paste this into a new "
+        },
+        {
+          "timestamp": "2026-06-02T15:41:34.365Z",
+          "type": "user",
+          "session_id": "c5956f48-acf2-4388-8ad6-7f73244e0508",
+          "preview": "Task: Monitor Quest 3 client for reconnect/timeout break; capture logcat teardown; identify which th"
+        },
+        {
+          "timestamp": "2026-06-02T15:51:28.679Z",
+          "type": "user",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "This session is being continued from a previous conversation that ran out of context. The summary be"
+        },
+        {
+          "timestamp": "2026-06-02T16:00:18.855Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "The workflow **revised my hypothesis with a more precise root cause** \u2014 and it's far more convincing"
+        },
+        {
+          "timestamp": "2026-06-02T16:06:41.705Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "`CLIENT_RC=0` \u2014 the fixed client APK built and signed successfully (18:04, `target\\release\\apk\\alvr_"
+        },
+        {
+          "timestamp": "2026-06-02T18:45:28.041Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Two big clues here. The streamer's **only trusted client is `client.wired`** \u2014 the USB/wired identit"
+        },
+        {
+          "timestamp": "2026-06-02T18:47:33.601Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "That pins it. Three facts:  1. **Client is alive but not even *trying* to connect.** In a fresh 5-se"
+        },
+        {
+          "timestamp": "2026-06-02T19:16:23.352Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Two real problems surfaced: **the adb daemon had died and restarted** (`daemon not running; starting"
+        },
+        {
+          "timestamp": "2026-06-02T19:17:56.466Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "The adb daemon keeps dying between commands \u2014 that's an **adb version war**, almost certainly ALVR D"
+        },
+        {
+          "timestamp": "2026-06-02T19:19:49.368Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "I've found the problem \u2014 and it's a connection/environment issue, not the deadlock I fixed. Let me l"
+        },
+        {
+          "timestamp": "2026-06-02T19:21:50.466Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "That's the answer: **Wired (USB) mode, but the dashboard sees nothing** \u2014 because the wired connecti"
+        },
+        {
+          "timestamp": "2026-06-02T19:23:18.331Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "Concrete now. The system adb is **35.0.2**. ALVR has a bundled adb only in the *old* `v20.12.1` inst"
+        },
+        {
+          "timestamp": "2026-06-02T19:25:21.951Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "This explains the all-mDNS logs. The config:  ``` stream_protocol         = Udp client_discovery    "
+        },
+        {
+          "timestamp": "2026-06-02T19:37:47.458Z",
+          "type": "assistant",
+          "session_id": "045417f2-cf6f-48ed-906f-bcd3e4346354",
+          "preview": "You're right. Let me stop and be precise about facts instead of theories.  ## What I actually change"
+        }
+      ]
+    }
+  ]
+}
